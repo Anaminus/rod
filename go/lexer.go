@@ -318,52 +318,6 @@ func (l *lexer) errorf(format string, a ...any) state {
 	return nil
 }
 
-// Scans for optional whitespace.
-func (l *lexer) whitespace() {
-	l.r.IsAny(unicode.IsSpace)
-	if !l.empty() {
-		l.emit(tSpace)
-	}
-}
-
-// Scans the rest of a block comment.
-func (l *lexer) blockComment() bool {
-	if !l.r.Until(rBlockCommentEnd) {
-		l.errorf("expected %q", rBlockCommentEnd)
-		return false
-	}
-	l.emit(tBlockComment)
-	l.whitespace()
-	return true
-}
-
-// Scans the rest of an inline comment.
-func (l *lexer) inlineComment() bool {
-	if !l.r.UntilEOL() {
-		l.errorf("expected end of line")
-		return false
-	}
-	l.emit(tInlineComment)
-	l.whitespace()
-	return true
-}
-
-// Scans spacing, which may include a number of comments.
-func (l *lexer) space() bool {
-	l.whitespace()
-	for {
-		switch {
-		case l.r.Is(rBlockComment):
-			return l.blockComment()
-		case l.r.IsRune(rInlineComment):
-			return l.inlineComment()
-		default:
-			// Not an error.
-			return true
-		}
-	}
-}
-
 // Causes lexSpace to run, followed by s.
 func (l *lexer) lexSpaceThen(s state) state {
 	l.push(s)
@@ -374,7 +328,25 @@ func (l *lexer) lexSpaceThen(s state) state {
 
 // Scans for optional whitespace and comments.
 func lexSpace(l *lexer) state {
-	l.space()
+	l.r.IsAny(unicode.IsSpace)
+	if !l.empty() {
+		l.emit(tSpace)
+	}
+
+	switch {
+	case l.r.Is(rBlockComment):
+		if !l.r.Until(rBlockCommentEnd) {
+			return l.errorf("expected %q", rBlockCommentEnd)
+		}
+		l.emit(tBlockComment)
+		return lexSpace
+	case l.r.IsRune(rInlineComment):
+		if !l.r.UntilEOL() {
+			return l.errorf("expected end of line")
+		}
+		l.emit(tInlineComment)
+		return lexSpace
+	}
 	return l.pop()
 }
 
