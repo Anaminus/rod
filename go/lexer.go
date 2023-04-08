@@ -247,8 +247,7 @@ func (l *lexer) Err() error {
 // lexEOF.
 func (l *lexer) run() {
 	l.stack = l.stack[:0]
-	l.push(lexEOF)
-	l.push(lexSpace)
+	l.push(lexSpace, lexEOF)
 	for state := lexMain; state != nil; {
 		// name := runtime.FuncForPC(reflect.ValueOf(state).Pointer()).Name()
 		// name = strings.TrimPrefix(name, "github.com/anaminus/rod/go.")
@@ -258,9 +257,11 @@ func (l *lexer) run() {
 	close(l.tokens)
 }
 
-// Pushes s onto the stack.
-func (l *lexer) push(s state) {
-	l.stack = append(l.stack, s)
+// Pushes each state onto the stack such that they run in argument order.
+func (l *lexer) push(s ...state) {
+	for i := len(s) - 1; i >= 0; i-- {
+		l.stack = append(l.stack, s[i])
+	}
 }
 
 // Pops a state from the stack.
@@ -534,8 +535,7 @@ func lexElement(l *lexer) state {
 		l.emit(tArrayClose)
 		return l.pop()
 	}
-	l.push(lexElementNext)
-	l.push(lexSpace)
+	l.push(lexSpace, lexElementNext)
 	l.comp = true
 	return l.lexSpaceThen(lexValue)
 }
@@ -560,8 +560,7 @@ func lexEntryKey(l *lexer) state {
 		l.emit(tArrayClose)
 		return l.pop()
 	}
-	l.push(lexEntryAssoc)
-	l.push(lexSpace)
+	l.push(lexSpace, lexEntryAssoc)
 	l.comp = false
 	return l.lexSpaceThen(lexValue)
 }
@@ -577,8 +576,7 @@ func lexEntryAssoc(l *lexer) state {
 
 // Scans the value of a map entry.
 func lexEntryValue(l *lexer) state {
-	l.push(lexEntryNext)
-	l.push(lexSpace)
+	l.push(lexSpace, lexEntryNext)
 	l.comp = true
 	return l.lexSpaceThen(lexValue)
 }
@@ -646,8 +644,7 @@ func lexFieldAssoc(l *lexer) state {
 
 // Scans the value of a struct field.
 func lexFieldValue(l *lexer) state {
-	l.push(lexFieldNext)
-	l.push(lexSpace)
+	l.push(lexSpace, lexFieldNext)
 	l.comp = true
 	return l.lexSpaceThen(lexValue)
 }
