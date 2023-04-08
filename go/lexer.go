@@ -271,6 +271,17 @@ func (l *lexer) pop() state {
 	return s
 }
 
+// Pushes each state onto the stack such that they run in argument order, then
+// immediately pops the stack.
+func (l *lexer) do(s ...state) state {
+	next := s[0]
+	s = s[1:]
+	for i := len(s) - 1; i >= 0; i-- {
+		l.stack = append(l.stack, s[i])
+	}
+	return next
+}
+
 // Consumes buffer, returning a string.
 func (l *lexer) consume() string {
 	l.start = l.r.N()
@@ -514,8 +525,10 @@ func lexElement(l *lexer) state {
 		l.emit(tArrayClose)
 		return l.pop()
 	}
-	l.push(lexSpace, lexElementNext)
-	return l.lexSpaceThen(lexValue)
+	return l.do(
+		lexSpace, lexValue,
+		lexSpace, lexElementNext,
+	)
 }
 
 // Scans the portion following an array element.
@@ -538,8 +551,11 @@ func lexEntryKey(l *lexer) state {
 		l.emit(tArrayClose)
 		return l.pop()
 	}
-	l.push(lexSpace, lexAssoc, lexSpace, lexEntryValue)
-	return l.lexSpaceThen(lexOnlyPrimitive)
+	return l.do(
+		lexSpace, lexOnlyPrimitive,
+		lexSpace, lexAssoc,
+		lexSpace, lexEntryValue,
+	)
 }
 
 // Scans an association token.
@@ -553,8 +569,10 @@ func lexAssoc(l *lexer) state {
 
 // Scans the value of a map entry.
 func lexEntryValue(l *lexer) state {
-	l.push(lexSpace, lexEntryNext)
-	return l.lexSpaceThen(lexValue)
+	return l.do(
+		lexSpace, lexValue,
+		lexSpace, lexEntryNext,
+	)
 }
 
 // Scans the portion following a map entry.
@@ -606,14 +624,18 @@ func lexIdent(l *lexer) state {
 		}
 	}
 	l.emit(tIdent)
-	l.push(lexSpace, lexFieldValue)
-	return l.lexSpaceThen(lexAssoc)
+	return l.do(
+		lexSpace, lexAssoc,
+		lexSpace, lexFieldValue,
+	)
 }
 
 // Scans the value of a struct field.
 func lexFieldValue(l *lexer) state {
-	l.push(lexSpace, lexFieldNext)
-	return l.lexSpaceThen(lexValue)
+	return l.do(
+		lexSpace, lexValue,
+		lexSpace, lexFieldNext,
+	)
 }
 
 // Scans the portion following a struct field.
