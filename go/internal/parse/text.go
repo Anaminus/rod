@@ -84,10 +84,16 @@ func (r *TextReader) End() (n int64, err error) {
 	return r.n, r.err
 }
 
+// Returns and consumes the buffer.
 func (r *TextReader) Consume() []byte {
 	buf := r.buf
 	r.buf = r.buf[:0]
 	return buf
+}
+
+// Returns the buffer.
+func (r *TextReader) Bytes() []byte {
+	return r.buf
 }
 
 // Next returns the next rune from the reader, and advances the cursor by the

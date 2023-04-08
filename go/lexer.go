@@ -5,6 +5,7 @@ import (
 	"io"
 	"strings"
 	"unicode"
+	"unicode/utf8"
 
 	"github.com/anaminus/rod/go/internal/parse"
 )
@@ -155,11 +156,42 @@ func (t tokenType) String() string {
 	}
 }
 
+// Contains information about the position of a token.
+type position struct {
+	StartOffset int64
+	StartLine   int
+	StartColumn int
+
+	EndOffset int64
+	EndLine   int
+	EndColumn int
+}
+
+// Formats the position as a line and column.
+func (p position) String() string {
+	if p.StartLine == p.EndLine && p.StartColumn == p.EndColumn {
+		return fmt.Sprintf("%d:%d", p.StartLine, p.StartColumn)
+	}
+	return fmt.Sprintf("%d:%d-%d:%d",
+		p.StartLine, p.StartColumn,
+		p.EndLine, p.EndColumn,
+	)
+}
+
+// Formats the position as a byte offset.
+func (p position) StringOffset() string {
+	if p.StartOffset == p.EndOffset {
+		return fmt.Sprintf("%d", p.StartOffset)
+	}
+	return fmt.Sprintf("%d-%d", p.StartOffset, p.EndOffset)
+}
+
 // A token emitted from the lexer.
 type token struct {
-	Type  tokenType
-	Value string
-	Error error
+	Type     tokenType
+	Position position
+	Value    string
+	Err      error
 }
 
 func mapPrintable(r rune) rune {
@@ -184,12 +216,29 @@ func mapPrintable(r rune) rune {
 
 // Returns a readable representation of the token.
 func (t token) String() string {
-	if t.Error != nil {
-		return fmt.Sprintf("%s: %s", t.Type, t.Error)
+	var v string
+	if t.Err == nil {
+		v = t.Value
+		v = strings.Map(mapPrintable, v)
+	} else {
+		v = t.Err.Error()
 	}
-	v := t.Value
-	v = strings.Map(mapPrintable, v)
 	return fmt.Sprintf("%s: %s", t.Type, v)
+}
+
+// Interprets a token as an error.
+type tokenError token
+
+// Formats as the position of the token, then the underlying error.
+func (t tokenError) Error() string {
+	if t.Err == nil {
+		return fmt.Sprintf("%s: %s", t.Position, "no error")
+	}
+	return fmt.Sprintf("%s: %s", t.Position, t.Err.Error())
+}
+
+func (t tokenError) Unwrap() error {
+	return t.Err
 }
 
 // In which state the lexer is running.
@@ -223,8 +272,13 @@ func newLexer(r io.Reader) *lexer {
 // Next prepares the next token. Returns whether the token was successfully
 // received.
 func (l *lexer) Next() (ok bool) {
-	l.token, ok = <-l.tokens
-	return ok
+	if l.token, ok = <-l.tokens; !ok {
+		return false
+	}
+	if l.token.Err != nil {
+		return false
+	}
+	return true
 }
 
 // Token returns the last token emitted.
@@ -234,7 +288,10 @@ func (l *lexer) Token() token {
 
 // If the last token is an error token, returns its error.
 func (l *lexer) Err() error {
-	return l.token.Error
+	if l.token.Err == nil {
+		return nil
+	}
+	return tokenError(l.token)
 }
 
 // Runs the lexer through each state, starting with lexMain, and ending with
@@ -281,15 +338,31 @@ func (l *lexer) do(s ...state) state {
 	return next
 }
 
+// Returns the current position of the buffer.
+func (l *lexer) position() position {
+	p := position{
+		StartOffset: l.start,
+		EndOffset:   l.r.N(),
+	}
+	p.StartLine, p.StartColumn = l.lr.Position(p.StartOffset)
+	p.EndLine, p.EndColumn = l.lr.Position(p.EndOffset)
+	return p
+}
+
 // Consumes buffer, returning a string.
 func (l *lexer) consume() string {
 	l.start = l.r.N()
 	return string(l.r.Consume())
 }
 
+// Returns the current buffer as a string.
+func (l *lexer) bytes() string {
+	return string(l.r.Bytes())
+}
+
 // Consumes the buffer to emit a token of type t.
 func (l *lexer) emit(t tokenType) {
-	l.tokens <- token{Type: t, Value: string(l.consume())}
+	l.tokens <- token{Type: t, Position: l.position(), Value: string(l.consume())}
 }
 
 // Returns whether the buffer is empty.
@@ -298,34 +371,66 @@ func (l *lexer) empty() bool {
 }
 
 // Indicates an error produced while lexing.
-type syntaxError struct {
-	StartOffset int64
-	StartLine   int
-	StartColumn int
-	EndOffset   int64
-	EndLine     int
-	EndColumn   int
-	Err         error
+type lexerError struct {
+	Type string
+	Err  error
 }
 
-// Implements error.
-func (err syntaxError) Error() string {
-	return fmt.Sprintf("line %d, column %d: syntax error: %s", err.StartLine, err.StartColumn, err.Err)
+// Formats as the error type, then the underlying error.
+func (err lexerError) Error() string {
+	return fmt.Sprintf("%s error: %s", err.Type, err.Err)
+}
+
+// Returns the underlying error.
+func (err lexerError) Unwrap() error {
+	return err.Err
 }
 
 // Emits an error token with an error according to the given format. Returns
 // nil, halting the lexer.
-func (l *lexer) errorf(format string, a ...any) state {
-	err := syntaxError{
-		StartOffset: l.start,
-		EndOffset:   l.r.N(),
-		Err:         fmt.Errorf(format, a...),
+func (l *lexer) errorf(typ string, format string, a ...any) state {
+	err := lexerError{
+		Type: typ,
+		Err:  fmt.Errorf(format, a...),
 	}
-	err.StartLine, err.StartColumn = l.lr.Position(err.StartOffset)
-	err.EndLine, err.EndColumn = l.lr.Position(err.EndOffset)
+	l.tokens <- token{Type: tError, Position: l.position(), Err: err}
 	l.consume()
-	l.tokens <- token{Type: tError, Error: err}
 	return nil
+}
+
+// Emits an error token with error that expects a particular value formatted
+// according to the given format. Includes the current buffer, or the next
+// character if the buffer is empty.
+//
+// If the underlying reader produces an error, it is displayed instead.
+func (l *lexer) expected(format string, a ...any) state {
+	if err := l.r.Err(); err != nil {
+		return l.errorf("reader", "%w", err)
+	}
+	s := l.bytes()
+	if s == "" {
+		// Try next character.
+		switch r := l.r.MustNext(); {
+		case r < 0:
+			s = "end of file"
+			goto finish
+		default:
+			s = string(r)
+		}
+	}
+	switch {
+	case s == "'":
+		// Format with backquotes.
+		fallthrough
+	default:
+		s = fmt.Sprintf("%#q", s)
+	case utf8.RuneCountInString(s) == 1:
+		// Format as single rune.
+		s = fmt.Sprintf("%q", []rune(s)[0])
+	}
+	a = append(a, s)
+finish:
+	return l.errorf("syntax", "expected "+format+", got %s", a...)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -340,13 +445,13 @@ func lexSpace(l *lexer) state {
 	switch {
 	case l.r.Is(rBlockComment):
 		if !l.r.Until(rBlockCommentEnd) {
-			return l.errorf("expected %q", rBlockCommentEnd)
+			return l.expected("%q", rBlockCommentEnd)
 		}
 		l.emit(tBlockComment)
 		return lexSpace
 	case l.r.IsRune(rInlineComment):
 		if !l.r.UntilEOL() {
-			return l.errorf("expected end of line")
+			return l.expected("end of line")
 		}
 		l.emit(tInlineComment)
 		return lexSpace
@@ -357,7 +462,7 @@ func lexSpace(l *lexer) state {
 // Verifies that the lexer is at the end of the file.
 func lexEOF(l *lexer) state {
 	if !l.r.IsEOF() {
-		return l.errorf("expected end of file")
+		return l.expected("end of file")
 	}
 	l.emit(tEOF)
 	return nil
@@ -376,7 +481,7 @@ func lexMain(l *lexer) state {
 func lexAnnotation(l *lexer) state {
 	if l.r.IsRune(rAnnotation) {
 		if !l.r.Until(rAnnotationEnd) {
-			return l.errorf("expected %q", rAnnotationEnd)
+			return l.expected("%q", rAnnotationEnd)
 		}
 		l.emit(tAnnotation)
 	}
@@ -398,7 +503,7 @@ func lexValue(l *lexer) state {
 		l.emit(tStructOpen)
 		return l.do(lexSpace, lexField)
 	default:
-		return l.errorf("expected value")
+		return l.expected("value")
 	}
 }
 
@@ -408,7 +513,7 @@ func lexPrimitive(l *lexer) state {
 	case switchPrimitive(l):
 		return l.pop()
 	default:
-		return l.errorf("expected value")
+		return l.expected("primitive value")
 	}
 }
 
@@ -456,11 +561,11 @@ func switchPrimitive(l *lexer) bool {
 // Scans an integer or a float.
 func lexNumber(l *lexer) state {
 	if !l.r.IsAny(isDigit) {
-		return l.errorf("expected digit")
+		return l.expected("digit")
 	}
 	if l.r.IsRune(rDecimal) {
 		if !l.r.IsAny(isDigit) {
-			return l.errorf("expected digit")
+			return l.expected("digit")
 		}
 		l.emit(tFloat)
 		return l.pop()
@@ -478,7 +583,7 @@ func lexString(l *lexer) state {
 		case rString:
 			return l.pop()
 		case -1:
-			return l.errorf("expected %q", rString)
+			return l.expected("%q", rString)
 		}
 	}
 }
@@ -488,7 +593,7 @@ func lexBlob(l *lexer) state {
 	switch r := l.r.MustNext(); {
 	case isHex(r):
 		if r = l.r.MustNext(); !isHex(r) {
-			return l.errorf("expected hexdecimal digit")
+			return l.expected("hexdecimal digit")
 		}
 		l.emit(tByte)
 		return l.do(lexSpace, lexBlob)
@@ -496,7 +601,7 @@ func lexBlob(l *lexer) state {
 		l.emit(tBlob)
 		return l.do(lexSpace, lexAnotherBlob)
 	default:
-		return l.errorf("expected byte or %q", rBlob)
+		return l.expected("byte or %q", rBlob)
 	}
 }
 
@@ -532,7 +637,7 @@ func lexElementNext(l *lexer) state {
 		l.emit(tArrayClose)
 		return l.pop()
 	default:
-		return l.errorf("expected %q or %q", rSep, rArrayClose)
+		return l.expected("%q or %q", rSep, rArrayClose)
 	}
 }
 
@@ -562,7 +667,7 @@ func lexEntryNext(l *lexer) state {
 		l.emit(tMapClose)
 		return l.pop()
 	default:
-		return l.errorf("expected %q or %q", rSep, rMapClose)
+		return l.expected("%q or %q", rSep, rMapClose)
 	}
 }
 
@@ -599,11 +704,11 @@ func lexField(l *lexer) state {
 // Scans an identifier.
 func lexIdent(l *lexer) state {
 	if !isLetter(l.r.MustNext()) {
-		return l.errorf("expected identifier")
+		return l.expected("identifier")
 	}
 	if !l.r.IsAny(isIdent) {
 		if l.empty() {
-			return l.errorf("expected identifier")
+			return l.expected("identifier")
 		}
 	}
 	l.emit(tIdent)
@@ -620,14 +725,14 @@ func lexFieldNext(l *lexer) state {
 		l.emit(tStructClose)
 		return l.pop()
 	default:
-		return l.errorf("expected %q or %q", rSep, rStructClose)
+		return l.expected("%q or %q", rSep, rStructClose)
 	}
 }
 
 // Scans an association token.
 func lexAssoc(l *lexer) state {
 	if !l.r.IsRune(rAssoc) {
-		return l.errorf("expected %q", rAssoc)
+		return l.expected("%q", rAssoc)
 	}
 	l.emit(tAssoc)
 	return l.pop()
