@@ -248,6 +248,7 @@ func (l *lexer) Err() error {
 func (l *lexer) run() {
 	l.stack = l.stack[:0]
 	l.push(lexEOF)
+	l.push(lexSpace)
 	for state := lexMain; state != nil; {
 		// name := runtime.FuncForPC(reflect.ValueOf(state).Pointer()).Name()
 		// name = strings.TrimPrefix(name, "github.com/anaminus/rod/go.")
@@ -368,13 +369,22 @@ func (l *lexer) space() bool {
 	}
 }
 
+// Causes lexSpace to run, followed by s.
+func (l *lexer) lexSpaceThen(s state) state {
+	l.push(s)
+	return lexSpace
+}
+
 ////////////////////////////////////////////////////////////////////////////////
+
+// Scans for optional whitespace and comments.
+func lexSpace(l *lexer) state {
+	l.space()
+	return l.pop()
+}
 
 // Verifies that the lexer is at the end of the file.
 func lexEOF(l *lexer) state {
-	if !l.space() {
-		return nil
-	}
 	if !l.r.IsEOF() {
 		return l.errorf("expected end of file")
 	}
@@ -385,14 +395,11 @@ func lexEOF(l *lexer) state {
 // Main entrypoint. Scans any one value.
 func lexMain(l *lexer) state {
 	l.comp = true
-	return lexValue
+	return l.lexSpaceThen(lexValue)
 }
 
 // Scans for an optional annotation, then tries a primitive.
 func lexValue(l *lexer) state {
-	if !l.space() {
-		return nil
-	}
 	if l.r.IsRune(rAnnotation) {
 		return lexAnnotation
 	}
@@ -422,7 +429,7 @@ func lexPrimitive(l *lexer) state {
 		return lexString
 	case l.r.IsRune(rBlob):
 		l.emit(tBlob)
-		return lexBlob
+		return l.lexSpaceThen(lexBlob)
 	case isDigit(l.r.Peek()):
 		return lexNumber
 	case l.r.Is(rNull):
@@ -453,13 +460,13 @@ func lexComposite(l *lexer) state {
 	switch {
 	case l.r.IsRune(rArrayOpen):
 		l.emit(tArrayOpen)
-		return lexElement
+		return l.lexSpaceThen(lexElement)
 	case l.r.IsRune(rMapOpen):
 		l.emit(tMapOpen)
-		return lexEntryKey
+		return l.lexSpaceThen(lexEntryKey)
 	case l.r.IsRune(rStructOpen):
 		l.emit(tStructOpen)
-		return lexFieldName
+		return l.lexSpaceThen(lexFieldName)
 	default:
 		return l.pop()
 	}
@@ -497,55 +504,48 @@ func lexString(l *lexer) state {
 
 // Scans the rest of a blob. Also attempts to scan subsequent blobs.
 func lexBlob(l *lexer) state {
-	for {
-		if !l.space() {
-			return nil
-		}
-		switch r := l.r.MustNext(); {
-		case isHex(r):
-			if r = l.r.MustNext(); !isHex(r) {
+	switch r := l.r.MustNext(); {
+	case isHex(r):
+		if r = l.r.MustNext(); !isHex(r) {
 			return l.errorf("expected hexdecimal digit")
 		}
-			l.emit(tByte)
-		case r == rBlob:
-			l.emit(tBlob)
-			if !l.space() {
-				return nil
-			}
-			if l.r.IsRune(rBlob) {
-				l.emit(tBlob)
-				continue
-			}
-			return l.pop()
-		case r == -1:
-			return l.errorf("expected byte or %q", rBlob)
-		}
+		l.emit(tByte)
+		return l.lexSpaceThen(lexBlob)
+	case r == rBlob:
+		l.emit(tBlob)
+		return l.lexSpaceThen(lexAnotherBlob)
+	default:
+		return l.errorf("expected byte or %q", rBlob)
 	}
+}
+
+// Attempt to scan another blob.
+func lexAnotherBlob(l *lexer) state {
+	if l.r.IsRune(rBlob) {
+		l.emit(tBlob)
+		return l.lexSpaceThen(lexBlob)
+	}
+	return l.pop()
 }
 
 // Scans the element of an array.
 func lexElement(l *lexer) state {
-	if !l.space() {
-		return nil
-	}
 	if l.r.IsRune(rArrayClose) {
 		l.emit(tArrayClose)
 		return l.pop()
 	}
 	l.push(lexElementNext)
+	l.push(lexSpace)
 	l.comp = true
-	return lexValue
+	return l.lexSpaceThen(lexValue)
 }
 
 // Scans the portion following an array element.
 func lexElementNext(l *lexer) state {
-	if !l.space() {
-		return nil
-	}
 	switch l.r.MustNext() {
 	case rSep:
 		l.emit(tSep)
-		return lexElement
+		return l.lexSpaceThen(lexElement)
 	case rArrayClose:
 		l.emit(tArrayClose)
 		return l.pop()
@@ -556,44 +556,39 @@ func lexElementNext(l *lexer) state {
 
 // Scans the key of a map entry.
 func lexEntryKey(l *lexer) state {
-	if !l.space() {
-		return nil
-	}
 	if l.r.IsRune(rMapClose) {
 		l.emit(tArrayClose)
 		return l.pop()
 	}
-	l.push(lexEntryValue)
+	l.push(lexEntryAssoc)
+	l.push(lexSpace)
 	l.comp = false
-	return lexValue
+	return l.lexSpaceThen(lexValue)
 }
 
-// Scans the value of a map entry.
-func lexEntryValue(l *lexer) state {
-	if !l.space() {
-		return nil
-	}
+// Scans the association token a map entry.
+func lexEntryAssoc(l *lexer) state {
 	if !l.r.IsRune(rAssoc) {
 		l.errorf("expected %q", rAssoc)
 	}
 	l.emit(tAssoc)
-	if !l.space() {
-		return nil
-	}
+	return l.lexSpaceThen(lexEntryValue)
+}
+
+// Scans the value of a map entry.
+func lexEntryValue(l *lexer) state {
 	l.push(lexEntryNext)
+	l.push(lexSpace)
 	l.comp = true
-	return lexValue
+	return l.lexSpaceThen(lexValue)
 }
 
 // Scans the portion following a map entry.
 func lexEntryNext(l *lexer) state {
-	if !l.space() {
-		return nil
-	}
 	switch l.r.MustNext() {
 	case rSep:
 		l.emit(tSep)
-		return lexEntryKey
+		return l.lexSpaceThen(lexEntryKey)
 	case rMapClose:
 		l.emit(tMapClose)
 		return l.pop()
@@ -619,9 +614,6 @@ func lexEntryNext(l *lexer) state {
 
 // Scans the name of a struct field.
 func lexFieldName(l *lexer) state {
-	if !l.space() {
-		return nil
-	}
 	if l.r.IsRune(rStructClose) {
 		l.emit(tStructClose)
 		return l.pop()
@@ -640,35 +632,32 @@ func lexIdent(l *lexer) state {
 		}
 	}
 	l.emit(tIdent)
-	return lexFieldValue
+	return l.lexSpaceThen(lexFieldAssoc)
 }
 
-// Scans the value of a struct field.
-func lexFieldValue(l *lexer) state {
-	if !l.space() {
-		return nil
-	}
+// Scans the association token of a struct field.
+func lexFieldAssoc(l *lexer) state {
 	if !l.r.IsRune(rAssoc) {
 		return l.errorf("expected %q", rAssoc)
 	}
 	l.emit(tAssoc)
-	if !l.space() {
-		return nil
-	}
+	return l.lexSpaceThen(lexFieldValue)
+}
+
+// Scans the value of a struct field.
+func lexFieldValue(l *lexer) state {
 	l.push(lexFieldNext)
+	l.push(lexSpace)
 	l.comp = true
-	return lexValue
+	return l.lexSpaceThen(lexValue)
 }
 
 // Scans the portion following a struct field.
 func lexFieldNext(l *lexer) state {
-	if !l.space() {
-		return nil
-	}
 	switch l.r.MustNext() {
 	case rSep:
 		l.emit(tSep)
-		return lexFieldName
+		return l.lexSpaceThen(lexFieldName)
 	case rStructClose:
 		l.emit(tStructClose)
 		return l.pop()
