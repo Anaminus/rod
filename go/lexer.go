@@ -206,12 +206,6 @@ type lexer struct {
 	// Determines the next state to enter for states that have indefinite paths.
 	// Enables nested values.
 	stack []state
-
-	// Indicates whether composite values are parsed. Set directly before each
-	// time lexValue is returned. lexValue is never returned again between the
-	// point where comp is set and where it is evaluated, so it's safe to be a
-	// single field rather than a stack.
-	comp bool
 }
 
 // Returns a new lexer that decodes from r.
@@ -395,59 +389,78 @@ func lexEOF(l *lexer) state {
 
 // Main entrypoint. Scans any one value.
 func lexMain(l *lexer) state {
-	l.comp = true
 	return l.lexSpaceThen(lexValue)
+}
+
+// Attempt to scan a value annotation, then a primitive.
+//
+// Not quite a state function. Instead, it pushes a state, then returns true if
+// the caller should pop the state, or false if the caller should continue.
+// Necessary because lexValue and lexOnlyPrimitive are very similar, diverging
+// only after the primitive is scanned, but the decision to use one or the other
+// is made before the annotation is scanned.
+func pushValue(l *lexer) bool {
+	if l.r.IsRune(rAnnotation) {
+		if !l.r.Until(rAnnotationEnd) {
+			l.push(l.errorf("expected %q", rAnnotationEnd))
+			return true
+		}
+		l.emit(tAnnotation)
+	}
+
+	// Attempt to scan a primitive.
+	switch {
+	case l.r.IsRune(rPos):
+		l.emit(tPos)
+		l.push(lexNumber)
+		return true
+	case l.r.IsRune(rNeg):
+		l.emit(tNeg)
+		l.push(lexNumber)
+		return true
+	case l.r.IsRune(rString):
+		l.push(lexString)
+		return true
+	case l.r.IsRune(rBlob):
+		l.emit(tBlob)
+		l.push(lexSpace, lexBlob)
+		return true
+	case isDigit(l.r.Peek()):
+		l.push(lexNumber)
+		return true
+	case l.r.Is(rNull):
+		l.emit(tNull)
+		return true
+	case l.r.Is(rTrue):
+		l.emit(tTrue)
+		return true
+	case l.r.Is(rFalse):
+		l.emit(tFalse)
+		return true
+	case l.r.Is(rInf):
+		l.emit(tInf)
+		return true
+	case l.r.Is(rNaN):
+		l.emit(tNaN)
+		return true
+	}
+	return false
 }
 
 // Scans for an optional annotation, then tries a primitive.
 func lexValue(l *lexer) state {
-	if l.r.IsRune(rAnnotation) {
-		if !l.r.Until(rAnnotationEnd) {
-			return l.errorf("expected %q", rAnnotationEnd)
-		}
-		l.emit(tAnnotation)
+	if pushValue(l) {
+		return l.pop()
 	}
-	return lexPrimitive
+	// Try a composite.
+	return lexComposite
 }
 
-// Attempts to scan a primitive value. If one could not be scanned, then
-// attempts to scan a composite unless l.comp is false.
-func lexPrimitive(l *lexer) state {
-	switch {
-	case l.r.IsRune(rPos):
-		l.emit(tPos)
-		return lexNumber
-	case l.r.IsRune(rNeg):
-		l.emit(tNeg)
-		return lexNumber
-	case l.r.IsRune(rString):
-		return lexString
-	case l.r.IsRune(rBlob):
-		l.emit(tBlob)
-		return l.lexSpaceThen(lexBlob)
-	case isDigit(l.r.Peek()):
-		return lexNumber
-	case l.r.Is(rNull):
-		l.emit(tNull)
+func lexOnlyPrimitive(l *lexer) state {
+	if pushValue(l) {
 		return l.pop()
-	case l.r.Is(rTrue):
-		l.emit(tTrue)
-		return l.pop()
-	case l.r.Is(rFalse):
-		l.emit(tFalse)
-		return l.pop()
-	case l.r.Is(rInf):
-		l.emit(tInf)
-		return l.pop()
-	case l.r.Is(rNaN):
-		l.emit(tNaN)
-		return l.pop()
-	default:
-		if !l.comp {
-			return l.pop()
-		}
-		return lexComposite
 	}
+	return l.pop()
 }
 
 // Scans a composite value.
@@ -530,7 +543,6 @@ func lexElement(l *lexer) state {
 		return l.pop()
 	}
 	l.push(lexSpace, lexElementNext)
-	l.comp = true
 	return l.lexSpaceThen(lexValue)
 }
 
@@ -555,8 +567,7 @@ func lexEntryKey(l *lexer) state {
 		return l.pop()
 	}
 	l.push(lexSpace, lexEntryAssoc)
-	l.comp = false
-	return l.lexSpaceThen(lexValue)
+	return l.lexSpaceThen(lexOnlyPrimitive)
 }
 
 // Scans the association token a map entry.
@@ -571,7 +582,6 @@ func lexEntryAssoc(l *lexer) state {
 // Scans the value of a map entry.
 func lexEntryValue(l *lexer) state {
 	l.push(lexSpace, lexEntryNext)
-	l.comp = true
 	return l.lexSpaceThen(lexValue)
 }
 
@@ -639,7 +649,6 @@ func lexFieldAssoc(l *lexer) state {
 // Scans the value of a struct field.
 func lexFieldValue(l *lexer) state {
 	l.push(lexSpace, lexFieldNext)
-	l.comp = true
 	return l.lexSpaceThen(lexValue)
 }
 
