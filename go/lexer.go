@@ -448,10 +448,10 @@ func lexComposite(l *lexer) state {
 		return l.do(lexSpace, lexElement)
 	case l.r.IsRune(rMapOpen):
 		l.emit(tMapOpen)
-		return l.do(lexSpace, lexEntryKey)
+		return l.do(lexSpace, lexEntry)
 	case l.r.IsRune(rStructOpen):
 		l.emit(tStructOpen)
-		return l.do(lexSpace, lexFieldName)
+		return l.do(lexSpace, lexField)
 	default:
 		return l.pop()
 	}
@@ -539,8 +539,8 @@ func lexElementNext(l *lexer) state {
 	}
 }
 
-// Scans the key of a map entry.
-func lexEntryKey(l *lexer) state {
+// Scans a map entry.
+func lexEntry(l *lexer) state {
 	if l.r.IsRune(rMapClose) {
 		l.emit(tArrayClose)
 		return l.pop()
@@ -548,22 +548,6 @@ func lexEntryKey(l *lexer) state {
 	return l.do(
 		lexSpace, lexOnlyPrimitive,
 		lexSpace, lexAssoc,
-		lexSpace, lexEntryValue,
-	)
-}
-
-// Scans an association token.
-func lexAssoc(l *lexer) state {
-	if !l.r.IsRune(rAssoc) {
-		return l.errorf("expected %q", rAssoc)
-	}
-	l.emit(tAssoc)
-	return l.pop()
-}
-
-// Scans the value of a map entry.
-func lexEntryValue(l *lexer) state {
-	return l.do(
 		lexSpace, lexValue,
 		lexSpace, lexEntryNext,
 	)
@@ -574,7 +558,7 @@ func lexEntryNext(l *lexer) state {
 	switch l.r.MustNext() {
 	case rSep:
 		l.emit(tSep)
-		return l.do(lexSpace, lexEntryKey)
+		return l.do(lexSpace, lexEntry)
 	case rMapClose:
 		l.emit(tMapClose)
 		return l.pop()
@@ -598,17 +582,12 @@ func lexEntryNext(l *lexer) state {
 //x| ( a )
 // | ( )
 
-// Scans the name of a struct field.
-func lexFieldName(l *lexer) state {
+// Scans a struct field.
+func lexField(l *lexer) state {
 	if l.r.IsRune(rStructClose) {
 		l.emit(tStructClose)
 		return l.pop()
 	}
-	return lexIdent
-}
-
-// Scans an identifier.
-func lexIdent(l *lexer) state {
 	if !isLetter(l.r.MustNext()) {
 		return l.errorf("expected identifier")
 	}
@@ -620,13 +599,6 @@ func lexIdent(l *lexer) state {
 	l.emit(tIdent)
 	return l.do(
 		lexSpace, lexAssoc,
-		lexSpace, lexFieldValue,
-	)
-}
-
-// Scans the value of a struct field.
-func lexFieldValue(l *lexer) state {
-	return l.do(
 		lexSpace, lexValue,
 		lexSpace, lexFieldNext,
 	)
@@ -637,11 +609,20 @@ func lexFieldNext(l *lexer) state {
 	switch l.r.MustNext() {
 	case rSep:
 		l.emit(tSep)
-		return l.do(lexSpace, lexFieldName)
+		return l.do(lexSpace, lexField)
 	case rStructClose:
 		l.emit(tStructClose)
 		return l.pop()
 	default:
 		return l.errorf("expected %q or %q", rSep, rStructClose)
 	}
+}
+
+// Scans an association token.
+func lexAssoc(l *lexer) state {
+	if !l.r.IsRune(rAssoc) {
+		return l.errorf("expected %q", rAssoc)
+	}
+	l.emit(tAssoc)
+	return l.pop()
 }
