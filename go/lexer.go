@@ -587,6 +587,17 @@ func lexField(l *lexer) state {
 		l.emit(tStructClose)
 		return l.pop()
 	}
+	return l.do(
+		lexIdent,
+		lexSpace, lexAssoc,
+		lexSpace, lexAnnotation,
+		lexSpace, lexValue,
+		lexSpace, lexFieldNext,
+	)
+}
+
+// Scans an identifier.
+func lexIdent(l *lexer) state {
 	if !isLetter(l.r.MustNext()) {
 		return l.errorf("expected identifier")
 	}
@@ -596,12 +607,7 @@ func lexField(l *lexer) state {
 		}
 	}
 	l.emit(tIdent)
-	return l.do(
-		lexSpace, lexAssoc,
-		lexSpace, lexAnnotation,
-		lexSpace, lexValue,
-		lexSpace, lexFieldNext,
-	)
+	return l.pop()
 }
 
 // Scans the portion following a struct field.
