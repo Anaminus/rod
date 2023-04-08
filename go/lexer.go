@@ -538,17 +538,17 @@ func lexEntryKey(l *lexer) state {
 		l.emit(tArrayClose)
 		return l.pop()
 	}
-	l.push(lexSpace, lexEntryAssoc)
+	l.push(lexSpace, lexAssoc, lexSpace, lexEntryValue)
 	return l.lexSpaceThen(lexOnlyPrimitive)
 }
 
-// Scans the association token a map entry.
-func lexEntryAssoc(l *lexer) state {
+// Scans an association token.
+func lexAssoc(l *lexer) state {
 	if !l.r.IsRune(rAssoc) {
 		return l.errorf("expected %q", rAssoc)
 	}
 	l.emit(tAssoc)
-	return l.lexSpaceThen(lexEntryValue)
+	return l.pop()
 }
 
 // Scans the value of a map entry.
@@ -606,16 +606,8 @@ func lexIdent(l *lexer) state {
 		}
 	}
 	l.emit(tIdent)
-	return l.lexSpaceThen(lexFieldAssoc)
-}
-
-// Scans the association token of a struct field.
-func lexFieldAssoc(l *lexer) state {
-	if !l.r.IsRune(rAssoc) {
-		return l.errorf("expected %q", rAssoc)
-	}
-	l.emit(tAssoc)
-	return l.lexSpaceThen(lexFieldValue)
+	l.push(lexSpace, lexFieldValue)
+	return l.lexSpaceThen(lexAssoc)
 }
 
 // Scans the value of a struct field.
