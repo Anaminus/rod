@@ -402,17 +402,11 @@ func lexMain(l *lexer) state {
 // Scans for an optional annotation, then tries a primitive.
 func lexValue(l *lexer) state {
 	if l.r.IsRune(rAnnotation) {
-		return lexAnnotation
+		if !l.r.Until(rAnnotationEnd) {
+			return l.errorf("expected %q", rAnnotationEnd)
+		}
+		l.emit(tAnnotation)
 	}
-	return lexPrimitive
-}
-
-// Scans the rest of an annotation, then tries a primitive.
-func lexAnnotation(l *lexer) state {
-	if !l.r.Until(rAnnotationEnd) {
-		return l.errorf("expected %q", rAnnotationEnd)
-	}
-	l.emit(tAnnotation)
 	return lexPrimitive
 }
 
