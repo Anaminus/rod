@@ -545,7 +545,7 @@ func lexEntryKey(l *lexer) state {
 // Scans the association token a map entry.
 func lexEntryAssoc(l *lexer) state {
 	if !l.r.IsRune(rAssoc) {
-		l.errorf("expected %q", rAssoc)
+		return l.errorf("expected %q", rAssoc)
 	}
 	l.emit(tAssoc)
 	return l.lexSpaceThen(lexEntryValue)
