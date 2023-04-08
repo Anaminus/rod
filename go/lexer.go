@@ -273,13 +273,13 @@ func (l *lexer) pop() state {
 
 // Consumes buffer, returning a string.
 func (l *lexer) consume() string {
+	l.start = l.r.N()
 	return string(l.r.Consume())
 }
 
 // Consumes the buffer to emit a token of type t.
 func (l *lexer) emit(t tokenType) {
 	l.tokens <- token{Type: t, Value: string(l.consume())}
-	l.start = l.r.N()
 }
 
 // Returns whether the buffer is empty.
@@ -313,7 +313,7 @@ func (l *lexer) errorf(format string, a ...any) state {
 	}
 	err.StartLine, err.StartColumn = l.lr.Position(err.StartOffset)
 	err.EndLine, err.EndColumn = l.lr.Position(err.EndOffset)
-	l.start = l.r.N()
+	l.consume()
 	l.tokens <- token{Type: tError, Error: err}
 	return nil
 }
