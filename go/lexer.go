@@ -329,12 +329,6 @@ func (l *lexer) errorf(format string, a ...any) state {
 	return nil
 }
 
-// Causes lexSpace to run, followed by s.
-func (l *lexer) lexSpaceThen(s state) state {
-	l.push(s)
-	return lexSpace
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 
 // Scans for optional whitespace and comments.
@@ -372,7 +366,7 @@ func lexEOF(l *lexer) state {
 
 // Main entrypoint. Scans any one value.
 func lexMain(l *lexer) state {
-	return l.lexSpaceThen(lexValue)
+	return l.do(lexSpace, lexValue)
 }
 
 // Attempt to scan a value annotation, then a primitive.
@@ -451,13 +445,13 @@ func lexComposite(l *lexer) state {
 	switch {
 	case l.r.IsRune(rArrayOpen):
 		l.emit(tArrayOpen)
-		return l.lexSpaceThen(lexElement)
+		return l.do(lexSpace, lexElement)
 	case l.r.IsRune(rMapOpen):
 		l.emit(tMapOpen)
-		return l.lexSpaceThen(lexEntryKey)
+		return l.do(lexSpace, lexEntryKey)
 	case l.r.IsRune(rStructOpen):
 		l.emit(tStructOpen)
-		return l.lexSpaceThen(lexFieldName)
+		return l.do(lexSpace, lexFieldName)
 	default:
 		return l.pop()
 	}
@@ -501,10 +495,10 @@ func lexBlob(l *lexer) state {
 			return l.errorf("expected hexdecimal digit")
 		}
 		l.emit(tByte)
-		return l.lexSpaceThen(lexBlob)
+		return l.do(lexSpace, lexBlob)
 	case r == rBlob:
 		l.emit(tBlob)
-		return l.lexSpaceThen(lexAnotherBlob)
+		return l.do(lexSpace, lexAnotherBlob)
 	default:
 		return l.errorf("expected byte or %q", rBlob)
 	}
@@ -514,7 +508,7 @@ func lexBlob(l *lexer) state {
 func lexAnotherBlob(l *lexer) state {
 	if l.r.IsRune(rBlob) {
 		l.emit(tBlob)
-		return l.lexSpaceThen(lexBlob)
+		return l.do(lexSpace, lexBlob)
 	}
 	return l.pop()
 }
@@ -536,7 +530,7 @@ func lexElementNext(l *lexer) state {
 	switch l.r.MustNext() {
 	case rSep:
 		l.emit(tSep)
-		return l.lexSpaceThen(lexElement)
+		return l.do(lexSpace, lexElement)
 	case rArrayClose:
 		l.emit(tArrayClose)
 		return l.pop()
@@ -580,7 +574,7 @@ func lexEntryNext(l *lexer) state {
 	switch l.r.MustNext() {
 	case rSep:
 		l.emit(tSep)
-		return l.lexSpaceThen(lexEntryKey)
+		return l.do(lexSpace, lexEntryKey)
 	case rMapClose:
 		l.emit(tMapClose)
 		return l.pop()
@@ -643,7 +637,7 @@ func lexFieldNext(l *lexer) state {
 	switch l.r.MustNext() {
 	case rSep:
 		l.emit(tSep)
-		return l.lexSpaceThen(lexFieldName)
+		return l.do(lexSpace, lexFieldName)
 	case rStructClose:
 		l.emit(tStructClose)
 		return l.pop()
