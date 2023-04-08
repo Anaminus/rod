@@ -241,7 +241,6 @@ func (l *lexer) Err() error {
 // lexEOF.
 func (l *lexer) run() {
 	l.stack = l.stack[:0]
-	l.push(lexSpace, lexEOF)
 	for state := lexMain; state != nil; {
 		// name := runtime.FuncForPC(reflect.ValueOf(state).Pointer()).Name()
 		// name = strings.TrimPrefix(name, "github.com/anaminus/rod/go.")
@@ -366,7 +365,10 @@ func lexEOF(l *lexer) state {
 
 // Main entrypoint. Scans any one value.
 func lexMain(l *lexer) state {
-	return l.do(lexSpace, lexValue)
+	return l.do(
+		lexSpace, lexValue,
+		lexSpace, lexEOF,
+	)
 }
 
 // Attempt to scan a value annotation, then a primitive.
