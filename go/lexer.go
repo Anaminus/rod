@@ -366,28 +366,54 @@ func lexEOF(l *lexer) state {
 // Main entrypoint. Scans any one value.
 func lexMain(l *lexer) state {
 	return l.do(
+		lexSpace, lexAnnotation,
 		lexSpace, lexValue,
 		lexSpace, lexEOF,
 	)
 }
 
-// Attempt to scan a value annotation, then a primitive.
-//
-// Not quite a state function. Instead, it pushes a state, then returns true if
-// the caller should pop the state, or false if the caller should continue.
-// Necessary because lexValue and lexOnlyPrimitive are very similar, diverging
-// only after the primitive is scanned, but the decision to use one or the other
-// is made before the annotation is scanned.
-func pushValue(l *lexer) bool {
+// Scan for an optional annotation.
+func lexAnnotation(l *lexer) state {
 	if l.r.IsRune(rAnnotation) {
 		if !l.r.Until(rAnnotationEnd) {
-			l.push(l.errorf("expected %q", rAnnotationEnd))
-			return true
+			return l.errorf("expected %q", rAnnotationEnd)
 		}
 		l.emit(tAnnotation)
 	}
+	return l.pop()
+}
 
-	// Attempt to scan a primitive.
+// Tries scanning for a primitive, then tries a composite.
+func lexValue(l *lexer) state {
+	switch {
+	case switchPrimitive(l):
+		return l.pop()
+	case l.r.IsRune(rArrayOpen):
+		l.emit(tArrayOpen)
+		return l.do(lexSpace, lexElement)
+	case l.r.IsRune(rMapOpen):
+		l.emit(tMapOpen)
+		return l.do(lexSpace, lexEntry)
+	case l.r.IsRune(rStructOpen):
+		l.emit(tStructOpen)
+		return l.do(lexSpace, lexField)
+	default:
+		return l.errorf("expected value")
+	}
+}
+
+// Scans for a primitive.
+func lexPrimitive(l *lexer) state {
+	switch {
+	case switchPrimitive(l):
+		return l.pop()
+	default:
+		return l.errorf("expected value")
+	}
+}
+
+// Used as a switch case to scan for an optional primitive.
+func switchPrimitive(l *lexer) bool {
 	switch {
 	case l.r.IsRune(rPos):
 		l.emit(tPos)
@@ -422,40 +448,8 @@ func pushValue(l *lexer) bool {
 	case l.r.Is(rNaN):
 		l.emit(tNaN)
 		return true
-	}
-	return false
-}
-
-// Scans for an optional annotation, then tries a primitive.
-func lexValue(l *lexer) state {
-	if pushValue(l) {
-		return l.pop()
-	}
-	// Try a composite.
-	return lexComposite
-}
-
-func lexOnlyPrimitive(l *lexer) state {
-	if pushValue(l) {
-		return l.pop()
-	}
-	return l.pop()
-}
-
-// Scans a composite value.
-func lexComposite(l *lexer) state {
-	switch {
-	case l.r.IsRune(rArrayOpen):
-		l.emit(tArrayOpen)
-		return l.do(lexSpace, lexElement)
-	case l.r.IsRune(rMapOpen):
-		l.emit(tMapOpen)
-		return l.do(lexSpace, lexEntry)
-	case l.r.IsRune(rStructOpen):
-		l.emit(tStructOpen)
-		return l.do(lexSpace, lexField)
 	default:
-		return l.pop()
+		return false
 	}
 }
 
@@ -522,6 +516,7 @@ func lexElement(l *lexer) state {
 		return l.pop()
 	}
 	return l.do(
+		lexSpace, lexAnnotation,
 		lexSpace, lexValue,
 		lexSpace, lexElementNext,
 	)
@@ -548,8 +543,10 @@ func lexEntry(l *lexer) state {
 		return l.pop()
 	}
 	return l.do(
-		lexSpace, lexOnlyPrimitive,
+		lexSpace, lexAnnotation,
+		lexSpace, lexPrimitive,
 		lexSpace, lexAssoc,
+		lexSpace, lexAnnotation,
 		lexSpace, lexValue,
 		lexSpace, lexEntryNext,
 	)
@@ -601,6 +598,7 @@ func lexField(l *lexer) state {
 	l.emit(tIdent)
 	return l.do(
 		lexSpace, lexAssoc,
+		lexSpace, lexAnnotation,
 		lexSpace, lexValue,
 		lexSpace, lexFieldNext,
 	)
