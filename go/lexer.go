@@ -470,6 +470,9 @@ func lexEOF(l *lexer) state {
 
 // Main entrypoint. Scans any one value.
 func lexMain(l *lexer) state {
+	if l.r.IsEOF() {
+		return l.expected("value")
+	}
 	return l.do(
 		lexSpace, lexAnnotation,
 		lexSpace, lexValue,
