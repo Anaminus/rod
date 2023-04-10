@@ -581,6 +581,7 @@ func lexString(l *lexer) state {
 		case rEscape:
 			l.r.MustNext()
 		case rString:
+			l.emit(tString)
 			return l.pop()
 		case -1:
 			return l.expected("%q", rString)
