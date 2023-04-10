@@ -388,14 +388,20 @@ func (err lexerError) Unwrap() error {
 
 // Emits an error token with an error according to the given format. Returns
 // nil, halting the lexer.
-func (l *lexer) errorf(typ string, format string, a ...any) state {
-	err := lexerError{
-		Type: typ,
-		Err:  fmt.Errorf(format, a...),
-	}
+func (l *lexer) error(typ string, err error) state {
+	err = lexerError{Type: typ, Err: err}
 	l.tokens <- token{Type: tError, Position: l.position(), Err: err}
 	l.consume()
 	return nil
+}
+
+type expectedError struct {
+	Expected string
+	Got      string
+}
+
+func (err expectedError) Error() string {
+	return fmt.Sprintf("expected %s, got %s", err.Expected, err.Got)
 }
 
 // Emits an error token with error that expects a particular value formatted
@@ -404,8 +410,8 @@ func (l *lexer) errorf(typ string, format string, a ...any) state {
 //
 // If the underlying reader produces an error, it is displayed instead.
 func (l *lexer) expected(format string, a ...any) state {
-	if err := l.r.Err(); err != nil {
-		return l.errorf("reader", "%w", err)
+	if err := l.r.Err(); err != nil && err != io.EOF {
+		return l.error("reader", fmt.Errorf("%w", err))
 	}
 	s := l.bytes()
 	if s == "" {
@@ -428,9 +434,11 @@ func (l *lexer) expected(format string, a ...any) state {
 		// Format as single rune.
 		s = fmt.Sprintf("%q", []rune(s)[0])
 	}
-	a = append(a, s)
 finish:
-	return l.errorf("syntax", "expected "+format+", got %s", a...)
+	return l.error("syntax", expectedError{
+		Expected: fmt.Sprintf(format, a...),
+		Got:      fmt.Sprintf("%s", s),
+	})
 }
 
 ////////////////////////////////////////////////////////////////////////////////
