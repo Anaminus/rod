@@ -63,9 +63,10 @@ const (
 type tokenType int
 
 const (
-	tError tokenType = iota - 2
-	tEOF
-	tInvalid
+	tStart   tokenType = iota - 3 // Indicates start of file. Never emitted, but used for testing.
+	tError                        // Produced when an error occurs.
+	tEOF                          // Indicates end of file. Always the last token.
+	tInvalid                      // Should never be produced.
 
 	tSpace         // isSpace*
 	tInlineComment // rInlineComment ... \n
