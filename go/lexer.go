@@ -560,11 +560,17 @@ func switchPrimitive(l *lexer) bool {
 
 // Scans an integer or a float.
 func lexNumber(l *lexer) state {
-	if !l.r.IsAny(isDigit) {
+	if l.r.Is(rInf) {
+		l.emit(tInf)
+		return l.pop()
+	}
+	l.r.IsAny(isDigit)
+	if l.empty() {
 		return l.expected("digit")
 	}
 	if l.r.IsRune(rDecimal) {
-		if !l.r.IsAny(isDigit) {
+		l.r.IsAny(isDigit)
+		if l.empty() {
 			return l.expected("digit")
 		}
 		l.emit(tFloat)
