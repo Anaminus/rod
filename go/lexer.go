@@ -276,13 +276,11 @@ func newLexer(r io.Reader) *lexer {
 // Next prepares the next token. Returns whether the token was successfully
 // received.
 func (l *lexer) Next() (ok bool) {
-	if l.token, ok = <-l.tokens; !ok {
-		return false
+	token, ok := <-l.tokens
+	if ok {
+		l.token = token
 	}
-	if l.token.Err != nil {
-		return false
-	}
-	return true
+	return ok
 }
 
 // Token returns the last token emitted.
