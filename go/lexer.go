@@ -216,6 +216,10 @@ func mapPrintable(r rune) rune {
 
 // Returns a readable representation of the token.
 func (t token) String() string {
+	return fmt.Sprintf("%s: %s", t.Type, t.StringValue())
+}
+
+func (t token) StringValue() string {
 	var v string
 	if t.Err == nil {
 		v = t.Value
@@ -223,7 +227,7 @@ func (t token) String() string {
 	} else {
 		v = t.Err.Error()
 	}
-	return fmt.Sprintf("%s: %s", t.Type, v)
+	return v
 }
 
 // Interprets a token as an error.
