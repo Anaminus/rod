@@ -644,7 +644,7 @@ func lexElementNext(l *lexer) state {
 // Scans a map entry.
 func lexEntry(l *lexer) state {
 	if l.r.IsRune(rMapClose) {
-		l.emit(tArrayClose)
+		l.emit(tMapClose)
 		return l.pop()
 	}
 	return l.do(
