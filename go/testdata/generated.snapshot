@@ -1,0 +1,7810 @@
+
+```""```
+000 String       : `""`
+002 EOF          : ``
+okay: got no error
+
+```
+""```
+000 Space        : "\n"
+001 String       : `""`
+003 EOF          : ``
+okay: got no error
+
+``` ""```
+000 Space        : ` `
+001 String       : `""`
+003 EOF          : ``
+okay: got no error
+
+```#<block>""```
+000 BlockComment : `#<block>`
+008 String       : `""`
+010 EOF          : ``
+okay: got no error
+
+```#inline
+""```
+000 InlineComment: "#inline\n"
+008 String       : `""`
+010 EOF          : ``
+okay: got no error
+
+```""```
+000 String       : `""`
+002 EOF          : ``
+okay: got no error
+
+```"
+"```
+000 String       : "\"\n\""
+003 EOF          : ``
+okay: got no error
+
+```" "```
+000 String       : `" "`
+003 EOF          : ``
+okay: got no error
+
+```"#<block>"```
+000 String       : `"#<block>"`
+010 EOF          : ``
+okay: got no error
+
+```"#inline
+"```
+000 String       : "\"#inline\n\""
+010 EOF          : ``
+okay: got no error
+
+```""```
+000 String       : `""`
+002 EOF          : ``
+okay: got no error
+
+```""
+```
+000 String       : `""`
+002 Space        : "\n"
+003 EOF          : ``
+okay: got no error
+
+```"" ```
+000 String       : `""`
+002 Space        : ` `
+003 EOF          : ``
+okay: got no error
+
+```""#<block>```
+000 String       : `""`
+002 BlockComment : `#<block>`
+010 EOF          : ``
+okay: got no error
+
+```""#inline
+```
+000 String       : `""`
+002 InlineComment: "#inline\n"
+010 EOF          : ``
+okay: got no error
+
+```"Hello,\"world\"!"```
+000 String       : `"Hello,\"world\"!"`
+018 EOF          : ``
+okay: got no error
+
+```
+"Hello,\"world\"!"```
+000 Space        : "\n"
+001 String       : `"Hello,\"world\"!"`
+019 EOF          : ``
+okay: got no error
+
+``` "Hello,\"world\"!"```
+000 Space        : ` `
+001 String       : `"Hello,\"world\"!"`
+019 EOF          : ``
+okay: got no error
+
+```#<block>"Hello,\"world\"!"```
+000 BlockComment : `#<block>`
+008 String       : `"Hello,\"world\"!"`
+026 EOF          : ``
+okay: got no error
+
+```#inline
+"Hello,\"world\"!"```
+000 InlineComment: "#inline\n"
+008 String       : `"Hello,\"world\"!"`
+026 EOF          : ``
+okay: got no error
+
+```"Hello,\"world\"!"```
+000 String       : `"Hello,\"world\"!"`
+018 EOF          : ``
+okay: got no error
+
+```"Hello,
+\"world\"!"```
+000 String       : "\"Hello,\n\\\"world\\\"!\""
+019 EOF          : ``
+okay: got no error
+
+```"Hello, \"world\"!"```
+000 String       : `"Hello, \"world\"!"`
+019 EOF          : ``
+okay: got no error
+
+```"Hello,#<block>\"world\"!"```
+000 String       : `"Hello,#<block>\"world\"!"`
+026 EOF          : ``
+okay: got no error
+
+```"Hello,#inline
+\"world\"!"```
+000 String       : "\"Hello,#inline\n\\\"world\\\"!\""
+026 EOF          : ``
+okay: got no error
+
+```"Hello,\"world\"!"```
+000 String       : `"Hello,\"world\"!"`
+018 EOF          : ``
+okay: got no error
+
+```"Hello,\"world\"!"
+```
+000 String       : `"Hello,\"world\"!"`
+018 Space        : "\n"
+019 EOF          : ``
+okay: got no error
+
+```"Hello,\"world\"!" ```
+000 String       : `"Hello,\"world\"!"`
+018 Space        : ` `
+019 EOF          : ``
+okay: got no error
+
+```"Hello,\"world\"!"#<block>```
+000 String       : `"Hello,\"world\"!"`
+018 BlockComment : `#<block>`
+026 EOF          : ``
+okay: got no error
+
+```"Hello,\"world\"!"#inline
+```
+000 String       : `"Hello,\"world\"!"`
+018 InlineComment: "#inline\n"
+026 EOF          : ``
+okay: got no error
+
+```"Hello,world!"```
+000 String       : `"Hello,world!"`
+014 EOF          : ``
+okay: got no error
+
+```
+"Hello,world!"```
+000 Space        : "\n"
+001 String       : `"Hello,world!"`
+015 EOF          : ``
+okay: got no error
+
+``` "Hello,world!"```
+000 Space        : ` `
+001 String       : `"Hello,world!"`
+015 EOF          : ``
+okay: got no error
+
+```#<block>"Hello,world!"```
+000 BlockComment : `#<block>`
+008 String       : `"Hello,world!"`
+022 EOF          : ``
+okay: got no error
+
+```#inline
+"Hello,world!"```
+000 InlineComment: "#inline\n"
+008 String       : `"Hello,world!"`
+022 EOF          : ``
+okay: got no error
+
+```"Hello,world!"```
+000 String       : `"Hello,world!"`
+014 EOF          : ``
+okay: got no error
+
+```"Hello,
+world!"```
+000 String       : "\"Hello,\nworld!\""
+015 EOF          : ``
+okay: got no error
+
+```"Hello, world!"```
+000 String       : `"Hello, world!"`
+015 EOF          : ``
+okay: got no error
+
+```"Hello,#<block>world!"```
+000 String       : `"Hello,#<block>world!"`
+022 EOF          : ``
+okay: got no error
+
+```"Hello,#inline
+world!"```
+000 String       : "\"Hello,#inline\nworld!\""
+022 EOF          : ``
+okay: got no error
+
+```"Hello,world!"```
+000 String       : `"Hello,world!"`
+014 EOF          : ``
+okay: got no error
+
+```"Hello,world!"
+```
+000 String       : `"Hello,world!"`
+014 Space        : "\n"
+015 EOF          : ``
+okay: got no error
+
+```"Hello,world!" ```
+000 String       : `"Hello,world!"`
+014 Space        : ` `
+015 EOF          : ``
+okay: got no error
+
+```"Hello,world!"#<block>```
+000 String       : `"Hello,world!"`
+014 BlockComment : `#<block>`
+022 EOF          : ``
+okay: got no error
+
+```"Hello,world!"#inline
+```
+000 String       : `"Hello,world!"`
+014 InlineComment: "#inline\n"
+022 EOF          : ``
+okay: got no error
+
+```"back\\slash"```
+000 String       : `"back\\slash"`
+013 EOF          : ``
+okay: got no error
+
+```
+"back\\slash"```
+000 Space        : "\n"
+001 String       : `"back\\slash"`
+014 EOF          : ``
+okay: got no error
+
+``` "back\\slash"```
+000 Space        : ` `
+001 String       : `"back\\slash"`
+014 EOF          : ``
+okay: got no error
+
+```#<block>"back\\slash"```
+000 BlockComment : `#<block>`
+008 String       : `"back\\slash"`
+021 EOF          : ``
+okay: got no error
+
+```#inline
+"back\\slash"```
+000 InlineComment: "#inline\n"
+008 String       : `"back\\slash"`
+021 EOF          : ``
+okay: got no error
+
+```"back\\slash"```
+000 String       : `"back\\slash"`
+013 EOF          : ``
+okay: got no error
+
+```"back\\slash"
+```
+000 String       : `"back\\slash"`
+013 Space        : "\n"
+014 EOF          : ``
+okay: got no error
+
+```"back\\slash" ```
+000 String       : `"back\\slash"`
+013 Space        : ` `
+014 EOF          : ``
+okay: got no error
+
+```"back\\slash"#<block>```
+000 String       : `"back\\slash"`
+013 BlockComment : `#<block>`
+021 EOF          : ``
+okay: got no error
+
+```"back\\slash"#inline
+```
+000 String       : `"back\\slash"`
+013 InlineComment: "#inline\n"
+021 EOF          : ``
+okay: got no error
+
+```"new
+line"```
+000 String       : "\"new\nline\""
+010 EOF          : ``
+okay: got no error
+
+```
+"new
+line"```
+000 Space        : "\n"
+001 String       : "\"new\nline\""
+011 EOF          : ``
+okay: got no error
+
+``` "new
+line"```
+000 Space        : ` `
+001 String       : "\"new\nline\""
+011 EOF          : ``
+okay: got no error
+
+```#<block>"new
+line"```
+000 BlockComment : `#<block>`
+008 String       : "\"new\nline\""
+018 EOF          : ``
+okay: got no error
+
+```#inline
+"new
+line"```
+000 InlineComment: "#inline\n"
+008 String       : "\"new\nline\""
+018 EOF          : ``
+okay: got no error
+
+```"new
+line"```
+000 String       : "\"new\nline\""
+010 EOF          : ``
+okay: got no error
+
+```"new
+line"
+```
+000 String       : "\"new\nline\""
+010 Space        : "\n"
+011 EOF          : ``
+okay: got no error
+
+```"new
+line" ```
+000 String       : "\"new\nline\""
+010 Space        : ` `
+011 EOF          : ``
+okay: got no error
+
+```"new
+line"#<block>```
+000 String       : "\"new\nline\""
+010 BlockComment : `#<block>`
+018 EOF          : ``
+okay: got no error
+
+```"new
+line"#inline
+```
+000 String       : "\"new\nline\""
+010 InlineComment: "#inline\n"
+018 EOF          : ``
+okay: got no error
+
+```+0```
+000 Pos          : `+`
+001 Integer      : `0`
+002 EOF          : ``
+okay: got no error
+
+```
++0```
+000 Space        : "\n"
+001 Pos          : `+`
+002 Integer      : `0`
+003 EOF          : ``
+okay: got no error
+
+``` +0```
+000 Space        : ` `
+001 Pos          : `+`
+002 Integer      : `0`
+003 EOF          : ``
+okay: got no error
+
+```#<block>+0```
+000 BlockComment : `#<block>`
+008 Pos          : `+`
+009 Integer      : `0`
+010 EOF          : ``
+okay: got no error
+
+```#inline
++0```
+000 InlineComment: "#inline\n"
+008 Pos          : `+`
+009 Integer      : `0`
+010 EOF          : ``
+okay: got no error
+
+```+0```
+000 Pos          : `+`
+001 Integer      : `0`
+002 EOF          : ``
+okay: got no error
+
+```+0
+```
+000 Pos          : `+`
+001 Integer      : `0`
+002 Space        : "\n"
+003 EOF          : ``
+okay: got no error
+
+```+0 ```
+000 Pos          : `+`
+001 Integer      : `0`
+002 Space        : ` `
+003 EOF          : ``
+okay: got no error
+
+```+0#<block>```
+000 Pos          : `+`
+001 Integer      : `0`
+002 BlockComment : `#<block>`
+010 EOF          : ``
+okay: got no error
+
+```+0#inline
+```
+000 Pos          : `+`
+001 Integer      : `0`
+002 InlineComment: "#inline\n"
+010 EOF          : ``
+okay: got no error
+
+```+0.0```
+000 Pos          : `+`
+001 Float        : `0.0`
+004 EOF          : ``
+okay: got no error
+
+```
++0.0```
+000 Space        : "\n"
+001 Pos          : `+`
+002 Float        : `0.0`
+005 EOF          : ``
+okay: got no error
+
+``` +0.0```
+000 Space        : ` `
+001 Pos          : `+`
+002 Float        : `0.0`
+005 EOF          : ``
+okay: got no error
+
+```#<block>+0.0```
+000 BlockComment : `#<block>`
+008 Pos          : `+`
+009 Float        : `0.0`
+012 EOF          : ``
+okay: got no error
+
+```#inline
++0.0```
+000 InlineComment: "#inline\n"
+008 Pos          : `+`
+009 Float        : `0.0`
+012 EOF          : ``
+okay: got no error
+
+```+0.0```
+000 Pos          : `+`
+001 Float        : `0.0`
+004 EOF          : ``
+okay: got no error
+
+```+0.0
+```
+000 Pos          : `+`
+001 Float        : `0.0`
+004 Space        : "\n"
+005 EOF          : ``
+okay: got no error
+
+```+0.0 ```
+000 Pos          : `+`
+001 Float        : `0.0`
+004 Space        : ` `
+005 EOF          : ``
+okay: got no error
+
+```+0.0#<block>```
+000 Pos          : `+`
+001 Float        : `0.0`
+004 BlockComment : `#<block>`
+012 EOF          : ``
+okay: got no error
+
+```+0.0#inline
+```
+000 Pos          : `+`
+001 Float        : `0.0`
+004 InlineComment: "#inline\n"
+012 EOF          : ``
+okay: got no error
+
+```+1234.5678```
+000 Pos          : `+`
+001 Float        : `1234.5678`
+010 EOF          : ``
+okay: got no error
+
+```
++1234.5678```
+000 Space        : "\n"
+001 Pos          : `+`
+002 Float        : `1234.5678`
+011 EOF          : ``
+okay: got no error
+
+``` +1234.5678```
+000 Space        : ` `
+001 Pos          : `+`
+002 Float        : `1234.5678`
+011 EOF          : ``
+okay: got no error
+
+```#<block>+1234.5678```
+000 BlockComment : `#<block>`
+008 Pos          : `+`
+009 Float        : `1234.5678`
+018 EOF          : ``
+okay: got no error
+
+```#inline
++1234.5678```
+000 InlineComment: "#inline\n"
+008 Pos          : `+`
+009 Float        : `1234.5678`
+018 EOF          : ``
+okay: got no error
+
+```+1234.5678```
+000 Pos          : `+`
+001 Float        : `1234.5678`
+010 EOF          : ``
+okay: got no error
+
+```+1234.5678
+```
+000 Pos          : `+`
+001 Float        : `1234.5678`
+010 Space        : "\n"
+011 EOF          : ``
+okay: got no error
+
+```+1234.5678 ```
+000 Pos          : `+`
+001 Float        : `1234.5678`
+010 Space        : ` `
+011 EOF          : ``
+okay: got no error
+
+```+1234.5678#<block>```
+000 Pos          : `+`
+001 Float        : `1234.5678`
+010 BlockComment : `#<block>`
+018 EOF          : ``
+okay: got no error
+
+```+1234.5678#inline
+```
+000 Pos          : `+`
+001 Float        : `1234.5678`
+010 InlineComment: "#inline\n"
+018 EOF          : ``
+okay: got no error
+
+```+12345678```
+000 Pos          : `+`
+001 Integer      : `12345678`
+009 EOF          : ``
+okay: got no error
+
+```
++12345678```
+000 Space        : "\n"
+001 Pos          : `+`
+002 Integer      : `12345678`
+010 EOF          : ``
+okay: got no error
+
+``` +12345678```
+000 Space        : ` `
+001 Pos          : `+`
+002 Integer      : `12345678`
+010 EOF          : ``
+okay: got no error
+
+```#<block>+12345678```
+000 BlockComment : `#<block>`
+008 Pos          : `+`
+009 Integer      : `12345678`
+017 EOF          : ``
+okay: got no error
+
+```#inline
++12345678```
+000 InlineComment: "#inline\n"
+008 Pos          : `+`
+009 Integer      : `12345678`
+017 EOF          : ``
+okay: got no error
+
+```+12345678```
+000 Pos          : `+`
+001 Integer      : `12345678`
+009 EOF          : ``
+okay: got no error
+
+```+12345678
+```
+000 Pos          : `+`
+001 Integer      : `12345678`
+009 Space        : "\n"
+010 EOF          : ``
+okay: got no error
+
+```+12345678 ```
+000 Pos          : `+`
+001 Integer      : `12345678`
+009 Space        : ` `
+010 EOF          : ``
+okay: got no error
+
+```+12345678#<block>```
+000 Pos          : `+`
+001 Integer      : `12345678`
+009 BlockComment : `#<block>`
+017 EOF          : ``
+okay: got no error
+
+```+12345678#inline
+```
+000 Pos          : `+`
+001 Integer      : `12345678`
+009 InlineComment: "#inline\n"
+017 EOF          : ``
+okay: got no error
+
+```+1e3```
+000 Pos          : `+`
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```
++1e3```
+000 Space        : "\n"
+001 Pos          : `+`
+002 Integer      : `1`
+003 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+``` +1e3```
+000 Space        : ` `
+001 Pos          : `+`
+002 Integer      : `1`
+003 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```#<block>+1e3```
+000 BlockComment : `#<block>`
+008 Pos          : `+`
+009 Integer      : `1`
+010 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```#inline
++1e3```
+000 InlineComment: "#inline\n"
+008 Pos          : `+`
+009 Integer      : `1`
+010 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```+1e3```
+000 Pos          : `+`
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```+1e3
+```
+000 Pos          : `+`
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```+1e3 ```
+000 Pos          : `+`
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```+1e3#<block>```
+000 Pos          : `+`
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```+1e3#inline
+```
+000 Pos          : `+`
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```+e3```
+000 Pos          : `+`
+001 Error        : syntax error: expected digit, got 'e'
+okay: got expected error
+
+```
++e3```
+000 Space        : "\n"
+001 Pos          : `+`
+002 Error        : syntax error: expected digit, got 'e'
+okay: got expected error
+
+``` +e3```
+000 Space        : ` `
+001 Pos          : `+`
+002 Error        : syntax error: expected digit, got 'e'
+okay: got expected error
+
+```#<block>+e3```
+000 BlockComment : `#<block>`
+008 Pos          : `+`
+009 Error        : syntax error: expected digit, got 'e'
+okay: got expected error
+
+```#inline
++e3```
+000 InlineComment: "#inline\n"
+008 Pos          : `+`
+009 Error        : syntax error: expected digit, got 'e'
+okay: got expected error
+
+```+e3```
+000 Pos          : `+`
+001 Error        : syntax error: expected digit, got 'e'
+okay: got expected error
+
+```+e3
+```
+000 Pos          : `+`
+001 Error        : syntax error: expected digit, got 'e'
+okay: got expected error
+
+```+e3 ```
+000 Pos          : `+`
+001 Error        : syntax error: expected digit, got 'e'
+okay: got expected error
+
+```+e3#<block>```
+000 Pos          : `+`
+001 Error        : syntax error: expected digit, got 'e'
+okay: got expected error
+
+```+e3#inline
+```
+000 Pos          : `+`
+001 Error        : syntax error: expected digit, got 'e'
+okay: got expected error
+
+```+inf```
+000 Pos          : `+`
+001 Inf          : `inf`
+004 EOF          : ``
+okay: got no error
+
+```
++inf```
+000 Space        : "\n"
+001 Pos          : `+`
+002 Inf          : `inf`
+005 EOF          : ``
+okay: got no error
+
+``` +inf```
+000 Space        : ` `
+001 Pos          : `+`
+002 Inf          : `inf`
+005 EOF          : ``
+okay: got no error
+
+```#<block>+inf```
+000 BlockComment : `#<block>`
+008 Pos          : `+`
+009 Inf          : `inf`
+012 EOF          : ``
+okay: got no error
+
+```#inline
++inf```
+000 InlineComment: "#inline\n"
+008 Pos          : `+`
+009 Inf          : `inf`
+012 EOF          : ``
+okay: got no error
+
+```+inf```
+000 Pos          : `+`
+001 Inf          : `inf`
+004 EOF          : ``
+okay: got no error
+
+```+inf
+```
+000 Pos          : `+`
+001 Inf          : `inf`
+004 Space        : "\n"
+005 EOF          : ``
+okay: got no error
+
+```+inf ```
+000 Pos          : `+`
+001 Inf          : `inf`
+004 Space        : ` `
+005 EOF          : ``
+okay: got no error
+
+```+inf#<block>```
+000 Pos          : `+`
+001 Inf          : `inf`
+004 BlockComment : `#<block>`
+012 EOF          : ``
+okay: got no error
+
+```+inf#inline
+```
+000 Pos          : `+`
+001 Inf          : `inf`
+004 InlineComment: "#inline\n"
+012 EOF          : ``
+okay: got no error
+
+```+nan```
+000 Pos          : `+`
+001 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```
++nan```
+000 Space        : "\n"
+001 Pos          : `+`
+002 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+``` +nan```
+000 Space        : ` `
+001 Pos          : `+`
+002 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```#<block>+nan```
+000 BlockComment : `#<block>`
+008 Pos          : `+`
+009 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```#inline
++nan```
+000 InlineComment: "#inline\n"
+008 Pos          : `+`
+009 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```+nan```
+000 Pos          : `+`
+001 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```+nan
+```
+000 Pos          : `+`
+001 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```+nan ```
+000 Pos          : `+`
+001 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```+nan#<block>```
+000 Pos          : `+`
+001 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```+nan#inline
+```
+000 Pos          : `+`
+001 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```-0```
+000 Neg          : `-`
+001 Integer      : `0`
+002 EOF          : ``
+okay: got no error
+
+```
+-0```
+000 Space        : "\n"
+001 Neg          : `-`
+002 Integer      : `0`
+003 EOF          : ``
+okay: got no error
+
+``` -0```
+000 Space        : ` `
+001 Neg          : `-`
+002 Integer      : `0`
+003 EOF          : ``
+okay: got no error
+
+```#<block>-0```
+000 BlockComment : `#<block>`
+008 Neg          : `-`
+009 Integer      : `0`
+010 EOF          : ``
+okay: got no error
+
+```#inline
+-0```
+000 InlineComment: "#inline\n"
+008 Neg          : `-`
+009 Integer      : `0`
+010 EOF          : ``
+okay: got no error
+
+```-0```
+000 Neg          : `-`
+001 Integer      : `0`
+002 EOF          : ``
+okay: got no error
+
+```-0
+```
+000 Neg          : `-`
+001 Integer      : `0`
+002 Space        : "\n"
+003 EOF          : ``
+okay: got no error
+
+```-0 ```
+000 Neg          : `-`
+001 Integer      : `0`
+002 Space        : ` `
+003 EOF          : ``
+okay: got no error
+
+```-0#<block>```
+000 Neg          : `-`
+001 Integer      : `0`
+002 BlockComment : `#<block>`
+010 EOF          : ``
+okay: got no error
+
+```-0#inline
+```
+000 Neg          : `-`
+001 Integer      : `0`
+002 InlineComment: "#inline\n"
+010 EOF          : ``
+okay: got no error
+
+```-0.0```
+000 Neg          : `-`
+001 Float        : `0.0`
+004 EOF          : ``
+okay: got no error
+
+```
+-0.0```
+000 Space        : "\n"
+001 Neg          : `-`
+002 Float        : `0.0`
+005 EOF          : ``
+okay: got no error
+
+``` -0.0```
+000 Space        : ` `
+001 Neg          : `-`
+002 Float        : `0.0`
+005 EOF          : ``
+okay: got no error
+
+```#<block>-0.0```
+000 BlockComment : `#<block>`
+008 Neg          : `-`
+009 Float        : `0.0`
+012 EOF          : ``
+okay: got no error
+
+```#inline
+-0.0```
+000 InlineComment: "#inline\n"
+008 Neg          : `-`
+009 Float        : `0.0`
+012 EOF          : ``
+okay: got no error
+
+```-0.0```
+000 Neg          : `-`
+001 Float        : `0.0`
+004 EOF          : ``
+okay: got no error
+
+```-0.0
+```
+000 Neg          : `-`
+001 Float        : `0.0`
+004 Space        : "\n"
+005 EOF          : ``
+okay: got no error
+
+```-0.0 ```
+000 Neg          : `-`
+001 Float        : `0.0`
+004 Space        : ` `
+005 EOF          : ``
+okay: got no error
+
+```-0.0#<block>```
+000 Neg          : `-`
+001 Float        : `0.0`
+004 BlockComment : `#<block>`
+012 EOF          : ``
+okay: got no error
+
+```-0.0#inline
+```
+000 Neg          : `-`
+001 Float        : `0.0`
+004 InlineComment: "#inline\n"
+012 EOF          : ``
+okay: got no error
+
+```-1234.5678```
+000 Neg          : `-`
+001 Float        : `1234.5678`
+010 EOF          : ``
+okay: got no error
+
+```
+-1234.5678```
+000 Space        : "\n"
+001 Neg          : `-`
+002 Float        : `1234.5678`
+011 EOF          : ``
+okay: got no error
+
+``` -1234.5678```
+000 Space        : ` `
+001 Neg          : `-`
+002 Float        : `1234.5678`
+011 EOF          : ``
+okay: got no error
+
+```#<block>-1234.5678```
+000 BlockComment : `#<block>`
+008 Neg          : `-`
+009 Float        : `1234.5678`
+018 EOF          : ``
+okay: got no error
+
+```#inline
+-1234.5678```
+000 InlineComment: "#inline\n"
+008 Neg          : `-`
+009 Float        : `1234.5678`
+018 EOF          : ``
+okay: got no error
+
+```-1234.5678```
+000 Neg          : `-`
+001 Float        : `1234.5678`
+010 EOF          : ``
+okay: got no error
+
+```-1234.5678
+```
+000 Neg          : `-`
+001 Float        : `1234.5678`
+010 Space        : "\n"
+011 EOF          : ``
+okay: got no error
+
+```-1234.5678 ```
+000 Neg          : `-`
+001 Float        : `1234.5678`
+010 Space        : ` `
+011 EOF          : ``
+okay: got no error
+
+```-1234.5678#<block>```
+000 Neg          : `-`
+001 Float        : `1234.5678`
+010 BlockComment : `#<block>`
+018 EOF          : ``
+okay: got no error
+
+```-1234.5678#inline
+```
+000 Neg          : `-`
+001 Float        : `1234.5678`
+010 InlineComment: "#inline\n"
+018 EOF          : ``
+okay: got no error
+
+```-12345678```
+000 Neg          : `-`
+001 Integer      : `12345678`
+009 EOF          : ``
+okay: got no error
+
+```
+-12345678```
+000 Space        : "\n"
+001 Neg          : `-`
+002 Integer      : `12345678`
+010 EOF          : ``
+okay: got no error
+
+``` -12345678```
+000 Space        : ` `
+001 Neg          : `-`
+002 Integer      : `12345678`
+010 EOF          : ``
+okay: got no error
+
+```#<block>-12345678```
+000 BlockComment : `#<block>`
+008 Neg          : `-`
+009 Integer      : `12345678`
+017 EOF          : ``
+okay: got no error
+
+```#inline
+-12345678```
+000 InlineComment: "#inline\n"
+008 Neg          : `-`
+009 Integer      : `12345678`
+017 EOF          : ``
+okay: got no error
+
+```-12345678```
+000 Neg          : `-`
+001 Integer      : `12345678`
+009 EOF          : ``
+okay: got no error
+
+```-12345678
+```
+000 Neg          : `-`
+001 Integer      : `12345678`
+009 Space        : "\n"
+010 EOF          : ``
+okay: got no error
+
+```-12345678 ```
+000 Neg          : `-`
+001 Integer      : `12345678`
+009 Space        : ` `
+010 EOF          : ``
+okay: got no error
+
+```-12345678#<block>```
+000 Neg          : `-`
+001 Integer      : `12345678`
+009 BlockComment : `#<block>`
+017 EOF          : ``
+okay: got no error
+
+```-12345678#inline
+```
+000 Neg          : `-`
+001 Integer      : `12345678`
+009 InlineComment: "#inline\n"
+017 EOF          : ``
+okay: got no error
+
+```-1e3```
+000 Neg          : `-`
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```
+-1e3```
+000 Space        : "\n"
+001 Neg          : `-`
+002 Integer      : `1`
+003 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+``` -1e3```
+000 Space        : ` `
+001 Neg          : `-`
+002 Integer      : `1`
+003 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```#<block>-1e3```
+000 BlockComment : `#<block>`
+008 Neg          : `-`
+009 Integer      : `1`
+010 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```#inline
+-1e3```
+000 InlineComment: "#inline\n"
+008 Neg          : `-`
+009 Integer      : `1`
+010 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```-1e3```
+000 Neg          : `-`
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```-1e3
+```
+000 Neg          : `-`
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```-1e3 ```
+000 Neg          : `-`
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```-1e3#<block>```
+000 Neg          : `-`
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```-1e3#inline
+```
+000 Neg          : `-`
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```-inf```
+000 Neg          : `-`
+001 Inf          : `inf`
+004 EOF          : ``
+okay: got no error
+
+```
+-inf```
+000 Space        : "\n"
+001 Neg          : `-`
+002 Inf          : `inf`
+005 EOF          : ``
+okay: got no error
+
+``` -inf```
+000 Space        : ` `
+001 Neg          : `-`
+002 Inf          : `inf`
+005 EOF          : ``
+okay: got no error
+
+```#<block>-inf```
+000 BlockComment : `#<block>`
+008 Neg          : `-`
+009 Inf          : `inf`
+012 EOF          : ``
+okay: got no error
+
+```#inline
+-inf```
+000 InlineComment: "#inline\n"
+008 Neg          : `-`
+009 Inf          : `inf`
+012 EOF          : ``
+okay: got no error
+
+```-inf```
+000 Neg          : `-`
+001 Inf          : `inf`
+004 EOF          : ``
+okay: got no error
+
+```-inf
+```
+000 Neg          : `-`
+001 Inf          : `inf`
+004 Space        : "\n"
+005 EOF          : ``
+okay: got no error
+
+```-inf ```
+000 Neg          : `-`
+001 Inf          : `inf`
+004 Space        : ` `
+005 EOF          : ``
+okay: got no error
+
+```-inf#<block>```
+000 Neg          : `-`
+001 Inf          : `inf`
+004 BlockComment : `#<block>`
+012 EOF          : ``
+okay: got no error
+
+```-inf#inline
+```
+000 Neg          : `-`
+001 Inf          : `inf`
+004 InlineComment: "#inline\n"
+012 EOF          : ``
+okay: got no error
+
+```-nan```
+000 Neg          : `-`
+001 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```
+-nan```
+000 Space        : "\n"
+001 Neg          : `-`
+002 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+``` -nan```
+000 Space        : ` `
+001 Neg          : `-`
+002 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```#<block>-nan```
+000 BlockComment : `#<block>`
+008 Neg          : `-`
+009 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```#inline
+-nan```
+000 InlineComment: "#inline\n"
+008 Neg          : `-`
+009 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```-nan```
+000 Neg          : `-`
+001 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```-nan
+```
+000 Neg          : `-`
+001 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```-nan ```
+000 Neg          : `-`
+001 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```-nan#<block>```
+000 Neg          : `-`
+001 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```-nan#inline
+```
+000 Neg          : `-`
+001 Error        : syntax error: expected digit, got 'n'
+okay: got expected error
+
+```0```
+000 Integer      : `0`
+001 EOF          : ``
+okay: got no error
+
+```
+0```
+000 Space        : "\n"
+001 Integer      : `0`
+002 EOF          : ``
+okay: got no error
+
+``` 0```
+000 Space        : ` `
+001 Integer      : `0`
+002 EOF          : ``
+okay: got no error
+
+```#<block>0```
+000 BlockComment : `#<block>`
+008 Integer      : `0`
+009 EOF          : ``
+okay: got no error
+
+```#inline
+0```
+000 InlineComment: "#inline\n"
+008 Integer      : `0`
+009 EOF          : ``
+okay: got no error
+
+```0```
+000 Integer      : `0`
+001 EOF          : ``
+okay: got no error
+
+```0
+```
+000 Integer      : `0`
+001 Space        : "\n"
+002 EOF          : ``
+okay: got no error
+
+```0 ```
+000 Integer      : `0`
+001 Space        : ` `
+002 EOF          : ``
+okay: got no error
+
+```0#<block>```
+000 Integer      : `0`
+001 BlockComment : `#<block>`
+009 EOF          : ``
+okay: got no error
+
+```0#inline
+```
+000 Integer      : `0`
+001 InlineComment: "#inline\n"
+009 EOF          : ``
+okay: got no error
+
+```0.0```
+000 Float        : `0.0`
+003 EOF          : ``
+okay: got no error
+
+```
+0.0```
+000 Space        : "\n"
+001 Float        : `0.0`
+004 EOF          : ``
+okay: got no error
+
+``` 0.0```
+000 Space        : ` `
+001 Float        : `0.0`
+004 EOF          : ``
+okay: got no error
+
+```#<block>0.0```
+000 BlockComment : `#<block>`
+008 Float        : `0.0`
+011 EOF          : ``
+okay: got no error
+
+```#inline
+0.0```
+000 InlineComment: "#inline\n"
+008 Float        : `0.0`
+011 EOF          : ``
+okay: got no error
+
+```0.0```
+000 Float        : `0.0`
+003 EOF          : ``
+okay: got no error
+
+```0.0
+```
+000 Float        : `0.0`
+003 Space        : "\n"
+004 EOF          : ``
+okay: got no error
+
+```0.0 ```
+000 Float        : `0.0`
+003 Space        : ` `
+004 EOF          : ``
+okay: got no error
+
+```0.0#<block>```
+000 Float        : `0.0`
+003 BlockComment : `#<block>`
+011 EOF          : ``
+okay: got no error
+
+```0.0#inline
+```
+000 Float        : `0.0`
+003 InlineComment: "#inline\n"
+011 EOF          : ``
+okay: got no error
+
+```1234.5678```
+000 Float        : `1234.5678`
+009 EOF          : ``
+okay: got no error
+
+```
+1234.5678```
+000 Space        : "\n"
+001 Float        : `1234.5678`
+010 EOF          : ``
+okay: got no error
+
+``` 1234.5678```
+000 Space        : ` `
+001 Float        : `1234.5678`
+010 EOF          : ``
+okay: got no error
+
+```#<block>1234.5678```
+000 BlockComment : `#<block>`
+008 Float        : `1234.5678`
+017 EOF          : ``
+okay: got no error
+
+```#inline
+1234.5678```
+000 InlineComment: "#inline\n"
+008 Float        : `1234.5678`
+017 EOF          : ``
+okay: got no error
+
+```1234.5678```
+000 Float        : `1234.5678`
+009 EOF          : ``
+okay: got no error
+
+```1234.5678
+```
+000 Float        : `1234.5678`
+009 Space        : "\n"
+010 EOF          : ``
+okay: got no error
+
+```1234.5678 ```
+000 Float        : `1234.5678`
+009 Space        : ` `
+010 EOF          : ``
+okay: got no error
+
+```1234.5678#<block>```
+000 Float        : `1234.5678`
+009 BlockComment : `#<block>`
+017 EOF          : ``
+okay: got no error
+
+```1234.5678#inline
+```
+000 Float        : `1234.5678`
+009 InlineComment: "#inline\n"
+017 EOF          : ``
+okay: got no error
+
+```12345678```
+000 Integer      : `12345678`
+008 EOF          : ``
+okay: got no error
+
+```
+12345678```
+000 Space        : "\n"
+001 Integer      : `12345678`
+009 EOF          : ``
+okay: got no error
+
+``` 12345678```
+000 Space        : ` `
+001 Integer      : `12345678`
+009 EOF          : ``
+okay: got no error
+
+```#<block>12345678```
+000 BlockComment : `#<block>`
+008 Integer      : `12345678`
+016 EOF          : ``
+okay: got no error
+
+```#inline
+12345678```
+000 InlineComment: "#inline\n"
+008 Integer      : `12345678`
+016 EOF          : ``
+okay: got no error
+
+```12345678```
+000 Integer      : `12345678`
+008 EOF          : ``
+okay: got no error
+
+```12345678
+```
+000 Integer      : `12345678`
+008 Space        : "\n"
+009 EOF          : ``
+okay: got no error
+
+```12345678 ```
+000 Integer      : `12345678`
+008 Space        : ` `
+009 EOF          : ``
+okay: got no error
+
+```12345678#<block>```
+000 Integer      : `12345678`
+008 BlockComment : `#<block>`
+016 EOF          : ``
+okay: got no error
+
+```12345678#inline
+```
+000 Integer      : `12345678`
+008 InlineComment: "#inline\n"
+016 EOF          : ``
+okay: got no error
+
+```1e3```
+000 Integer      : `1`
+001 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```
+1e3```
+000 Space        : "\n"
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+``` 1e3```
+000 Space        : ` `
+001 Integer      : `1`
+002 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```#<block>1e3```
+000 BlockComment : `#<block>`
+008 Integer      : `1`
+009 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```#inline
+1e3```
+000 InlineComment: "#inline\n"
+008 Integer      : `1`
+009 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```1e3```
+000 Integer      : `1`
+001 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```1e3
+```
+000 Integer      : `1`
+001 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```1e3 ```
+000 Integer      : `1`
+001 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```1e3#<block>```
+000 Integer      : `1`
+001 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```1e3#inline
+```
+000 Integer      : `1`
+001 Error        : syntax error: expected end of file, got 'e'
+okay: got expected error
+
+```<anno>"tation"```
+000 Annotation   : `<anno>`
+006 String       : `"tation"`
+014 EOF          : ``
+okay: got no error
+
+```
+<anno>"tation"```
+000 Space        : "\n"
+001 Annotation   : `<anno>`
+007 String       : `"tation"`
+015 EOF          : ``
+okay: got no error
+
+``` <anno>"tation"```
+000 Space        : ` `
+001 Annotation   : `<anno>`
+007 String       : `"tation"`
+015 EOF          : ``
+okay: got no error
+
+```#<block><anno>"tation"```
+000 BlockComment : `#<block>`
+008 Annotation   : `<anno>`
+014 String       : `"tation"`
+022 EOF          : ``
+okay: got no error
+
+```#inline
+<anno>"tation"```
+000 InlineComment: "#inline\n"
+008 Annotation   : `<anno>`
+014 String       : `"tation"`
+022 EOF          : ``
+okay: got no error
+
+```<anno>"tation"```
+000 Annotation   : `<anno>`
+006 String       : `"tation"`
+014 EOF          : ``
+okay: got no error
+
+```<anno>
+"tation"```
+000 Annotation   : `<anno>`
+006 Space        : "\n"
+007 String       : `"tation"`
+015 EOF          : ``
+okay: got no error
+
+```<anno> "tation"```
+000 Annotation   : `<anno>`
+006 Space        : ` `
+007 String       : `"tation"`
+015 EOF          : ``
+okay: got no error
+
+```<anno>#<block>"tation"```
+000 Annotation   : `<anno>`
+006 BlockComment : `#<block>`
+014 String       : `"tation"`
+022 EOF          : ``
+okay: got no error
+
+```<anno>#inline
+"tation"```
+000 Annotation   : `<anno>`
+006 InlineComment: "#inline\n"
+014 String       : `"tation"`
+022 EOF          : ``
+okay: got no error
+
+```<anno>"tation"```
+000 Annotation   : `<anno>`
+006 String       : `"tation"`
+014 EOF          : ``
+okay: got no error
+
+```<anno>"tation"
+```
+000 Annotation   : `<anno>`
+006 String       : `"tation"`
+014 Space        : "\n"
+015 EOF          : ``
+okay: got no error
+
+```<anno>"tation" ```
+000 Annotation   : `<anno>`
+006 String       : `"tation"`
+014 Space        : ` `
+015 EOF          : ``
+okay: got no error
+
+```<anno>"tation"#<block>```
+000 Annotation   : `<anno>`
+006 String       : `"tation"`
+014 BlockComment : `#<block>`
+022 EOF          : ``
+okay: got no error
+
+```<anno>"tation"#inline
+```
+000 Annotation   : `<anno>`
+006 String       : `"tation"`
+014 InlineComment: "#inline\n"
+022 EOF          : ``
+okay: got no error
+
+```false```
+000 False        : `false`
+005 EOF          : ``
+okay: got no error
+
+```
+false```
+000 Space        : "\n"
+001 False        : `false`
+006 EOF          : ``
+okay: got no error
+
+``` false```
+000 Space        : ` `
+001 False        : `false`
+006 EOF          : ``
+okay: got no error
+
+```#<block>false```
+000 BlockComment : `#<block>`
+008 False        : `false`
+013 EOF          : ``
+okay: got no error
+
+```#inline
+false```
+000 InlineComment: "#inline\n"
+008 False        : `false`
+013 EOF          : ``
+okay: got no error
+
+```false```
+000 False        : `false`
+005 EOF          : ``
+okay: got no error
+
+```false
+```
+000 False        : `false`
+005 Space        : "\n"
+006 EOF          : ``
+okay: got no error
+
+```false ```
+000 False        : `false`
+005 Space        : ` `
+006 EOF          : ``
+okay: got no error
+
+```false#<block>```
+000 False        : `false`
+005 BlockComment : `#<block>`
+013 EOF          : ``
+okay: got no error
+
+```false#inline
+```
+000 False        : `false`
+005 InlineComment: "#inline\n"
+013 EOF          : ``
+okay: got no error
+
+```foo```
+000 Error        : syntax error: expected value, got 'f'
+okay: got expected error
+
+```
+foo```
+000 Space        : "\n"
+001 Error        : syntax error: expected value, got 'f'
+okay: got expected error
+
+``` foo```
+000 Space        : ` `
+001 Error        : syntax error: expected value, got 'f'
+okay: got expected error
+
+```#<block>foo```
+000 BlockComment : `#<block>`
+008 Error        : syntax error: expected value, got 'f'
+okay: got expected error
+
+```#inline
+foo```
+000 InlineComment: "#inline\n"
+008 Error        : syntax error: expected value, got 'f'
+okay: got expected error
+
+```foo```
+000 Error        : syntax error: expected value, got 'f'
+okay: got expected error
+
+```foo
+```
+000 Error        : syntax error: expected value, got 'f'
+okay: got expected error
+
+```foo ```
+000 Error        : syntax error: expected value, got 'f'
+okay: got expected error
+
+```foo#<block>```
+000 Error        : syntax error: expected value, got 'f'
+okay: got expected error
+
+```foo#inline
+```
+000 Error        : syntax error: expected value, got 'f'
+okay: got expected error
+
+```inf```
+000 Inf          : `inf`
+003 EOF          : ``
+okay: got no error
+
+```
+inf```
+000 Space        : "\n"
+001 Inf          : `inf`
+004 EOF          : ``
+okay: got no error
+
+``` inf```
+000 Space        : ` `
+001 Inf          : `inf`
+004 EOF          : ``
+okay: got no error
+
+```#<block>inf```
+000 BlockComment : `#<block>`
+008 Inf          : `inf`
+011 EOF          : ``
+okay: got no error
+
+```#inline
+inf```
+000 InlineComment: "#inline\n"
+008 Inf          : `inf`
+011 EOF          : ``
+okay: got no error
+
+```inf```
+000 Inf          : `inf`
+003 EOF          : ``
+okay: got no error
+
+```inf
+```
+000 Inf          : `inf`
+003 Space        : "\n"
+004 EOF          : ``
+okay: got no error
+
+```inf ```
+000 Inf          : `inf`
+003 Space        : ` `
+004 EOF          : ``
+okay: got no error
+
+```inf#<block>```
+000 Inf          : `inf`
+003 BlockComment : `#<block>`
+011 EOF          : ``
+okay: got no error
+
+```inf#inline
+```
+000 Inf          : `inf`
+003 InlineComment: "#inline\n"
+011 EOF          : ``
+okay: got no error
+
+```nan```
+000 NaN          : `nan`
+003 EOF          : ``
+okay: got no error
+
+```
+nan```
+000 Space        : "\n"
+001 NaN          : `nan`
+004 EOF          : ``
+okay: got no error
+
+``` nan```
+000 Space        : ` `
+001 NaN          : `nan`
+004 EOF          : ``
+okay: got no error
+
+```#<block>nan```
+000 BlockComment : `#<block>`
+008 NaN          : `nan`
+011 EOF          : ``
+okay: got no error
+
+```#inline
+nan```
+000 InlineComment: "#inline\n"
+008 NaN          : `nan`
+011 EOF          : ``
+okay: got no error
+
+```nan```
+000 NaN          : `nan`
+003 EOF          : ``
+okay: got no error
+
+```nan
+```
+000 NaN          : `nan`
+003 Space        : "\n"
+004 EOF          : ``
+okay: got no error
+
+```nan ```
+000 NaN          : `nan`
+003 Space        : ` `
+004 EOF          : ``
+okay: got no error
+
+```nan#<block>```
+000 NaN          : `nan`
+003 BlockComment : `#<block>`
+011 EOF          : ``
+okay: got no error
+
+```nan#inline
+```
+000 NaN          : `nan`
+003 InlineComment: "#inline\n"
+011 EOF          : ``
+okay: got no error
+
+```null```
+000 Null         : `null`
+004 EOF          : ``
+okay: got no error
+
+```
+null```
+000 Space        : "\n"
+001 Null         : `null`
+005 EOF          : ``
+okay: got no error
+
+``` null```
+000 Space        : ` `
+001 Null         : `null`
+005 EOF          : ``
+okay: got no error
+
+```#<block>null```
+000 BlockComment : `#<block>`
+008 Null         : `null`
+012 EOF          : ``
+okay: got no error
+
+```#inline
+null```
+000 InlineComment: "#inline\n"
+008 Null         : `null`
+012 EOF          : ``
+okay: got no error
+
+```null```
+000 Null         : `null`
+004 EOF          : ``
+okay: got no error
+
+```null
+```
+000 Null         : `null`
+004 Space        : "\n"
+005 EOF          : ``
+okay: got no error
+
+```null ```
+000 Null         : `null`
+004 Space        : ` `
+005 EOF          : ``
+okay: got no error
+
+```null#<block>```
+000 Null         : `null`
+004 BlockComment : `#<block>`
+012 EOF          : ``
+okay: got no error
+
+```null#inline
+```
+000 Null         : `null`
+004 InlineComment: "#inline\n"
+012 EOF          : ``
+okay: got no error
+
+```true```
+000 True         : `true`
+004 EOF          : ``
+okay: got no error
+
+```
+true```
+000 Space        : "\n"
+001 True         : `true`
+005 EOF          : ``
+okay: got no error
+
+``` true```
+000 Space        : ` `
+001 True         : `true`
+005 EOF          : ``
+okay: got no error
+
+```#<block>true```
+000 BlockComment : `#<block>`
+008 True         : `true`
+012 EOF          : ``
+okay: got no error
+
+```#inline
+true```
+000 InlineComment: "#inline\n"
+008 True         : `true`
+012 EOF          : ``
+okay: got no error
+
+```true```
+000 True         : `true`
+004 EOF          : ``
+okay: got no error
+
+```true
+```
+000 True         : `true`
+004 Space        : "\n"
+005 EOF          : ``
+okay: got no error
+
+```true ```
+000 True         : `true`
+004 Space        : ` `
+005 EOF          : ``
+okay: got no error
+
+```true#<block>```
+000 True         : `true`
+004 BlockComment : `#<block>`
+012 EOF          : ``
+okay: got no error
+
+```true#inline
+```
+000 True         : `true`
+004 InlineComment: "#inline\n"
+012 EOF          : ``
+okay: got no error
+
+```truely```
+000 True         : `true`
+004 Error        : syntax error: expected end of file, got 'l'
+okay: got expected error
+
+```
+truely```
+000 Space        : "\n"
+001 True         : `true`
+005 Error        : syntax error: expected end of file, got 'l'
+okay: got expected error
+
+``` truely```
+000 Space        : ` `
+001 True         : `true`
+005 Error        : syntax error: expected end of file, got 'l'
+okay: got expected error
+
+```#<block>truely```
+000 BlockComment : `#<block>`
+008 True         : `true`
+012 Error        : syntax error: expected end of file, got 'l'
+okay: got expected error
+
+```#inline
+truely```
+000 InlineComment: "#inline\n"
+008 True         : `true`
+012 Error        : syntax error: expected end of file, got 'l'
+okay: got expected error
+
+```truely```
+000 True         : `true`
+004 Error        : syntax error: expected end of file, got 'l'
+okay: got expected error
+
+```truely
+```
+000 True         : `true`
+004 Error        : syntax error: expected end of file, got 'l'
+okay: got expected error
+
+```truely ```
+000 True         : `true`
+004 Error        : syntax error: expected end of file, got 'l'
+okay: got expected error
+
+```truely#<block>```
+000 True         : `true`
+004 Error        : syntax error: expected end of file, got 'l'
+okay: got expected error
+
+```truely#inline
+```
+000 True         : `true`
+004 Error        : syntax error: expected end of file, got 'l'
+okay: got expected error
+
+```|1234|```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 Blob         : `|`
+006 EOF          : ``
+okay: got no error
+
+```
+|1234|```
+000 Space        : "\n"
+001 Blob         : `|`
+002 Byte         : `12`
+004 Byte         : `34`
+006 Blob         : `|`
+007 EOF          : ``
+okay: got no error
+
+``` |1234|```
+000 Space        : ` `
+001 Blob         : `|`
+002 Byte         : `12`
+004 Byte         : `34`
+006 Blob         : `|`
+007 EOF          : ``
+okay: got no error
+
+```#<block>|1234|```
+000 BlockComment : `#<block>`
+008 Blob         : `|`
+009 Byte         : `12`
+011 Byte         : `34`
+013 Blob         : `|`
+014 EOF          : ``
+okay: got no error
+
+```#inline
+|1234|```
+000 InlineComment: "#inline\n"
+008 Blob         : `|`
+009 Byte         : `12`
+011 Byte         : `34`
+013 Blob         : `|`
+014 EOF          : ``
+okay: got no error
+
+```|1234|```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 Blob         : `|`
+006 EOF          : ``
+okay: got no error
+
+```|
+1234|```
+000 Blob         : `|`
+001 Space        : "\n"
+002 Byte         : `12`
+004 Byte         : `34`
+006 Blob         : `|`
+007 EOF          : ``
+okay: got no error
+
+```| 1234|```
+000 Blob         : `|`
+001 Space        : ` `
+002 Byte         : `12`
+004 Byte         : `34`
+006 Blob         : `|`
+007 EOF          : ``
+okay: got no error
+
+```|#<block>1234|```
+000 Blob         : `|`
+001 BlockComment : `#<block>`
+009 Byte         : `12`
+011 Byte         : `34`
+013 Blob         : `|`
+014 EOF          : ``
+okay: got no error
+
+```|#inline
+1234|```
+000 Blob         : `|`
+001 InlineComment: "#inline\n"
+009 Byte         : `12`
+011 Byte         : `34`
+013 Blob         : `|`
+014 EOF          : ``
+okay: got no error
+
+```|1234|```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 Blob         : `|`
+006 EOF          : ``
+okay: got no error
+
+```|12
+34|```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Space        : "\n"
+004 Byte         : `34`
+006 Blob         : `|`
+007 EOF          : ``
+okay: got no error
+
+```|12 34|```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Space        : ` `
+004 Byte         : `34`
+006 Blob         : `|`
+007 EOF          : ``
+okay: got no error
+
+```|12#<block>34|```
+000 Blob         : `|`
+001 Byte         : `12`
+003 BlockComment : `#<block>`
+011 Byte         : `34`
+013 Blob         : `|`
+014 EOF          : ``
+okay: got no error
+
+```|12#inline
+34|```
+000 Blob         : `|`
+001 Byte         : `12`
+003 InlineComment: "#inline\n"
+011 Byte         : `34`
+013 Blob         : `|`
+014 EOF          : ``
+okay: got no error
+
+```|1234|```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 Blob         : `|`
+006 EOF          : ``
+okay: got no error
+
+```|1234
+|```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 Space        : "\n"
+006 Blob         : `|`
+007 EOF          : ``
+okay: got no error
+
+```|1234 |```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 Space        : ` `
+006 Blob         : `|`
+007 EOF          : ``
+okay: got no error
+
+```|1234#<block>|```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 BlockComment : `#<block>`
+013 Blob         : `|`
+014 EOF          : ``
+okay: got no error
+
+```|1234#inline
+|```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 InlineComment: "#inline\n"
+013 Blob         : `|`
+014 EOF          : ``
+okay: got no error
+
+```|1234|```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 Blob         : `|`
+006 EOF          : ``
+okay: got no error
+
+```|1234|
+```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 Blob         : `|`
+006 Space        : "\n"
+007 EOF          : ``
+okay: got no error
+
+```|1234| ```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 Blob         : `|`
+006 Space        : ` `
+007 EOF          : ``
+okay: got no error
+
+```|1234|#<block>```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 Blob         : `|`
+006 BlockComment : `#<block>`
+014 EOF          : ``
+okay: got no error
+
+```|1234|#inline
+```
+000 Blob         : `|`
+001 Byte         : `12`
+003 Byte         : `34`
+005 Blob         : `|`
+006 InlineComment: "#inline\n"
+014 EOF          : ``
+okay: got no error
+
+```|7F|```
+000 Blob         : `|`
+001 Byte         : `7F`
+003 Blob         : `|`
+004 EOF          : ``
+okay: got no error
+
+```
+|7F|```
+000 Space        : "\n"
+001 Blob         : `|`
+002 Byte         : `7F`
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+``` |7F|```
+000 Space        : ` `
+001 Blob         : `|`
+002 Byte         : `7F`
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+```#<block>|7F|```
+000 BlockComment : `#<block>`
+008 Blob         : `|`
+009 Byte         : `7F`
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```#inline
+|7F|```
+000 InlineComment: "#inline\n"
+008 Blob         : `|`
+009 Byte         : `7F`
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```|7F|```
+000 Blob         : `|`
+001 Byte         : `7F`
+003 Blob         : `|`
+004 EOF          : ``
+okay: got no error
+
+```|
+7F|```
+000 Blob         : `|`
+001 Space        : "\n"
+002 Byte         : `7F`
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+```| 7F|```
+000 Blob         : `|`
+001 Space        : ` `
+002 Byte         : `7F`
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+```|#<block>7F|```
+000 Blob         : `|`
+001 BlockComment : `#<block>`
+009 Byte         : `7F`
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```|#inline
+7F|```
+000 Blob         : `|`
+001 InlineComment: "#inline\n"
+009 Byte         : `7F`
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```|7F|```
+000 Blob         : `|`
+001 Byte         : `7F`
+003 Blob         : `|`
+004 EOF          : ``
+okay: got no error
+
+```|7F
+|```
+000 Blob         : `|`
+001 Byte         : `7F`
+003 Space        : "\n"
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+```|7F |```
+000 Blob         : `|`
+001 Byte         : `7F`
+003 Space        : ` `
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+```|7F#<block>|```
+000 Blob         : `|`
+001 Byte         : `7F`
+003 BlockComment : `#<block>`
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```|7F#inline
+|```
+000 Blob         : `|`
+001 Byte         : `7F`
+003 InlineComment: "#inline\n"
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```|7F|```
+000 Blob         : `|`
+001 Byte         : `7F`
+003 Blob         : `|`
+004 EOF          : ``
+okay: got no error
+
+```|7F|
+```
+000 Blob         : `|`
+001 Byte         : `7F`
+003 Blob         : `|`
+004 Space        : "\n"
+005 EOF          : ``
+okay: got no error
+
+```|7F| ```
+000 Blob         : `|`
+001 Byte         : `7F`
+003 Blob         : `|`
+004 Space        : ` `
+005 EOF          : ``
+okay: got no error
+
+```|7F|#<block>```
+000 Blob         : `|`
+001 Byte         : `7F`
+003 Blob         : `|`
+004 BlockComment : `#<block>`
+012 EOF          : ``
+okay: got no error
+
+```|7F|#inline
+```
+000 Blob         : `|`
+001 Byte         : `7F`
+003 Blob         : `|`
+004 InlineComment: "#inline\n"
+012 EOF          : ``
+okay: got no error
+
+```|80||FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Blob         : `|`
+008 EOF          : ``
+okay: got no error
+
+```
+|80||FF|```
+000 Space        : "\n"
+001 Blob         : `|`
+002 Byte         : `80`
+004 Blob         : `|`
+005 Blob         : `|`
+006 Byte         : `FF`
+008 Blob         : `|`
+009 EOF          : ``
+okay: got no error
+
+``` |80||FF|```
+000 Space        : ` `
+001 Blob         : `|`
+002 Byte         : `80`
+004 Blob         : `|`
+005 Blob         : `|`
+006 Byte         : `FF`
+008 Blob         : `|`
+009 EOF          : ``
+okay: got no error
+
+```#<block>|80||FF|```
+000 BlockComment : `#<block>`
+008 Blob         : `|`
+009 Byte         : `80`
+011 Blob         : `|`
+012 Blob         : `|`
+013 Byte         : `FF`
+015 Blob         : `|`
+016 EOF          : ``
+okay: got no error
+
+```#inline
+|80||FF|```
+000 InlineComment: "#inline\n"
+008 Blob         : `|`
+009 Byte         : `80`
+011 Blob         : `|`
+012 Blob         : `|`
+013 Byte         : `FF`
+015 Blob         : `|`
+016 EOF          : ``
+okay: got no error
+
+```|80||FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Blob         : `|`
+008 EOF          : ``
+okay: got no error
+
+```|
+80||FF|```
+000 Blob         : `|`
+001 Space        : "\n"
+002 Byte         : `80`
+004 Blob         : `|`
+005 Blob         : `|`
+006 Byte         : `FF`
+008 Blob         : `|`
+009 EOF          : ``
+okay: got no error
+
+```| 80||FF|```
+000 Blob         : `|`
+001 Space        : ` `
+002 Byte         : `80`
+004 Blob         : `|`
+005 Blob         : `|`
+006 Byte         : `FF`
+008 Blob         : `|`
+009 EOF          : ``
+okay: got no error
+
+```|#<block>80||FF|```
+000 Blob         : `|`
+001 BlockComment : `#<block>`
+009 Byte         : `80`
+011 Blob         : `|`
+012 Blob         : `|`
+013 Byte         : `FF`
+015 Blob         : `|`
+016 EOF          : ``
+okay: got no error
+
+```|#inline
+80||FF|```
+000 Blob         : `|`
+001 InlineComment: "#inline\n"
+009 Byte         : `80`
+011 Blob         : `|`
+012 Blob         : `|`
+013 Byte         : `FF`
+015 Blob         : `|`
+016 EOF          : ``
+okay: got no error
+
+```|80||FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Blob         : `|`
+008 EOF          : ``
+okay: got no error
+
+```|80
+||FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Space        : "\n"
+004 Blob         : `|`
+005 Blob         : `|`
+006 Byte         : `FF`
+008 Blob         : `|`
+009 EOF          : ``
+okay: got no error
+
+```|80 ||FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Space        : ` `
+004 Blob         : `|`
+005 Blob         : `|`
+006 Byte         : `FF`
+008 Blob         : `|`
+009 EOF          : ``
+okay: got no error
+
+```|80#<block>||FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 BlockComment : `#<block>`
+011 Blob         : `|`
+012 Blob         : `|`
+013 Byte         : `FF`
+015 Blob         : `|`
+016 EOF          : ``
+okay: got no error
+
+```|80#inline
+||FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 InlineComment: "#inline\n"
+011 Blob         : `|`
+012 Blob         : `|`
+013 Byte         : `FF`
+015 Blob         : `|`
+016 EOF          : ``
+okay: got no error
+
+```|80||FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Blob         : `|`
+008 EOF          : ``
+okay: got no error
+
+```|80|
+|FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Space        : "\n"
+005 Blob         : `|`
+006 Byte         : `FF`
+008 Blob         : `|`
+009 EOF          : ``
+okay: got no error
+
+```|80| |FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Space        : ` `
+005 Blob         : `|`
+006 Byte         : `FF`
+008 Blob         : `|`
+009 EOF          : ``
+okay: got no error
+
+```|80|#<block>|FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 BlockComment : `#<block>`
+012 Blob         : `|`
+013 Byte         : `FF`
+015 Blob         : `|`
+016 EOF          : ``
+okay: got no error
+
+```|80|#inline
+|FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 InlineComment: "#inline\n"
+012 Blob         : `|`
+013 Byte         : `FF`
+015 Blob         : `|`
+016 EOF          : ``
+okay: got no error
+
+```|80||FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Blob         : `|`
+008 EOF          : ``
+okay: got no error
+
+```|80||
+FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Space        : "\n"
+006 Byte         : `FF`
+008 Blob         : `|`
+009 EOF          : ``
+okay: got no error
+
+```|80|| FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Space        : ` `
+006 Byte         : `FF`
+008 Blob         : `|`
+009 EOF          : ``
+okay: got no error
+
+```|80||#<block>FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 BlockComment : `#<block>`
+013 Byte         : `FF`
+015 Blob         : `|`
+016 EOF          : ``
+okay: got no error
+
+```|80||#inline
+FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 InlineComment: "#inline\n"
+013 Byte         : `FF`
+015 Blob         : `|`
+016 EOF          : ``
+okay: got no error
+
+```|80||FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Blob         : `|`
+008 EOF          : ``
+okay: got no error
+
+```|80||FF
+|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Space        : "\n"
+008 Blob         : `|`
+009 EOF          : ``
+okay: got no error
+
+```|80||FF |```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Space        : ` `
+008 Blob         : `|`
+009 EOF          : ``
+okay: got no error
+
+```|80||FF#<block>|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 BlockComment : `#<block>`
+015 Blob         : `|`
+016 EOF          : ``
+okay: got no error
+
+```|80||FF#inline
+|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 InlineComment: "#inline\n"
+015 Blob         : `|`
+016 EOF          : ``
+okay: got no error
+
+```|80||FF|```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Blob         : `|`
+008 EOF          : ``
+okay: got no error
+
+```|80||FF|
+```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Blob         : `|`
+008 Space        : "\n"
+009 EOF          : ``
+okay: got no error
+
+```|80||FF| ```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Blob         : `|`
+008 Space        : ` `
+009 EOF          : ``
+okay: got no error
+
+```|80||FF|#<block>```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Blob         : `|`
+008 BlockComment : `#<block>`
+016 EOF          : ``
+okay: got no error
+
+```|80||FF|#inline
+```
+000 Blob         : `|`
+001 Byte         : `80`
+003 Blob         : `|`
+004 Blob         : `|`
+005 Byte         : `FF`
+007 Blob         : `|`
+008 InlineComment: "#inline\n"
+016 EOF          : ``
+okay: got no error
+
+```||```
+000 Blob         : `|`
+001 Blob         : `|`
+002 EOF          : ``
+okay: got no error
+
+```
+||```
+000 Space        : "\n"
+001 Blob         : `|`
+002 Blob         : `|`
+003 EOF          : ``
+okay: got no error
+
+``` ||```
+000 Space        : ` `
+001 Blob         : `|`
+002 Blob         : `|`
+003 EOF          : ``
+okay: got no error
+
+```#<block>||```
+000 BlockComment : `#<block>`
+008 Blob         : `|`
+009 Blob         : `|`
+010 EOF          : ``
+okay: got no error
+
+```#inline
+||```
+000 InlineComment: "#inline\n"
+008 Blob         : `|`
+009 Blob         : `|`
+010 EOF          : ``
+okay: got no error
+
+```||```
+000 Blob         : `|`
+001 Blob         : `|`
+002 EOF          : ``
+okay: got no error
+
+```|
+|```
+000 Blob         : `|`
+001 Space        : "\n"
+002 Blob         : `|`
+003 EOF          : ``
+okay: got no error
+
+```| |```
+000 Blob         : `|`
+001 Space        : ` `
+002 Blob         : `|`
+003 EOF          : ``
+okay: got no error
+
+```|#<block>|```
+000 Blob         : `|`
+001 BlockComment : `#<block>`
+009 Blob         : `|`
+010 EOF          : ``
+okay: got no error
+
+```|#inline
+|```
+000 Blob         : `|`
+001 InlineComment: "#inline\n"
+009 Blob         : `|`
+010 EOF          : ``
+okay: got no error
+
+```||```
+000 Blob         : `|`
+001 Blob         : `|`
+002 EOF          : ``
+okay: got no error
+
+```||
+```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Space        : "\n"
+003 EOF          : ``
+okay: got no error
+
+```|| ```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Space        : ` `
+003 EOF          : ``
+okay: got no error
+
+```||#<block>```
+000 Blob         : `|`
+001 Blob         : `|`
+002 BlockComment : `#<block>`
+010 EOF          : ``
+okay: got no error
+
+```||#inline
+```
+000 Blob         : `|`
+001 Blob         : `|`
+002 InlineComment: "#inline\n"
+010 EOF          : ``
+okay: got no error
+
+```||||```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 Blob         : `|`
+004 EOF          : ``
+okay: got no error
+
+```
+||||```
+000 Space        : "\n"
+001 Blob         : `|`
+002 Blob         : `|`
+003 Blob         : `|`
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+``` ||||```
+000 Space        : ` `
+001 Blob         : `|`
+002 Blob         : `|`
+003 Blob         : `|`
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+```#<block>||||```
+000 BlockComment : `#<block>`
+008 Blob         : `|`
+009 Blob         : `|`
+010 Blob         : `|`
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```#inline
+||||```
+000 InlineComment: "#inline\n"
+008 Blob         : `|`
+009 Blob         : `|`
+010 Blob         : `|`
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```||||```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 Blob         : `|`
+004 EOF          : ``
+okay: got no error
+
+```|
+|||```
+000 Blob         : `|`
+001 Space        : "\n"
+002 Blob         : `|`
+003 Blob         : `|`
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+```| |||```
+000 Blob         : `|`
+001 Space        : ` `
+002 Blob         : `|`
+003 Blob         : `|`
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+```|#<block>|||```
+000 Blob         : `|`
+001 BlockComment : `#<block>`
+009 Blob         : `|`
+010 Blob         : `|`
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```|#inline
+|||```
+000 Blob         : `|`
+001 InlineComment: "#inline\n"
+009 Blob         : `|`
+010 Blob         : `|`
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```||||```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 Blob         : `|`
+004 EOF          : ``
+okay: got no error
+
+```||
+||```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Space        : "\n"
+003 Blob         : `|`
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+```|| ||```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Space        : ` `
+003 Blob         : `|`
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+```||#<block>||```
+000 Blob         : `|`
+001 Blob         : `|`
+002 BlockComment : `#<block>`
+010 Blob         : `|`
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```||#inline
+||```
+000 Blob         : `|`
+001 Blob         : `|`
+002 InlineComment: "#inline\n"
+010 Blob         : `|`
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```||||```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 Blob         : `|`
+004 EOF          : ``
+okay: got no error
+
+```|||
+|```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 Space        : "\n"
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+```||| |```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 Space        : ` `
+004 Blob         : `|`
+005 EOF          : ``
+okay: got no error
+
+```|||#<block>|```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 BlockComment : `#<block>`
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```|||#inline
+|```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 InlineComment: "#inline\n"
+011 Blob         : `|`
+012 EOF          : ``
+okay: got no error
+
+```||||```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 Blob         : `|`
+004 EOF          : ``
+okay: got no error
+
+```||||
+```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 Blob         : `|`
+004 Space        : "\n"
+005 EOF          : ``
+okay: got no error
+
+```|||| ```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 Blob         : `|`
+004 Space        : ` `
+005 EOF          : ``
+okay: got no error
+
+```||||#<block>```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 Blob         : `|`
+004 BlockComment : `#<block>`
+012 EOF          : ``
+okay: got no error
+
+```||||#inline
+```
+000 Blob         : `|`
+001 Blob         : `|`
+002 Blob         : `|`
+003 Blob         : `|`
+004 InlineComment: "#inline\n"
+012 EOF          : ``
+okay: got no error
+
+```|0X|```
+000 Blob         : `|`
+001 Error        : syntax error: expected hexdecimal digit, got `0X`
+okay: got expected error
+
+```
+|0X|```
+000 Space        : "\n"
+001 Blob         : `|`
+002 Error        : syntax error: expected hexdecimal digit, got `0X`
+okay: got expected error
+
+``` |0X|```
+000 Space        : ` `
+001 Blob         : `|`
+002 Error        : syntax error: expected hexdecimal digit, got `0X`
+okay: got expected error
+
+```#<block>|0X|```
+000 BlockComment : `#<block>`
+008 Blob         : `|`
+009 Error        : syntax error: expected hexdecimal digit, got `0X`
+okay: got expected error
+
+```#inline
+|0X|```
+000 InlineComment: "#inline\n"
+008 Blob         : `|`
+009 Error        : syntax error: expected hexdecimal digit, got `0X`
+okay: got expected error
+
+```|0X|```
+000 Blob         : `|`
+001 Error        : syntax error: expected hexdecimal digit, got `0X`
+okay: got expected error
+
+```|0X|
+```
+000 Blob         : `|`
+001 Error        : syntax error: expected hexdecimal digit, got `0X`
+okay: got expected error
+
+```|0X| ```
+000 Blob         : `|`
+001 Error        : syntax error: expected hexdecimal digit, got `0X`
+okay: got expected error
+
+```|0X|#<block>```
+000 Blob         : `|`
+001 Error        : syntax error: expected hexdecimal digit, got `0X`
+okay: got expected error
+
+```|0X|#inline
+```
+000 Blob         : `|`
+001 Error        : syntax error: expected hexdecimal digit, got `0X`
+okay: got expected error
+
+```|X0|```
+000 Blob         : `|`
+001 Error        : syntax error: expected byte or '|', got 'X'
+okay: got expected error
+
+```
+|X0|```
+000 Space        : "\n"
+001 Blob         : `|`
+002 Error        : syntax error: expected byte or '|', got 'X'
+okay: got expected error
+
+``` |X0|```
+000 Space        : ` `
+001 Blob         : `|`
+002 Error        : syntax error: expected byte or '|', got 'X'
+okay: got expected error
+
+```#<block>|X0|```
+000 BlockComment : `#<block>`
+008 Blob         : `|`
+009 Error        : syntax error: expected byte or '|', got 'X'
+okay: got expected error
+
+```#inline
+|X0|```
+000 InlineComment: "#inline\n"
+008 Blob         : `|`
+009 Error        : syntax error: expected byte or '|', got 'X'
+okay: got expected error
+
+```|X0|```
+000 Blob         : `|`
+001 Error        : syntax error: expected byte or '|', got 'X'
+okay: got expected error
+
+```|X0|
+```
+000 Blob         : `|`
+001 Error        : syntax error: expected byte or '|', got 'X'
+okay: got expected error
+
+```|X0| ```
+000 Blob         : `|`
+001 Error        : syntax error: expected byte or '|', got 'X'
+okay: got expected error
+
+```|X0|#<block>```
+000 Blob         : `|`
+001 Error        : syntax error: expected byte or '|', got 'X'
+okay: got expected error
+
+```|X0|#inline
+```
+000 Blob         : `|`
+001 Error        : syntax error: expected byte or '|', got 'X'
+okay: got expected error
+
+```("K":"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 MapClose     : `)`
+009 EOF          : ``
+okay: got no error
+
+```
+("K":"V")```
+000 Space        : "\n"
+001 MapOpen      : `(`
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+``` ("K":"V")```
+000 Space        : ` `
+001 MapOpen      : `(`
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```#<block>("K":"V")```
+000 BlockComment : `#<block>`
+008 MapOpen      : `(`
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```#inline
+("K":"V")```
+000 InlineComment: "#inline\n"
+008 MapOpen      : `(`
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```("K":"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 MapClose     : `)`
+009 EOF          : ``
+okay: got no error
+
+```(
+"K":"V")```
+000 MapOpen      : `(`
+001 Space        : "\n"
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```( "K":"V")```
+000 MapOpen      : `(`
+001 Space        : ` `
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```(#<block>"K":"V")```
+000 MapOpen      : `(`
+001 BlockComment : `#<block>`
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```(#inline
+"K":"V")```
+000 MapOpen      : `(`
+001 InlineComment: "#inline\n"
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```("K":"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 MapClose     : `)`
+009 EOF          : ``
+okay: got no error
+
+```("K"
+:"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Space        : "\n"
+005 Assoc        : `:`
+006 String       : `"V"`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```("K" :"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Space        : ` `
+005 Assoc        : `:`
+006 String       : `"V"`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```("K"#<block>:"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 BlockComment : `#<block>`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```("K"#inline
+:"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 InlineComment: "#inline\n"
+012 Assoc        : `:`
+013 String       : `"V"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```("K":"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 MapClose     : `)`
+009 EOF          : ``
+okay: got no error
+
+```("K":
+"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 Space        : "\n"
+006 String       : `"V"`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```("K": "V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 Space        : ` `
+006 String       : `"V"`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```("K":#<block>"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 BlockComment : `#<block>`
+013 String       : `"V"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```("K":#inline
+"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 InlineComment: "#inline\n"
+013 String       : `"V"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```("K":"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 MapClose     : `)`
+009 EOF          : ``
+okay: got no error
+
+```("K":"V"
+)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Space        : "\n"
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```("K":"V" )```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Space        : ` `
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```("K":"V"#<block>)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 BlockComment : `#<block>`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```("K":"V"#inline
+)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 InlineComment: "#inline\n"
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```("K":"V")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 MapClose     : `)`
+009 EOF          : ``
+okay: got no error
+
+```("K":"V")
+```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 MapClose     : `)`
+009 Space        : "\n"
+010 EOF          : ``
+okay: got no error
+
+```("K":"V") ```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 MapClose     : `)`
+009 Space        : ` `
+010 EOF          : ``
+okay: got no error
+
+```("K":"V")#<block>```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 MapClose     : `)`
+009 BlockComment : `#<block>`
+017 EOF          : ``
+okay: got no error
+
+```("K":"V")#inline
+```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 MapClose     : `)`
+009 InlineComment: "#inline\n"
+017 EOF          : ``
+okay: got no error
+
+```("K":"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```
+("K":"V",)```
+000 Space        : "\n"
+001 MapOpen      : `(`
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 MapClose     : `)`
+011 EOF          : ``
+okay: got no error
+
+``` ("K":"V",)```
+000 Space        : ` `
+001 MapOpen      : `(`
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 MapClose     : `)`
+011 EOF          : ``
+okay: got no error
+
+```#<block>("K":"V",)```
+000 BlockComment : `#<block>`
+008 MapOpen      : `(`
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```#inline
+("K":"V",)```
+000 InlineComment: "#inline\n"
+008 MapOpen      : `(`
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```(
+"K":"V",)```
+000 MapOpen      : `(`
+001 Space        : "\n"
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 MapClose     : `)`
+011 EOF          : ``
+okay: got no error
+
+```( "K":"V",)```
+000 MapOpen      : `(`
+001 Space        : ` `
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 MapClose     : `)`
+011 EOF          : ``
+okay: got no error
+
+```(#<block>"K":"V",)```
+000 MapOpen      : `(`
+001 BlockComment : `#<block>`
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```(#inline
+"K":"V",)```
+000 MapOpen      : `(`
+001 InlineComment: "#inline\n"
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```("K"
+:"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Space        : "\n"
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 MapClose     : `)`
+011 EOF          : ``
+okay: got no error
+
+```("K" :"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Space        : ` `
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 MapClose     : `)`
+011 EOF          : ``
+okay: got no error
+
+```("K"#<block>:"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 BlockComment : `#<block>`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K"#inline
+:"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 InlineComment: "#inline\n"
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```("K":
+"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 Space        : "\n"
+006 String       : `"V"`
+009 Sep          : `,`
+010 MapClose     : `)`
+011 EOF          : ``
+okay: got no error
+
+```("K": "V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 Space        : ` `
+006 String       : `"V"`
+009 Sep          : `,`
+010 MapClose     : `)`
+011 EOF          : ``
+okay: got no error
+
+```("K":#<block>"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 BlockComment : `#<block>`
+013 String       : `"V"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":#inline
+"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 InlineComment: "#inline\n"
+013 String       : `"V"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```("K":"V"
+,)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Space        : "\n"
+009 Sep          : `,`
+010 MapClose     : `)`
+011 EOF          : ``
+okay: got no error
+
+```("K":"V" ,)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Space        : ` `
+009 Sep          : `,`
+010 MapClose     : `)`
+011 EOF          : ``
+okay: got no error
+
+```("K":"V"#<block>,)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 BlockComment : `#<block>`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V"#inline
+,)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 InlineComment: "#inline\n"
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```("K":"V",
+)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 Space        : "\n"
+010 MapClose     : `)`
+011 EOF          : ``
+okay: got no error
+
+```("K":"V", )```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 Space        : ` `
+010 MapClose     : `)`
+011 EOF          : ``
+okay: got no error
+
+```("K":"V",#<block>)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 BlockComment : `#<block>`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V",#inline
+)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 InlineComment: "#inline\n"
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 MapClose     : `)`
+010 EOF          : ``
+okay: got no error
+
+```("K":"V",)
+```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 MapClose     : `)`
+010 Space        : "\n"
+011 EOF          : ``
+okay: got no error
+
+```("K":"V",) ```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 MapClose     : `)`
+010 Space        : ` `
+011 EOF          : ``
+okay: got no error
+
+```("K":"V",)#<block>```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 MapClose     : `)`
+010 BlockComment : `#<block>`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V",)#inline
+```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 MapClose     : `)`
+010 InlineComment: "#inline\n"
+018 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```
+("K":"V","X":"X")```
+000 Space        : "\n"
+001 MapOpen      : `(`
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+``` ("K":"V","X":"X")```
+000 Space        : ` `
+001 MapOpen      : `(`
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```#<block>("K":"V","X":"X")```
+000 BlockComment : `#<block>`
+008 MapOpen      : `(`
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 MapClose     : `)`
+025 EOF          : ``
+okay: got no error
+
+```#inline
+("K":"V","X":"X")```
+000 InlineComment: "#inline\n"
+008 MapOpen      : `(`
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 MapClose     : `)`
+025 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```(
+"K":"V","X":"X")```
+000 MapOpen      : `(`
+001 Space        : "\n"
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```( "K":"V","X":"X")```
+000 MapOpen      : `(`
+001 Space        : ` `
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```(#<block>"K":"V","X":"X")```
+000 MapOpen      : `(`
+001 BlockComment : `#<block>`
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 MapClose     : `)`
+025 EOF          : ``
+okay: got no error
+
+```(#inline
+"K":"V","X":"X")```
+000 MapOpen      : `(`
+001 InlineComment: "#inline\n"
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 MapClose     : `)`
+025 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```("K"
+:"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Space        : "\n"
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K" :"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Space        : ` `
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K"#<block>:"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 BlockComment : `#<block>`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 MapClose     : `)`
+025 EOF          : ``
+okay: got no error
+
+```("K"#inline
+:"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 InlineComment: "#inline\n"
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 MapClose     : `)`
+025 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```("K":
+"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 Space        : "\n"
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K": "V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 Space        : ` `
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":#<block>"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 BlockComment : `#<block>`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 MapClose     : `)`
+025 EOF          : ``
+okay: got no error
+
+```("K":#inline
+"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 InlineComment: "#inline\n"
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 MapClose     : `)`
+025 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```("K":"V"
+,"X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Space        : "\n"
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V" ,"X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Space        : ` `
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V"#<block>,"X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 BlockComment : `#<block>`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 MapClose     : `)`
+025 EOF          : ``
+okay: got no error
+
+```("K":"V"#inline
+,"X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 InlineComment: "#inline\n"
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 MapClose     : `)`
+025 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X")```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 MapClose     : `)`
+017 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X")
+```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 MapClose     : `)`
+017 Space        : "\n"
+018 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X") ```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 MapClose     : `)`
+017 Space        : ` `
+018 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X")#<block>```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 MapClose     : `)`
+017 BlockComment : `#<block>`
+025 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X")#inline
+```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 MapClose     : `)`
+017 InlineComment: "#inline\n"
+025 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```
+("K":"V","X":"X",)```
+000 Space        : "\n"
+001 MapOpen      : `(`
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 Sep          : `,`
+018 MapClose     : `)`
+019 EOF          : ``
+okay: got no error
+
+``` ("K":"V","X":"X",)```
+000 Space        : ` `
+001 MapOpen      : `(`
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 Sep          : `,`
+018 MapClose     : `)`
+019 EOF          : ``
+okay: got no error
+
+```#<block>("K":"V","X":"X",)```
+000 BlockComment : `#<block>`
+008 MapOpen      : `(`
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 Sep          : `,`
+025 MapClose     : `)`
+026 EOF          : ``
+okay: got no error
+
+```#inline
+("K":"V","X":"X",)```
+000 InlineComment: "#inline\n"
+008 MapOpen      : `(`
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 Sep          : `,`
+025 MapClose     : `)`
+026 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```(
+"K":"V","X":"X",)```
+000 MapOpen      : `(`
+001 Space        : "\n"
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 Sep          : `,`
+018 MapClose     : `)`
+019 EOF          : ``
+okay: got no error
+
+```( "K":"V","X":"X",)```
+000 MapOpen      : `(`
+001 Space        : ` `
+002 String       : `"K"`
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 Sep          : `,`
+018 MapClose     : `)`
+019 EOF          : ``
+okay: got no error
+
+```(#<block>"K":"V","X":"X",)```
+000 MapOpen      : `(`
+001 BlockComment : `#<block>`
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 Sep          : `,`
+025 MapClose     : `)`
+026 EOF          : ``
+okay: got no error
+
+```(#inline
+"K":"V","X":"X",)```
+000 MapOpen      : `(`
+001 InlineComment: "#inline\n"
+009 String       : `"K"`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 Sep          : `,`
+025 MapClose     : `)`
+026 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K"
+:"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Space        : "\n"
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 Sep          : `,`
+018 MapClose     : `)`
+019 EOF          : ``
+okay: got no error
+
+```("K" :"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Space        : ` `
+005 Assoc        : `:`
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 Sep          : `,`
+018 MapClose     : `)`
+019 EOF          : ``
+okay: got no error
+
+```("K"#<block>:"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 BlockComment : `#<block>`
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 Sep          : `,`
+025 MapClose     : `)`
+026 EOF          : ``
+okay: got no error
+
+```("K"#inline
+:"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 InlineComment: "#inline\n"
+012 Assoc        : `:`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 Sep          : `,`
+025 MapClose     : `)`
+026 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":
+"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 Space        : "\n"
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 Sep          : `,`
+018 MapClose     : `)`
+019 EOF          : ``
+okay: got no error
+
+```("K": "V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 Space        : ` `
+006 String       : `"V"`
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 Sep          : `,`
+018 MapClose     : `)`
+019 EOF          : ``
+okay: got no error
+
+```("K":#<block>"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 BlockComment : `#<block>`
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 Sep          : `,`
+025 MapClose     : `)`
+026 EOF          : ``
+okay: got no error
+
+```("K":#inline
+"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 InlineComment: "#inline\n"
+013 String       : `"V"`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 Sep          : `,`
+025 MapClose     : `)`
+026 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V"
+,"X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Space        : "\n"
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 Sep          : `,`
+018 MapClose     : `)`
+019 EOF          : ``
+okay: got no error
+
+```("K":"V" ,"X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Space        : ` `
+009 Sep          : `,`
+010 String       : `"X"`
+013 Assoc        : `:`
+014 String       : `"X"`
+017 Sep          : `,`
+018 MapClose     : `)`
+019 EOF          : ``
+okay: got no error
+
+```("K":"V"#<block>,"X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 BlockComment : `#<block>`
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 Sep          : `,`
+025 MapClose     : `)`
+026 EOF          : ``
+okay: got no error
+
+```("K":"V"#inline
+,"X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 InlineComment: "#inline\n"
+016 Sep          : `,`
+017 String       : `"X"`
+020 Assoc        : `:`
+021 String       : `"X"`
+024 Sep          : `,`
+025 MapClose     : `)`
+026 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X",)```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X",)
+```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 Space        : "\n"
+019 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X",) ```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 Space        : ` `
+019 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X",)#<block>```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 BlockComment : `#<block>`
+026 EOF          : ``
+okay: got no error
+
+```("K":"V","X":"X",)#inline
+```
+000 MapOpen      : `(`
+001 String       : `"K"`
+004 Assoc        : `:`
+005 String       : `"V"`
+008 Sep          : `,`
+009 String       : `"X"`
+012 Assoc        : `:`
+013 String       : `"X"`
+016 Sep          : `,`
+017 MapClose     : `)`
+018 InlineComment: "#inline\n"
+026 EOF          : ``
+okay: got no error
+
+```["V","X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 Sep          : `,`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```
+["V","X",]```
+000 Space        : "\n"
+001 ArrayOpen    : `[`
+002 String       : `"V"`
+005 Sep          : `,`
+006 String       : `"X"`
+009 Sep          : `,`
+010 ArrayClose   : `]`
+011 EOF          : ``
+okay: got no error
+
+``` ["V","X",]```
+000 Space        : ` `
+001 ArrayOpen    : `[`
+002 String       : `"V"`
+005 Sep          : `,`
+006 String       : `"X"`
+009 Sep          : `,`
+010 ArrayClose   : `]`
+011 EOF          : ``
+okay: got no error
+
+```#<block>["V","X",]```
+000 BlockComment : `#<block>`
+008 ArrayOpen    : `[`
+009 String       : `"V"`
+012 Sep          : `,`
+013 String       : `"X"`
+016 Sep          : `,`
+017 ArrayClose   : `]`
+018 EOF          : ``
+okay: got no error
+
+```#inline
+["V","X",]```
+000 InlineComment: "#inline\n"
+008 ArrayOpen    : `[`
+009 String       : `"V"`
+012 Sep          : `,`
+013 String       : `"X"`
+016 Sep          : `,`
+017 ArrayClose   : `]`
+018 EOF          : ``
+okay: got no error
+
+```["V","X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 Sep          : `,`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```[
+"V","X",]```
+000 ArrayOpen    : `[`
+001 Space        : "\n"
+002 String       : `"V"`
+005 Sep          : `,`
+006 String       : `"X"`
+009 Sep          : `,`
+010 ArrayClose   : `]`
+011 EOF          : ``
+okay: got no error
+
+```[ "V","X",]```
+000 ArrayOpen    : `[`
+001 Space        : ` `
+002 String       : `"V"`
+005 Sep          : `,`
+006 String       : `"X"`
+009 Sep          : `,`
+010 ArrayClose   : `]`
+011 EOF          : ``
+okay: got no error
+
+```[#<block>"V","X",]```
+000 ArrayOpen    : `[`
+001 BlockComment : `#<block>`
+009 String       : `"V"`
+012 Sep          : `,`
+013 String       : `"X"`
+016 Sep          : `,`
+017 ArrayClose   : `]`
+018 EOF          : ``
+okay: got no error
+
+```[#inline
+"V","X",]```
+000 ArrayOpen    : `[`
+001 InlineComment: "#inline\n"
+009 String       : `"V"`
+012 Sep          : `,`
+013 String       : `"X"`
+016 Sep          : `,`
+017 ArrayClose   : `]`
+018 EOF          : ``
+okay: got no error
+
+```["V","X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 Sep          : `,`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```["V"
+,"X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Space        : "\n"
+005 Sep          : `,`
+006 String       : `"X"`
+009 Sep          : `,`
+010 ArrayClose   : `]`
+011 EOF          : ``
+okay: got no error
+
+```["V" ,"X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Space        : ` `
+005 Sep          : `,`
+006 String       : `"X"`
+009 Sep          : `,`
+010 ArrayClose   : `]`
+011 EOF          : ``
+okay: got no error
+
+```["V"#<block>,"X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 BlockComment : `#<block>`
+012 Sep          : `,`
+013 String       : `"X"`
+016 Sep          : `,`
+017 ArrayClose   : `]`
+018 EOF          : ``
+okay: got no error
+
+```["V"#inline
+,"X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 InlineComment: "#inline\n"
+012 Sep          : `,`
+013 String       : `"X"`
+016 Sep          : `,`
+017 ArrayClose   : `]`
+018 EOF          : ``
+okay: got no error
+
+```["V","X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 Sep          : `,`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```["V",
+"X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 Space        : "\n"
+006 String       : `"X"`
+009 Sep          : `,`
+010 ArrayClose   : `]`
+011 EOF          : ``
+okay: got no error
+
+```["V", "X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 Space        : ` `
+006 String       : `"X"`
+009 Sep          : `,`
+010 ArrayClose   : `]`
+011 EOF          : ``
+okay: got no error
+
+```["V",#<block>"X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 BlockComment : `#<block>`
+013 String       : `"X"`
+016 Sep          : `,`
+017 ArrayClose   : `]`
+018 EOF          : ``
+okay: got no error
+
+```["V",#inline
+"X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 InlineComment: "#inline\n"
+013 String       : `"X"`
+016 Sep          : `,`
+017 ArrayClose   : `]`
+018 EOF          : ``
+okay: got no error
+
+```["V","X",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 Sep          : `,`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```["V","X",]
+```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 Sep          : `,`
+009 ArrayClose   : `]`
+010 Space        : "\n"
+011 EOF          : ``
+okay: got no error
+
+```["V","X",] ```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 Sep          : `,`
+009 ArrayClose   : `]`
+010 Space        : ` `
+011 EOF          : ``
+okay: got no error
+
+```["V","X",]#<block>```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 Sep          : `,`
+009 ArrayClose   : `]`
+010 BlockComment : `#<block>`
+018 EOF          : ``
+okay: got no error
+
+```["V","X",]#inline
+```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 Sep          : `,`
+009 ArrayClose   : `]`
+010 InlineComment: "#inline\n"
+018 EOF          : ``
+okay: got no error
+
+```["V","X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 ArrayClose   : `]`
+009 EOF          : ``
+okay: got no error
+
+```
+["V","X"]```
+000 Space        : "\n"
+001 ArrayOpen    : `[`
+002 String       : `"V"`
+005 Sep          : `,`
+006 String       : `"X"`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+``` ["V","X"]```
+000 Space        : ` `
+001 ArrayOpen    : `[`
+002 String       : `"V"`
+005 Sep          : `,`
+006 String       : `"X"`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```#<block>["V","X"]```
+000 BlockComment : `#<block>`
+008 ArrayOpen    : `[`
+009 String       : `"V"`
+012 Sep          : `,`
+013 String       : `"X"`
+016 ArrayClose   : `]`
+017 EOF          : ``
+okay: got no error
+
+```#inline
+["V","X"]```
+000 InlineComment: "#inline\n"
+008 ArrayOpen    : `[`
+009 String       : `"V"`
+012 Sep          : `,`
+013 String       : `"X"`
+016 ArrayClose   : `]`
+017 EOF          : ``
+okay: got no error
+
+```["V","X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 ArrayClose   : `]`
+009 EOF          : ``
+okay: got no error
+
+```[
+"V","X"]```
+000 ArrayOpen    : `[`
+001 Space        : "\n"
+002 String       : `"V"`
+005 Sep          : `,`
+006 String       : `"X"`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```[ "V","X"]```
+000 ArrayOpen    : `[`
+001 Space        : ` `
+002 String       : `"V"`
+005 Sep          : `,`
+006 String       : `"X"`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```[#<block>"V","X"]```
+000 ArrayOpen    : `[`
+001 BlockComment : `#<block>`
+009 String       : `"V"`
+012 Sep          : `,`
+013 String       : `"X"`
+016 ArrayClose   : `]`
+017 EOF          : ``
+okay: got no error
+
+```[#inline
+"V","X"]```
+000 ArrayOpen    : `[`
+001 InlineComment: "#inline\n"
+009 String       : `"V"`
+012 Sep          : `,`
+013 String       : `"X"`
+016 ArrayClose   : `]`
+017 EOF          : ``
+okay: got no error
+
+```["V","X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 ArrayClose   : `]`
+009 EOF          : ``
+okay: got no error
+
+```["V"
+,"X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Space        : "\n"
+005 Sep          : `,`
+006 String       : `"X"`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```["V" ,"X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Space        : ` `
+005 Sep          : `,`
+006 String       : `"X"`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```["V"#<block>,"X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 BlockComment : `#<block>`
+012 Sep          : `,`
+013 String       : `"X"`
+016 ArrayClose   : `]`
+017 EOF          : ``
+okay: got no error
+
+```["V"#inline
+,"X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 InlineComment: "#inline\n"
+012 Sep          : `,`
+013 String       : `"X"`
+016 ArrayClose   : `]`
+017 EOF          : ``
+okay: got no error
+
+```["V","X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 ArrayClose   : `]`
+009 EOF          : ``
+okay: got no error
+
+```["V",
+"X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 Space        : "\n"
+006 String       : `"X"`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```["V", "X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 Space        : ` `
+006 String       : `"X"`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```["V",#<block>"X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 BlockComment : `#<block>`
+013 String       : `"X"`
+016 ArrayClose   : `]`
+017 EOF          : ``
+okay: got no error
+
+```["V",#inline
+"X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 InlineComment: "#inline\n"
+013 String       : `"X"`
+016 ArrayClose   : `]`
+017 EOF          : ``
+okay: got no error
+
+```["V","X"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 ArrayClose   : `]`
+009 EOF          : ``
+okay: got no error
+
+```["V","X"]
+```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 ArrayClose   : `]`
+009 Space        : "\n"
+010 EOF          : ``
+okay: got no error
+
+```["V","X"] ```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 ArrayClose   : `]`
+009 Space        : ` `
+010 EOF          : ``
+okay: got no error
+
+```["V","X"]#<block>```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 ArrayClose   : `]`
+009 BlockComment : `#<block>`
+017 EOF          : ``
+okay: got no error
+
+```["V","X"]#inline
+```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 String       : `"X"`
+008 ArrayClose   : `]`
+009 InlineComment: "#inline\n"
+017 EOF          : ``
+okay: got no error
+
+```["V",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 ArrayClose   : `]`
+006 EOF          : ``
+okay: got no error
+
+```
+["V",]```
+000 Space        : "\n"
+001 ArrayOpen    : `[`
+002 String       : `"V"`
+005 Sep          : `,`
+006 ArrayClose   : `]`
+007 EOF          : ``
+okay: got no error
+
+``` ["V",]```
+000 Space        : ` `
+001 ArrayOpen    : `[`
+002 String       : `"V"`
+005 Sep          : `,`
+006 ArrayClose   : `]`
+007 EOF          : ``
+okay: got no error
+
+```#<block>["V",]```
+000 BlockComment : `#<block>`
+008 ArrayOpen    : `[`
+009 String       : `"V"`
+012 Sep          : `,`
+013 ArrayClose   : `]`
+014 EOF          : ``
+okay: got no error
+
+```#inline
+["V",]```
+000 InlineComment: "#inline\n"
+008 ArrayOpen    : `[`
+009 String       : `"V"`
+012 Sep          : `,`
+013 ArrayClose   : `]`
+014 EOF          : ``
+okay: got no error
+
+```["V",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 ArrayClose   : `]`
+006 EOF          : ``
+okay: got no error
+
+```[
+"V",]```
+000 ArrayOpen    : `[`
+001 Space        : "\n"
+002 String       : `"V"`
+005 Sep          : `,`
+006 ArrayClose   : `]`
+007 EOF          : ``
+okay: got no error
+
+```[ "V",]```
+000 ArrayOpen    : `[`
+001 Space        : ` `
+002 String       : `"V"`
+005 Sep          : `,`
+006 ArrayClose   : `]`
+007 EOF          : ``
+okay: got no error
+
+```[#<block>"V",]```
+000 ArrayOpen    : `[`
+001 BlockComment : `#<block>`
+009 String       : `"V"`
+012 Sep          : `,`
+013 ArrayClose   : `]`
+014 EOF          : ``
+okay: got no error
+
+```[#inline
+"V",]```
+000 ArrayOpen    : `[`
+001 InlineComment: "#inline\n"
+009 String       : `"V"`
+012 Sep          : `,`
+013 ArrayClose   : `]`
+014 EOF          : ``
+okay: got no error
+
+```["V",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 ArrayClose   : `]`
+006 EOF          : ``
+okay: got no error
+
+```["V"
+,]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Space        : "\n"
+005 Sep          : `,`
+006 ArrayClose   : `]`
+007 EOF          : ``
+okay: got no error
+
+```["V" ,]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Space        : ` `
+005 Sep          : `,`
+006 ArrayClose   : `]`
+007 EOF          : ``
+okay: got no error
+
+```["V"#<block>,]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 BlockComment : `#<block>`
+012 Sep          : `,`
+013 ArrayClose   : `]`
+014 EOF          : ``
+okay: got no error
+
+```["V"#inline
+,]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 InlineComment: "#inline\n"
+012 Sep          : `,`
+013 ArrayClose   : `]`
+014 EOF          : ``
+okay: got no error
+
+```["V",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 ArrayClose   : `]`
+006 EOF          : ``
+okay: got no error
+
+```["V",
+]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 Space        : "\n"
+006 ArrayClose   : `]`
+007 EOF          : ``
+okay: got no error
+
+```["V", ]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 Space        : ` `
+006 ArrayClose   : `]`
+007 EOF          : ``
+okay: got no error
+
+```["V",#<block>]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 BlockComment : `#<block>`
+013 ArrayClose   : `]`
+014 EOF          : ``
+okay: got no error
+
+```["V",#inline
+]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 InlineComment: "#inline\n"
+013 ArrayClose   : `]`
+014 EOF          : ``
+okay: got no error
+
+```["V",]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 ArrayClose   : `]`
+006 EOF          : ``
+okay: got no error
+
+```["V",]
+```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 ArrayClose   : `]`
+006 Space        : "\n"
+007 EOF          : ``
+okay: got no error
+
+```["V",] ```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 ArrayClose   : `]`
+006 Space        : ` `
+007 EOF          : ``
+okay: got no error
+
+```["V",]#<block>```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 ArrayClose   : `]`
+006 BlockComment : `#<block>`
+014 EOF          : ``
+okay: got no error
+
+```["V",]#inline
+```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Sep          : `,`
+005 ArrayClose   : `]`
+006 InlineComment: "#inline\n"
+014 EOF          : ``
+okay: got no error
+
+```["V"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 ArrayClose   : `]`
+005 EOF          : ``
+okay: got no error
+
+```
+["V"]```
+000 Space        : "\n"
+001 ArrayOpen    : `[`
+002 String       : `"V"`
+005 ArrayClose   : `]`
+006 EOF          : ``
+okay: got no error
+
+``` ["V"]```
+000 Space        : ` `
+001 ArrayOpen    : `[`
+002 String       : `"V"`
+005 ArrayClose   : `]`
+006 EOF          : ``
+okay: got no error
+
+```#<block>["V"]```
+000 BlockComment : `#<block>`
+008 ArrayOpen    : `[`
+009 String       : `"V"`
+012 ArrayClose   : `]`
+013 EOF          : ``
+okay: got no error
+
+```#inline
+["V"]```
+000 InlineComment: "#inline\n"
+008 ArrayOpen    : `[`
+009 String       : `"V"`
+012 ArrayClose   : `]`
+013 EOF          : ``
+okay: got no error
+
+```["V"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 ArrayClose   : `]`
+005 EOF          : ``
+okay: got no error
+
+```[
+"V"]```
+000 ArrayOpen    : `[`
+001 Space        : "\n"
+002 String       : `"V"`
+005 ArrayClose   : `]`
+006 EOF          : ``
+okay: got no error
+
+```[ "V"]```
+000 ArrayOpen    : `[`
+001 Space        : ` `
+002 String       : `"V"`
+005 ArrayClose   : `]`
+006 EOF          : ``
+okay: got no error
+
+```[#<block>"V"]```
+000 ArrayOpen    : `[`
+001 BlockComment : `#<block>`
+009 String       : `"V"`
+012 ArrayClose   : `]`
+013 EOF          : ``
+okay: got no error
+
+```[#inline
+"V"]```
+000 ArrayOpen    : `[`
+001 InlineComment: "#inline\n"
+009 String       : `"V"`
+012 ArrayClose   : `]`
+013 EOF          : ``
+okay: got no error
+
+```["V"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 ArrayClose   : `]`
+005 EOF          : ``
+okay: got no error
+
+```["V"
+]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Space        : "\n"
+005 ArrayClose   : `]`
+006 EOF          : ``
+okay: got no error
+
+```["V" ]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 Space        : ` `
+005 ArrayClose   : `]`
+006 EOF          : ``
+okay: got no error
+
+```["V"#<block>]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 BlockComment : `#<block>`
+012 ArrayClose   : `]`
+013 EOF          : ``
+okay: got no error
+
+```["V"#inline
+]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 InlineComment: "#inline\n"
+012 ArrayClose   : `]`
+013 EOF          : ``
+okay: got no error
+
+```["V"]```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 ArrayClose   : `]`
+005 EOF          : ``
+okay: got no error
+
+```["V"]
+```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 ArrayClose   : `]`
+005 Space        : "\n"
+006 EOF          : ``
+okay: got no error
+
+```["V"] ```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 ArrayClose   : `]`
+005 Space        : ` `
+006 EOF          : ``
+okay: got no error
+
+```["V"]#<block>```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 ArrayClose   : `]`
+005 BlockComment : `#<block>`
+013 EOF          : ``
+okay: got no error
+
+```["V"]#inline
+```
+000 ArrayOpen    : `[`
+001 String       : `"V"`
+004 ArrayClose   : `]`
+005 InlineComment: "#inline\n"
+013 EOF          : ``
+okay: got no error
+
+```[]```
+000 ArrayOpen    : `[`
+001 ArrayClose   : `]`
+002 EOF          : ``
+okay: got no error
+
+```
+[]```
+000 Space        : "\n"
+001 ArrayOpen    : `[`
+002 ArrayClose   : `]`
+003 EOF          : ``
+okay: got no error
+
+``` []```
+000 Space        : ` `
+001 ArrayOpen    : `[`
+002 ArrayClose   : `]`
+003 EOF          : ``
+okay: got no error
+
+```#<block>[]```
+000 BlockComment : `#<block>`
+008 ArrayOpen    : `[`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```#inline
+[]```
+000 InlineComment: "#inline\n"
+008 ArrayOpen    : `[`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```[]```
+000 ArrayOpen    : `[`
+001 ArrayClose   : `]`
+002 EOF          : ``
+okay: got no error
+
+```[
+]```
+000 ArrayOpen    : `[`
+001 Space        : "\n"
+002 ArrayClose   : `]`
+003 EOF          : ``
+okay: got no error
+
+```[ ]```
+000 ArrayOpen    : `[`
+001 Space        : ` `
+002 ArrayClose   : `]`
+003 EOF          : ``
+okay: got no error
+
+```[#<block>]```
+000 ArrayOpen    : `[`
+001 BlockComment : `#<block>`
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```[#inline
+]```
+000 ArrayOpen    : `[`
+001 InlineComment: "#inline\n"
+009 ArrayClose   : `]`
+010 EOF          : ``
+okay: got no error
+
+```[]```
+000 ArrayOpen    : `[`
+001 ArrayClose   : `]`
+002 EOF          : ``
+okay: got no error
+
+```[]
+```
+000 ArrayOpen    : `[`
+001 ArrayClose   : `]`
+002 Space        : "\n"
+003 EOF          : ``
+okay: got no error
+
+```[] ```
+000 ArrayOpen    : `[`
+001 ArrayClose   : `]`
+002 Space        : ` `
+003 EOF          : ``
+okay: got no error
+
+```[]#<block>```
+000 ArrayOpen    : `[`
+001 ArrayClose   : `]`
+002 BlockComment : `#<block>`
+010 EOF          : ``
+okay: got no error
+
+```[]#inline
+```
+000 ArrayOpen    : `[`
+001 ArrayClose   : `]`
+002 InlineComment: "#inline\n"
+010 EOF          : ``
+okay: got no error
+
+```{I:"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```
+{I:"V",}```
+000 Space        : "\n"
+001 StructOpen   : `{`
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 StructClose  : `}`
+009 EOF          : ``
+okay: got no error
+
+``` {I:"V",}```
+000 Space        : ` `
+001 StructOpen   : `{`
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 StructClose  : `}`
+009 EOF          : ``
+okay: got no error
+
+```#<block>{I:"V",}```
+000 BlockComment : `#<block>`
+008 StructOpen   : `{`
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 StructClose  : `}`
+016 EOF          : ``
+okay: got no error
+
+```#inline
+{I:"V",}```
+000 InlineComment: "#inline\n"
+008 StructOpen   : `{`
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 StructClose  : `}`
+016 EOF          : ``
+okay: got no error
+
+```{I:"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{
+I:"V",}```
+000 StructOpen   : `{`
+001 Space        : "\n"
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 StructClose  : `}`
+009 EOF          : ``
+okay: got no error
+
+```{ I:"V",}```
+000 StructOpen   : `{`
+001 Space        : ` `
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 StructClose  : `}`
+009 EOF          : ``
+okay: got no error
+
+```{#<block>I:"V",}```
+000 StructOpen   : `{`
+001 BlockComment : `#<block>`
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 StructClose  : `}`
+016 EOF          : ``
+okay: got no error
+
+```{#inline
+I:"V",}```
+000 StructOpen   : `{`
+001 InlineComment: "#inline\n"
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 StructClose  : `}`
+016 EOF          : ``
+okay: got no error
+
+```{I:"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{I
+:"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Space        : "\n"
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 StructClose  : `}`
+009 EOF          : ``
+okay: got no error
+
+```{I :"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Space        : ` `
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 StructClose  : `}`
+009 EOF          : ``
+okay: got no error
+
+```{I#<block>:"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 BlockComment : `#<block>`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 StructClose  : `}`
+016 EOF          : ``
+okay: got no error
+
+```{I#inline
+:"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 InlineComment: "#inline\n"
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 StructClose  : `}`
+016 EOF          : ``
+okay: got no error
+
+```{I:"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{I:
+"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 Space        : "\n"
+004 String       : `"V"`
+007 Sep          : `,`
+008 StructClose  : `}`
+009 EOF          : ``
+okay: got no error
+
+```{I: "V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 Space        : ` `
+004 String       : `"V"`
+007 Sep          : `,`
+008 StructClose  : `}`
+009 EOF          : ``
+okay: got no error
+
+```{I:#<block>"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 BlockComment : `#<block>`
+011 String       : `"V"`
+014 Sep          : `,`
+015 StructClose  : `}`
+016 EOF          : ``
+okay: got no error
+
+```{I:#inline
+"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 InlineComment: "#inline\n"
+011 String       : `"V"`
+014 Sep          : `,`
+015 StructClose  : `}`
+016 EOF          : ``
+okay: got no error
+
+```{I:"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{I:"V"
+,}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Space        : "\n"
+007 Sep          : `,`
+008 StructClose  : `}`
+009 EOF          : ``
+okay: got no error
+
+```{I:"V" ,}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Space        : ` `
+007 Sep          : `,`
+008 StructClose  : `}`
+009 EOF          : ``
+okay: got no error
+
+```{I:"V"#<block>,}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 BlockComment : `#<block>`
+014 Sep          : `,`
+015 StructClose  : `}`
+016 EOF          : ``
+okay: got no error
+
+```{I:"V"#inline
+,}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 InlineComment: "#inline\n"
+014 Sep          : `,`
+015 StructClose  : `}`
+016 EOF          : ``
+okay: got no error
+
+```{I:"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{I:"V",
+}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Space        : "\n"
+008 StructClose  : `}`
+009 EOF          : ``
+okay: got no error
+
+```{I:"V", }```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Space        : ` `
+008 StructClose  : `}`
+009 EOF          : ``
+okay: got no error
+
+```{I:"V",#<block>}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 BlockComment : `#<block>`
+015 StructClose  : `}`
+016 EOF          : ``
+okay: got no error
+
+```{I:"V",#inline
+}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 InlineComment: "#inline\n"
+015 StructClose  : `}`
+016 EOF          : ``
+okay: got no error
+
+```{I:"V",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{I:"V",}
+```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 StructClose  : `}`
+008 Space        : "\n"
+009 EOF          : ``
+okay: got no error
+
+```{I:"V",} ```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 StructClose  : `}`
+008 Space        : ` `
+009 EOF          : ``
+okay: got no error
+
+```{I:"V",}#<block>```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 StructClose  : `}`
+008 BlockComment : `#<block>`
+016 EOF          : ``
+okay: got no error
+
+```{I:"V",}#inline
+```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 StructClose  : `}`
+008 InlineComment: "#inline\n"
+016 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 Sep          : `,`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```
+{I:"V",X:"X",}```
+000 Space        : "\n"
+001 StructOpen   : `{`
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 Sep          : `,`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+``` {I:"V",X:"X",}```
+000 Space        : ` `
+001 StructOpen   : `{`
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 Sep          : `,`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```#<block>{I:"V",X:"X",}```
+000 BlockComment : `#<block>`
+008 StructOpen   : `{`
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 Sep          : `,`
+021 StructClose  : `}`
+022 EOF          : ``
+okay: got no error
+
+```#inline
+{I:"V",X:"X",}```
+000 InlineComment: "#inline\n"
+008 StructOpen   : `{`
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 Sep          : `,`
+021 StructClose  : `}`
+022 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 Sep          : `,`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{
+I:"V",X:"X",}```
+000 StructOpen   : `{`
+001 Space        : "\n"
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 Sep          : `,`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{ I:"V",X:"X",}```
+000 StructOpen   : `{`
+001 Space        : ` `
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 Sep          : `,`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{#<block>I:"V",X:"X",}```
+000 StructOpen   : `{`
+001 BlockComment : `#<block>`
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 Sep          : `,`
+021 StructClose  : `}`
+022 EOF          : ``
+okay: got no error
+
+```{#inline
+I:"V",X:"X",}```
+000 StructOpen   : `{`
+001 InlineComment: "#inline\n"
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 Sep          : `,`
+021 StructClose  : `}`
+022 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 Sep          : `,`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{I
+:"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Space        : "\n"
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 Sep          : `,`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I :"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Space        : ` `
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 Sep          : `,`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I#<block>:"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 BlockComment : `#<block>`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 Sep          : `,`
+021 StructClose  : `}`
+022 EOF          : ``
+okay: got no error
+
+```{I#inline
+:"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 InlineComment: "#inline\n"
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 Sep          : `,`
+021 StructClose  : `}`
+022 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 Sep          : `,`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{I:
+"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 Space        : "\n"
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 Sep          : `,`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I: "V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 Space        : ` `
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 Sep          : `,`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I:#<block>"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 BlockComment : `#<block>`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 Sep          : `,`
+021 StructClose  : `}`
+022 EOF          : ``
+okay: got no error
+
+```{I:#inline
+"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 InlineComment: "#inline\n"
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 Sep          : `,`
+021 StructClose  : `}`
+022 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 Sep          : `,`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{I:"V"
+,X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Space        : "\n"
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 Sep          : `,`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I:"V" ,X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Space        : ` `
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 Sep          : `,`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I:"V"#<block>,X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 BlockComment : `#<block>`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 Sep          : `,`
+021 StructClose  : `}`
+022 EOF          : ``
+okay: got no error
+
+```{I:"V"#inline
+,X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 InlineComment: "#inline\n"
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 Sep          : `,`
+021 StructClose  : `}`
+022 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X",}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 Sep          : `,`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X",}
+```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 Sep          : `,`
+013 StructClose  : `}`
+014 Space        : "\n"
+015 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X",} ```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 Sep          : `,`
+013 StructClose  : `}`
+014 Space        : ` `
+015 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X",}#<block>```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 Sep          : `,`
+013 StructClose  : `}`
+014 BlockComment : `#<block>`
+022 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X",}#inline
+```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 Sep          : `,`
+013 StructClose  : `}`
+014 InlineComment: "#inline\n"
+022 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 StructClose  : `}`
+013 EOF          : ``
+okay: got no error
+
+```
+{I:"V",X:"X"}```
+000 Space        : "\n"
+001 StructOpen   : `{`
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+``` {I:"V",X:"X"}```
+000 Space        : ` `
+001 StructOpen   : `{`
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```#<block>{I:"V",X:"X"}```
+000 BlockComment : `#<block>`
+008 StructOpen   : `{`
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 StructClose  : `}`
+021 EOF          : ``
+okay: got no error
+
+```#inline
+{I:"V",X:"X"}```
+000 InlineComment: "#inline\n"
+008 StructOpen   : `{`
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 StructClose  : `}`
+021 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 StructClose  : `}`
+013 EOF          : ``
+okay: got no error
+
+```{
+I:"V",X:"X"}```
+000 StructOpen   : `{`
+001 Space        : "\n"
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{ I:"V",X:"X"}```
+000 StructOpen   : `{`
+001 Space        : ` `
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{#<block>I:"V",X:"X"}```
+000 StructOpen   : `{`
+001 BlockComment : `#<block>`
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 StructClose  : `}`
+021 EOF          : ``
+okay: got no error
+
+```{#inline
+I:"V",X:"X"}```
+000 StructOpen   : `{`
+001 InlineComment: "#inline\n"
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 StructClose  : `}`
+021 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 StructClose  : `}`
+013 EOF          : ``
+okay: got no error
+
+```{I
+:"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Space        : "\n"
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{I :"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Space        : ` `
+003 Assoc        : `:`
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{I#<block>:"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 BlockComment : `#<block>`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 StructClose  : `}`
+021 EOF          : ``
+okay: got no error
+
+```{I#inline
+:"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 InlineComment: "#inline\n"
+010 Assoc        : `:`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 StructClose  : `}`
+021 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 StructClose  : `}`
+013 EOF          : ``
+okay: got no error
+
+```{I:
+"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 Space        : "\n"
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{I: "V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 Space        : ` `
+004 String       : `"V"`
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{I:#<block>"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 BlockComment : `#<block>`
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 StructClose  : `}`
+021 EOF          : ``
+okay: got no error
+
+```{I:#inline
+"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 InlineComment: "#inline\n"
+011 String       : `"V"`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 StructClose  : `}`
+021 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 StructClose  : `}`
+013 EOF          : ``
+okay: got no error
+
+```{I:"V"
+,X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Space        : "\n"
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{I:"V" ,X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Space        : ` `
+007 Sep          : `,`
+008 Ident        : `X`
+009 Assoc        : `:`
+010 String       : `"X"`
+013 StructClose  : `}`
+014 EOF          : ``
+okay: got no error
+
+```{I:"V"#<block>,X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 BlockComment : `#<block>`
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 StructClose  : `}`
+021 EOF          : ``
+okay: got no error
+
+```{I:"V"#inline
+,X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 InlineComment: "#inline\n"
+014 Sep          : `,`
+015 Ident        : `X`
+016 Assoc        : `:`
+017 String       : `"X"`
+020 StructClose  : `}`
+021 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 StructClose  : `}`
+013 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X"}
+```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 StructClose  : `}`
+013 Space        : "\n"
+014 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X"} ```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 StructClose  : `}`
+013 Space        : ` `
+014 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X"}#<block>```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 StructClose  : `}`
+013 BlockComment : `#<block>`
+021 EOF          : ``
+okay: got no error
+
+```{I:"V",X:"X"}#inline
+```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Sep          : `,`
+007 Ident        : `X`
+008 Assoc        : `:`
+009 String       : `"X"`
+012 StructClose  : `}`
+013 InlineComment: "#inline\n"
+021 EOF          : ``
+okay: got no error
+
+```{I:"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 StructClose  : `}`
+007 EOF          : ``
+okay: got no error
+
+```
+{I:"V"}```
+000 Space        : "\n"
+001 StructOpen   : `{`
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+``` {I:"V"}```
+000 Space        : ` `
+001 StructOpen   : `{`
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```#<block>{I:"V"}```
+000 BlockComment : `#<block>`
+008 StructOpen   : `{`
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```#inline
+{I:"V"}```
+000 InlineComment: "#inline\n"
+008 StructOpen   : `{`
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I:"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 StructClose  : `}`
+007 EOF          : ``
+okay: got no error
+
+```{
+I:"V"}```
+000 StructOpen   : `{`
+001 Space        : "\n"
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{ I:"V"}```
+000 StructOpen   : `{`
+001 Space        : ` `
+002 Ident        : `I`
+003 Assoc        : `:`
+004 String       : `"V"`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{#<block>I:"V"}```
+000 StructOpen   : `{`
+001 BlockComment : `#<block>`
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{#inline
+I:"V"}```
+000 StructOpen   : `{`
+001 InlineComment: "#inline\n"
+009 Ident        : `I`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I:"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 StructClose  : `}`
+007 EOF          : ``
+okay: got no error
+
+```{I
+:"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Space        : "\n"
+003 Assoc        : `:`
+004 String       : `"V"`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{I :"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Space        : ` `
+003 Assoc        : `:`
+004 String       : `"V"`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{I#<block>:"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 BlockComment : `#<block>`
+010 Assoc        : `:`
+011 String       : `"V"`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I#inline
+:"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 InlineComment: "#inline\n"
+010 Assoc        : `:`
+011 String       : `"V"`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I:"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 StructClose  : `}`
+007 EOF          : ``
+okay: got no error
+
+```{I:
+"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 Space        : "\n"
+004 String       : `"V"`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{I: "V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 Space        : ` `
+004 String       : `"V"`
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{I:#<block>"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 BlockComment : `#<block>`
+011 String       : `"V"`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I:#inline
+"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 InlineComment: "#inline\n"
+011 String       : `"V"`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I:"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 StructClose  : `}`
+007 EOF          : ``
+okay: got no error
+
+```{I:"V"
+}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Space        : "\n"
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{I:"V" }```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 Space        : ` `
+007 StructClose  : `}`
+008 EOF          : ``
+okay: got no error
+
+```{I:"V"#<block>}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 BlockComment : `#<block>`
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I:"V"#inline
+}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 InlineComment: "#inline\n"
+014 StructClose  : `}`
+015 EOF          : ``
+okay: got no error
+
+```{I:"V"}```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 StructClose  : `}`
+007 EOF          : ``
+okay: got no error
+
+```{I:"V"}
+```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 StructClose  : `}`
+007 Space        : "\n"
+008 EOF          : ``
+okay: got no error
+
+```{I:"V"} ```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 StructClose  : `}`
+007 Space        : ` `
+008 EOF          : ``
+okay: got no error
+
+```{I:"V"}#<block>```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 StructClose  : `}`
+007 BlockComment : `#<block>`
+015 EOF          : ``
+okay: got no error
+
+```{I:"V"}#inline
+```
+000 StructOpen   : `{`
+001 Ident        : `I`
+002 Assoc        : `:`
+003 String       : `"V"`
+006 StructClose  : `}`
+007 InlineComment: "#inline\n"
+015 EOF          : ``
+okay: got no error
+
+```{}```
+000 StructOpen   : `{`
+001 StructClose  : `}`
+002 EOF          : ``
+okay: got no error
+
+```
+{}```
+000 Space        : "\n"
+001 StructOpen   : `{`
+002 StructClose  : `}`
+003 EOF          : ``
+okay: got no error
+
+``` {}```
+000 Space        : ` `
+001 StructOpen   : `{`
+002 StructClose  : `}`
+003 EOF          : ``
+okay: got no error
+
+```#<block>{}```
+000 BlockComment : `#<block>`
+008 StructOpen   : `{`
+009 StructClose  : `}`
+010 EOF          : ``
+okay: got no error
+
+```#inline
+{}```
+000 InlineComment: "#inline\n"
+008 StructOpen   : `{`
+009 StructClose  : `}`
+010 EOF          : ``
+okay: got no error
+
+```{}```
+000 StructOpen   : `{`
+001 StructClose  : `}`
+002 EOF          : ``
+okay: got no error
+
+```{
+}```
+000 StructOpen   : `{`
+001 Space        : "\n"
+002 StructClose  : `}`
+003 EOF          : ``
+okay: got no error
+
+```{ }```
+000 StructOpen   : `{`
+001 Space        : ` `
+002 StructClose  : `}`
+003 EOF          : ``
+okay: got no error
+
+```{#<block>}```
+000 StructOpen   : `{`
+001 BlockComment : `#<block>`
+009 StructClose  : `}`
+010 EOF          : ``
+okay: got no error
+
+```{#inline
+}```
+000 StructOpen   : `{`
+001 InlineComment: "#inline\n"
+009 StructClose  : `}`
+010 EOF          : ``
+okay: got no error
+
+```{}```
+000 StructOpen   : `{`
+001 StructClose  : `}`
+002 EOF          : ``
+okay: got no error
+
+```{}
+```
+000 StructOpen   : `{`
+001 StructClose  : `}`
+002 Space        : "\n"
+003 EOF          : ``
+okay: got no error
+
+```{} ```
+000 StructOpen   : `{`
+001 StructClose  : `}`
+002 Space        : ` `
+003 EOF          : ``
+okay: got no error
+
+```{}#<block>```
+000 StructOpen   : `{`
+001 StructClose  : `}`
+002 BlockComment : `#<block>`
+010 EOF          : ``
+okay: got no error
+
+```{}#inline
+```
+000 StructOpen   : `{`
+001 StructClose  : `}`
+002 InlineComment: "#inline\n"
+010 EOF          : ``
+okay: got no error
+
+``````
+000 Error        : syntax error: expected value, got end of file
+okay: got expected error
