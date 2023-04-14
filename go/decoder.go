@@ -15,6 +15,7 @@ import (
 type Decoder struct {
 	l    *lexer
 	next token
+	eof  bool
 }
 
 // NewDecoder returns a new decoder that reads from r.
@@ -45,7 +46,14 @@ func (d *Decoder) Decode(v any) error {
 	if !ok {
 		return errors.New("argument must be pointer to any")
 	}
-	return d.decodeValue(a)
+	if err := d.decodeValue(a); err != nil {
+		return err
+	}
+
+	// Expect EOF.
+	d.eof = true
+	_, err := d.nextToken()
+	return err
 }
 
 func (d *Decoder) unexpectedToken(t token) {
@@ -67,8 +75,12 @@ retry:
 	if err := d.l.Err(); err != nil {
 		return t, err
 	}
+	t = d.l.Token()
 	switch t.Type {
 	case tEOF:
+		if d.eof {
+			return t, nil
+		}
 		return t, io.ErrUnexpectedEOF
 	case tSpace, tInlineComment, tBlockComment, tAnnotation:
 		goto retry
