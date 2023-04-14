@@ -247,7 +247,7 @@ func (d *Decoder) decodeString(a *any, s string) error {
 
 // Decodes a number of blob sequences into a.
 func (d *Decoder) decodeBlobs(a *any) error {
-	var b bytes.Buffer
+	b := bytes.NewBuffer([]byte{})
 	p := make([]byte, 1)
 loop:
 	for {
@@ -276,7 +276,7 @@ loop:
 
 // Decodes an array type of the form []any into a.
 func (d *Decoder) decodeArray(a *any) error {
-	var varray []any
+	var varray = []any{}
 loop:
 	for {
 		var v any
