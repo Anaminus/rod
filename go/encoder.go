@@ -9,6 +9,7 @@ import (
 	"math"
 	"sort"
 	"strconv"
+	"strings"
 )
 
 type Encoder struct {
@@ -66,7 +67,11 @@ func (e *Encoder) encodeValue(v any) error {
 		} else if v != v {
 			e.w.WriteString("nan")
 		} else {
-			e.w.WriteString(strconv.FormatFloat(v, 'f', -1, 64))
+			s := strconv.FormatFloat(v, 'f', -1, 64)
+			if strings.IndexByte(s, '.') < 0 {
+				s += ".0" // Force decimal.
+			}
+			e.w.WriteString(s)
 		}
 	case string:
 		e.w.WriteByte('"')
