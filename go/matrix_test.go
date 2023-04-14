@@ -1,33 +1,5 @@
 package rod
 
-var sample = [...]string{
-	tSpace - 1:         " ",
-	tInlineComment - 1: "#inline\n",
-	tBlockComment - 1:  "#<block>",
-	tAnnotation - 1:    "<anno>",
-	tIdent - 1:         "Ident",
-	tNull - 1:          "null",
-	tTrue - 1:          "true",
-	tFalse - 1:         "false",
-	tInf - 1:           "inf",
-	tNaN - 1:           "nan",
-	tPos - 1:           "+",
-	tNeg - 1:           "-",
-	tInteger - 1:       "42",
-	tFloat - 1:         "3.141592653589793",
-	tString - 1:        "\"hello\"",
-	tBlob - 1:          "|",
-	tByte - 1:          "7F",
-	tSep - 1:           ",",
-	tAssoc - 1:         ":",
-	tArrayOpen - 1:     "[",
-	tArrayClose - 1:    "]",
-	tMapOpen - 1:       "(",
-	tMapClose - 1:      ")",
-	tStructOpen - 1:    "{",
-	tStructClose - 1:   "}",
-}
-
 // Indicates which tokens are allowed to appear adjacently.
 var matrix = map[[2]tokenType]bool{
 	{tStart, tStart}:                 false,
