@@ -1,0 +1,73 @@
+{
+	Instances: [
+		{
+			ClassName: "Work\"space",
+			IsService: true,
+			Reference: 0,
+			Map: ("A": 1, true: false, -3.14 : {}),
+			Properties: [
+				{
+					Name: <string> "AllowThirdPartySales",
+					Type: "bool",
+					Value: false,
+				},
+				{
+					Name: "AttributeSerialize",
+					Type: "BinaryString",
+					Value: ||,
+				},
+				{
+					Name: "CurrentCamera",
+					Type: "Reference",
+					Value: 1,
+				},
+				{
+					Name: "ModelInPrimary",
+					Type: "CFrame",
+					Value: {
+						X: 0.0,
+						Y: 0.0,
+						Z: 0.0,
+						R00: 1.0,
+						R01: 0.0,
+						R02: 0.0,
+						R10: 0.0,
+						R11: 1.0,
+						R12: 0.0,
+						R20: 0.0,
+						R21: 0.0,
+						R22: 1.0,
+					},
+				},
+			],
+			Children: [
+				{
+					ClassName: "Camera",
+					IsService: false,
+					Reference: 1,
+					Properties: [],
+					Children: [1,2,3,4,5,6,7,8],
+				},
+				{
+					ClassName: "Terrain",
+					IsService: false,
+					Reference: 2,
+					Properties: [
+						{
+							Name: "MaterialColors",
+							Type: "BinaryString",
+							Value:
+								| 00 00 00 00 00 00 6a 7f  3f 3f 7f 6b 7f 66 3f 8a |#......j.??.k.f?.#
+								| 56 3e 8f 7e 5f 8b 6d 4f  66 6c 6f 65 b0 ea c3 c7 |#V>.~_.mOfloe....#
+								| da 89 5a 47 3a 2e 24 1e  1e 25 66 5c 3b e8 9c 4a |#..ZG:.$..%f\;..J#
+								| 73 7b 6b 84 7b 5a 81 c2#<foo>e0 73 84 4a c6 bd b5 ce |#s{k.{Z...s.J....#
+								| ad9494948c                                       |#.....           #
+							,
+						},
+					],
+					Children: [],
+				},
+			],
+		},
+	],
+}
