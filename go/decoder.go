@@ -90,15 +90,16 @@ retry:
 
 // Peek at the next token. If it matches t, then consume it.
 func (d *Decoder) ifToken(t tokenType) bool {
-	token, err := d.nextToken()
+	var err error
+	d.next, err = d.nextToken()
 	if err != nil {
 		return false
 	}
-	if token.Type == t {
-		return true
+	if d.next.Type != t {
+		return false
 	}
-	d.next = token
-	return false
+	d.next.Type = tInvalid
+	return true
 }
 
 // Expects a specific token from the lexer.
