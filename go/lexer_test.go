@@ -5,68 +5,81 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"math"
 	"os"
 	"sort"
 	"strings"
 	"testing"
 )
 
-var testSpaces = map[string]error{
-	"":          nil,
-	" ":         nil,
-	"\n":        nil,
-	"#inline\n": nil,
-	"#<block>":  nil,
+type _float = float64
+type _int = int64
+type _blob = []byte
+type _array = []any
+type _map = map[any]any
+type _struct = map[string]any
+
+var testSpaces = map[string]result{
+	"":          {nil, nil},
+	" ":         {nil, nil},
+	"\n":        {nil, nil},
+	"#inline\n": {nil, nil},
+	"#<block>":  {nil, nil},
 }
 
-var testIdentifiers = map[string]error{
-	"Ident": nil,
-	"id0":   nil,
-	"_":     nil,
+var testIdentifiers = map[string]result{
+	"Ident": {nil, nil},
+	"id0":   {nil, nil},
+	"_":     {nil, nil},
+}
+
+type result struct {
+	v   any
+	err error
 }
 
 // Map a primitive value string to whether it produces no errors.
-var testPrimitives = map[string]error{
-	"\"new\nline\"":       nil,
-	`" "`:                 nil,
-	`"back\\slash"`:       nil,
-	`"Hello, \"world\"!"`: nil,
-	`"Hello, world!"`:     nil,
-	`+0.0`:                nil,
-	`+0`:                  nil,
-	`+1234.5678`:          nil,
-	`+12345678`:           nil,
-	`+1e3`:                lexerError{Type: "syntax", Err: expectedError{Expected: "end of file", Got: "'e'"}},
-	`+e3`:                 lexerError{Type: "syntax", Err: expectedError{Expected: "digit", Got: "'e'"}},
-	`+inf`:                nil,
-	`+nan`:                lexerError{Type: "syntax", Err: expectedError{Expected: "digit", Got: "'n'"}},
-	`-0.0`:                nil,
-	`-0`:                  nil,
-	`-1234.5678`:          nil,
-	`-12345678`:           nil,
-	`-1e3`:                lexerError{Type: "syntax", Err: expectedError{Expected: "end of file", Got: "'e'"}},
-	`-inf`:                nil,
-	`-nan`:                lexerError{Type: "syntax", Err: expectedError{Expected: "digit", Got: "'n'"}},
-	`0.0`:                 nil,
-	`0`:                   nil,
-	`1234.5678`:           nil,
-	`12345678`:            nil,
-	`1e3`:                 lexerError{Type: "syntax", Err: expectedError{Expected: "end of file", Got: "'e'"}},
-	`<anno> "tation"`:     nil,
-	`false`:               nil,
-	`foo`:                 lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "'f'"}},
-	`inf`:                 nil,
-	`nan`:                 nil,
-	`null`:                nil,
-	`true`:                nil,
-	`truely`:              lexerError{Type: "syntax", Err: expectedError{Expected: "end of file", Got: "'l'"}},
-	`| 7F |`:              nil,
-	`| 12 34 |`:           nil,
-	`| | | |`:             nil,
-	`| 80 | | FF |`:       nil,
-	`| |`:                 nil,
-	`|X0|`:                lexerError{Type: "syntax", Err: expectedError{Expected: "byte or '|'", Got: "'X'"}},
-	`|0X|`:                lexerError{Type: "syntax", Err: expectedError{Expected: "hexdecimal digit", Got: "`0X`"}},
+var testPrimitives = map[string]result{
+	"\"new\nline\"":       {"new\nline", nil},
+	`" "`:                 {" ", nil},
+	`"back\\slash"`:       {"back\\slash", nil},
+	`"Hello, \"world\"!"`: {"Hello, \"world\"!", nil},
+	`"Hello, world!"`:     {"Hello, world!", nil},
+	`+0.0`:                {_float(0.0), nil},
+	`+0`:                  {_int(0), nil},
+	`+1234.5678`:          {_float(1234.5678), nil},
+	`+12345678`:           {_int(12345678), nil},
+	`+1e3`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "end of file", Got: "'e'"}}},
+	`+e3`:                 {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "digit", Got: "'e'"}}},
+	`+inf`:                {math.Inf(1), nil},
+	`+nan`:                {math.NaN(), lexerError{Type: "syntax", Err: expectedError{Expected: "digit", Got: "'n'"}}},
+	`-0.0`:                {_float(-0.0), nil},
+	`-0`:                  {_int(-0), nil},
+	`-1234.5678`:          {_float(-1234.5678), nil},
+	`-12345678`:           {_int(-12345678), nil},
+	`-1e3`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "end of file", Got: "'e'"}}},
+	`-inf`:                {math.Inf(-1), nil},
+	`-nan`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "digit", Got: "'n'"}}},
+	`0.0`:                 {_float(0.0), nil},
+	`0`:                   {_int(0), nil},
+	`1234.5678`:           {_float(1234.5678), nil},
+	`12345678`:            {_int(12345678), nil},
+	`1e3`:                 {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "end of file", Got: "'e'"}}},
+	`<anno> "tation"`:     {"tation", nil},
+	`false`:               {false, nil},
+	`foo`:                 {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "'f'"}}},
+	`inf`:                 {math.Inf(1), nil},
+	`nan`:                 {math.NaN(), nil},
+	`null`:                {nil, nil},
+	`true`:                {true, nil},
+	`truely`:              {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "end of file", Got: "'l'"}}},
+	`| 7F |`:              {_blob{0x7F}, nil},
+	`| 12 34 |`:           {_blob{0x12, 0x34}, nil},
+	`| | | |`:             {_blob{}, nil},
+	`| 80 | | FF |`:       {_blob{0x80, 0xFF}, nil},
+	`| |`:                 {_blob{}, nil},
+	`|X0|`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "byte or '|'", Got: "'X'"}}},
+	`|0X|`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "hexdecimal digit", Got: "`0X`"}}},
 }
 
 // Map a composite value string to whether it produces an error.
@@ -78,21 +91,21 @@ var testPrimitives = map[string]error{
 //     I     : Replaced by an identifier.
 //     space : Replace by spaces.
 //
-var testComposites = map[string]error{
-	`[ ]`:                    nil,
-	`[ "V" ]`:                nil,
-	`[ "V" , ]`:              nil,
-	`[ "V" , "X"]`:           nil,
-	`[ "V" , "X",]`:          nil,
-	`( "K" : "V" )`:          nil,
-	`( "K" : "V" , )`:        nil,
-	`( "K" : "V" ,"X":"X")`:  nil,
-	`( "K" : "V" ,"X":"X",)`: nil,
-	`{ }`:                    nil,
-	`{ I : "V" }`:            nil,
-	`{ I : "V" , }`:          nil,
-	`{ I : "V" ,X:"X"}`:      nil,
-	`{ I : "V" ,X:"X",}`:     nil,
+var testComposites = map[string]result{
+	`[ ]`:                    {_array{}, nil},
+	`[ "V" ]`:                {_array{"V"}, nil},
+	`[ "V" , ]`:              {_array{"V"}, nil},
+	`[ "V" , "X"]`:           {_array{"V", "X"}, nil},
+	`[ "V" , "X",]`:          {_array{"V", "X"}, nil},
+	`( "K" : "V" )`:          {_map{"K": "V"}, nil},
+	`( "K" : "V" , )`:        {_map{"K": "V"}, nil},
+	`( "K" : "V" ,"X":"X")`:  {_map{"K": "V", "X": "X"}, nil},
+	`( "K" : "V" ,"X":"X",)`: {_map{"K": "V", "X": "X"}, nil},
+	`{ }`:                    {_struct{}, nil},
+	`{ I : "V" }`:            {_struct{"I": "V"}, nil},
+	`{ I : "V" , }`:          {_struct{"I": "V"}, nil},
+	`{ I : "V" ,X:"X"}`:      {_struct{"I": "V", "X": "X"}, nil},
+	`{ I : "V" ,X:"X",}`:     {_struct{"I": "V", "X": "X"}, nil},
 }
 
 var testExtra = map[string]error{
@@ -178,7 +191,7 @@ func permutate(w io.Writer, split string, base, perm map[string]error) {
 	blen := len(bases)
 	for b := 0; b < blen; b++ {
 		s := bases[b]
-		e := testPrimitives[s]
+		r := testPrimitives[s]
 		ss := strings.Split(s, split)
 		q := pow(len(perm), (len(ss) + 1))
 		for v := 0; v < q; v++ {
@@ -189,7 +202,7 @@ func permutate(w io.Writer, split string, base, perm map[string]error) {
 				result.WriteString(perms[v/pow(len(perms), i+1)%len(perms)])
 			}
 			res := result.String()
-			writePrimitive(w, res, e)
+			writePrimitive(w, res, r.err)
 		}
 	}
 }
@@ -208,7 +221,7 @@ func permutate(w io.Writer, split string, base, perm map[string]error) {
 //     AB0
 //     AB1
 //
-func traverseEach(w io.Writer, split string, base, perm map[string]error) {
+func traverseEach(w io.Writer, split string, base, perm map[string]result) {
 	bases := keysOf(base)
 	perms := keysOf(perm)
 	for _, b := range bases {
@@ -223,7 +236,7 @@ func traverseEach(w io.Writer, split string, base, perm map[string]error) {
 				for j := i; j < len(ss); j++ {
 					result.WriteString(ss[j])
 				}
-				writePrimitive(w, result.String(), base[b])
+				writePrimitive(w, result.String(), base[b].err)
 			}
 		}
 	}
