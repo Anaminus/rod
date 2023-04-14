@@ -279,6 +279,10 @@ func (d *Decoder) decodeArray(a *any) error {
 	var varray = []any{}
 loop:
 	for {
+		if d.ifToken(tArrayClose) {
+			break loop
+		}
+
 		var v any
 		if err := d.decodeValue(&v); err != nil {
 			return err
@@ -311,6 +315,10 @@ func (d *Decoder) decodeMap(a *any) error {
 	var vmap = map[any]any{}
 loop:
 	for {
+		if d.ifToken(tMapClose) {
+			break loop
+		}
+
 		var k any
 		if err := d.decodeValue(&k); err != nil {
 			return err
@@ -355,8 +363,12 @@ loop:
 		if err != nil {
 			return err
 		}
-		if t.Type != tIdent {
+		switch t.Type {
+		default:
 			d.unexpectedToken(t)
+		case tStructClose:
+			break loop
+		case tIdent:
 		}
 
 		d.expectToken(tAssoc)
