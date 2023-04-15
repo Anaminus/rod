@@ -47,27 +47,37 @@ func (e *Encoder) Encode(v any) error {
 }
 
 func (e *Encoder) encodeValue(v any) error {
+	if ok, err := e.encodePrimitive(v); ok {
+		return err
+	}
 	switch v := v.(type) {
-	default:
-		return fmt.Errorf("cannot encode type %T", v)
-	case nil:
-		return e.encodeNull()
-	case bool:
-		return e.encodeBool(v)
-	case int64:
-		return e.encodeInt(v)
-	case float64:
-		return e.encodeFloat(v)
-	case string:
-		return e.encodeString(v)
-	case []byte:
-		return e.encodeBlob(v)
 	case []any:
 		return e.encodeArray(v)
 	case map[any]any:
 		return e.encodeMap(v)
 	case map[string]any:
 		return e.encodeStruct(v)
+	default:
+		return fmt.Errorf("cannot encode type %T", v)
+	}
+}
+
+func (e *Encoder) encodePrimitive(v any) (ok bool, err error) {
+	switch v := v.(type) {
+	case nil:
+		return true, e.encodeNull()
+	case bool:
+		return true, e.encodeBool(v)
+	case int64:
+		return true, e.encodeInt(v)
+	case float64:
+		return true, e.encodeFloat(v)
+	case string:
+		return true, e.encodeString(v)
+	case []byte:
+		return true, e.encodeBlob(v)
+	default:
+		return false, nil
 	}
 }
 
