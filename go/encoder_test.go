@@ -2,6 +2,7 @@ package rod
 
 import (
 	"bytes"
+	"io"
 	"os"
 	"testing"
 
@@ -21,9 +22,13 @@ func TestEncoder(t *testing.T) {
 		t.Fatalf("%s", err)
 	}
 
-	var buf bytes.Buffer
+	f, _ := os.Create("testdata/sample.out.rod")
+	defer f.Close()
 
-	e := NewEncoder(&buf)
+	var buf bytes.Buffer
+	mw := io.MultiWriter(&buf, f)
+
+	e := NewEncoder(mw)
 	if err := e.Encode(v); err != nil {
 		t.Fatalf("%s", err)
 	}
