@@ -161,7 +161,7 @@ func writePrimitive(w io.Writer, s string, e error) {
 		tok := l.Token()
 		v := fmt.Sprintf("%#q", tok.Value)
 		if tok.Err != nil {
-			v = tok.Err.Error()
+			v = fmt.Sprintf("%#v", tok.Err)
 		}
 		fmt.Fprintf(w, "%03d %-13s: %s\n", tok.Position.StartOffset, tok.Type, v)
 	}
@@ -186,7 +186,7 @@ func writePrimitive(w io.Writer, s string, e error) {
 
 	// err != nil
 	if err.(tokenError).Err != e {
-		fmt.Fprintf(w, "FAIL: expected   : %s\n", e)
+		fmt.Fprintf(w, "FAIL: expected   : %#v\n", e)
 		return
 	}
 
