@@ -225,8 +225,9 @@ func (e *Encoder) encodeMap(v map[any]any) error {
 	e.push()
 	err := mapForEach(v, func(k, v any) error {
 		e.newline()
-		//TODO: ensure primitive.
-		if err := e.encodeValue(k); err != nil {
+		if ok, err := e.encodePrimitive(k); !ok {
+			return fmt.Errorf("cannot encode type %T as map key", v)
+		} else if err != nil {
 			return err
 		}
 		e.w.WriteRune(rAssoc)
