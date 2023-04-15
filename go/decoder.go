@@ -70,6 +70,9 @@ func (d *Decoder) nextToken() (t token, err error) {
 	t = d.next
 	if t.Type != tInvalid {
 		d.next.Type = tInvalid
+		if t.Type == tError {
+			return t, tokenError(t)
+		}
 		return t, nil
 	}
 retry:
