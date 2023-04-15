@@ -3,6 +3,7 @@ package rod
 import (
 	"bufio"
 	"bytes"
+	"errors"
 	"fmt"
 	"io"
 	"math"
@@ -82,6 +83,8 @@ var testPrimitives = map[string]result{
 	`|0X|`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "hexdecimal digit", Got: "`0X`"}}},
 }
 
+var errTODO = errors.New("TODO")
+
 // Map a composite value string to whether it produces an error.
 //
 // Certain tokens within each string are replaced to produces more combinations.
@@ -92,19 +95,49 @@ var testPrimitives = map[string]result{
 //     space : Replace by spaces.
 //
 var testComposites = map[string]result{
+	`[`:                      {nil, errTODO},
 	`[ ]`:                    {_array{}, nil},
+	`[ "V"`:                  {nil, errTODO},
 	`[ "V" ]`:                {_array{"V"}, nil},
+	`[ "V" ,`:                {nil, errTODO},
 	`[ "V" , ]`:              {_array{"V"}, nil},
+	`[ "V" , "X"`:            {nil, errTODO},
 	`[ "V" , "X"]`:           {_array{"V", "X"}, nil},
 	`[ "V" , "X",]`:          {_array{"V", "X"}, nil},
+	`(`:                      {nil, errTODO},
+	`( )`:                    {_map{}, nil},
+	`( "K"`:                  {nil, errTODO},
+	`( "K" )`:                {nil, errTODO},
+	`( "K" :`:                {nil, errTODO},
+	`( "K" : )`:              {nil, errTODO},
+	`( "K" : "V"`:            {nil, errTODO},
 	`( "K" : "V" )`:          {_map{"K": "V"}, nil},
+	`( "K" : "V" ,`:          {nil, errTODO},
 	`( "K" : "V" , )`:        {_map{"K": "V"}, nil},
+	`( "K" : "V" ,"X"`:       {nil, errTODO},
+	`( "K" : "V" ,"X")`:      {nil, errTODO},
+	`( "K" : "V" ,"X":`:      {nil, errTODO},
+	`( "K" : "V" ,"X":"X"`:   {nil, errTODO},
 	`( "K" : "V" ,"X":"X")`:  {_map{"K": "V", "X": "X"}, nil},
+	`( "K" : "V" ,"X":"X",`:  {nil, errTODO},
 	`( "K" : "V" ,"X":"X",)`: {_map{"K": "V", "X": "X"}, nil},
+	`{`:                      {nil, errTODO},
 	`{ }`:                    {_struct{}, nil},
+	`{ I`:                    {nil, errTODO},
+	`{ I }`:                  {nil, errTODO},
+	`{ I :`:                  {nil, errTODO},
+	`{ I : }`:                {nil, errTODO},
+	`{ I : "V"`:              {nil, errTODO},
 	`{ I : "V" }`:            {_struct{"I": "V"}, nil},
+	`{ I : "V" ,`:            {nil, errTODO},
 	`{ I : "V" , }`:          {_struct{"I": "V"}, nil},
+	`{ I : "V" ,"X"`:         {nil, errTODO},
+	`{ I : "V" ,X`:           {nil, errTODO},
+	`{ I : "V" ,X}`:          {nil, errTODO},
+	`{ I : "V" ,X:`:          {nil, errTODO},
+	`{ I : "V" ,X:"X"`:       {nil, errTODO},
 	`{ I : "V" ,X:"X"}`:      {_struct{"I": "V", "X": "X"}, nil},
+	`{ I : "V" ,X:"X",`:      {nil, errTODO},
 	`{ I : "V" ,X:"X",}`:     {_struct{"I": "V", "X": "X"}, nil},
 }
 
