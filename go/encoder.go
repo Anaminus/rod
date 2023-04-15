@@ -91,14 +91,15 @@ func (e *Encoder) encodeInt(v int64) error {
 }
 
 func (e *Encoder) encodeFloat(v float64) error {
-	if v == math.Inf(1) {
+	switch {
+	case v == math.Inf(1):
 		e.w.WriteString(rInf)
-	} else if v == math.Inf(-1) {
+	case v == math.Inf(-1):
 		e.w.WriteByte(byte(rNeg))
 		e.w.WriteString(rInf)
-	} else if v != v {
+	case v != v:
 		e.w.WriteString(rNaN)
-	} else {
+	default:
 		s := strconv.FormatFloat(v, 'f', -1, 64)
 		e.w.WriteString(s)
 		if strings.IndexRune(s, rDecimal) < 0 {
