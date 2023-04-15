@@ -707,12 +707,12 @@ func lexEntryNext(l *lexer) state {
 
 // Scans a struct field.
 func lexField(l *lexer) state {
+	if l.r.IsEOF() {
+		return l.expected("struct field name")
+	}
 	if l.r.IsRune(rStructClose) {
 		l.emit(tStructClose)
 		return l.pop()
-	}
-	if l.r.IsEOF() {
-		return l.expected("struct field name")
 	}
 	return l.do(
 		lexIdent,
