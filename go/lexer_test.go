@@ -157,7 +157,7 @@ func keysOf[T any](m map[string]T) []string {
 	return keys
 }
 
-func writePrimitive(w io.Writer, s string, e error) {
+func writePrimitive(w io.Writer, s string, e error) bool {
 	fmt.Fprintf(w, "\n```%s```\n", s)
 	l := newLexer(strings.NewReader(s))
 	for l.Next() {
@@ -173,28 +173,28 @@ func writePrimitive(w io.Writer, s string, e error) {
 
 	if e == nil && err != nil {
 		fmt.Fprintf(w, "FAIL: unexpected error\n")
-		return
+		return false
 	}
 
 	if e == nil {
 		fmt.Fprintf(w, "okay: got no error\n")
-		return
+		return true
 	}
 
 	// e != ""
 	if err == nil {
 		fmt.Fprintf(w, "FAIL: expected error\n")
-		return
+		return false
 	}
 
 	// err != nil
 	if err.(tokenError).Err != e {
 		fmt.Fprintf(w, "FAIL: expected   : %s\n", e)
-		return
+		return false
 	}
 
 	fmt.Fprintf(w, "okay: got expected error\n")
-	return
+	return true
 }
 
 func pow(v, p int) int {
@@ -257,7 +257,8 @@ func permutate(w io.Writer, split string, base, perm map[string]error) {
 //     AB0
 //     AB1
 //
-func traverseEach(w io.Writer, split string, base, perm map[string]result) {
+func traverseEach(t *testing.T, w io.Writer, split string, base, perm map[string]result) {
+	var buf bytes.Buffer
 	bases := keysOf(base)
 	perms := keysOf(perm)
 	for _, b := range bases {
@@ -272,7 +273,11 @@ func traverseEach(w io.Writer, split string, base, perm map[string]result) {
 				for j := i; j < len(ss); j++ {
 					result.WriteString(ss[j])
 				}
-				writePrimitive(w, result.String(), base[b].err)
+				buf.Reset()
+				mw := io.MultiWriter(w, &buf)
+				if !writePrimitive(mw, result.String(), base[b].err) {
+					t.Error(buf.String())
+				}
 			}
 		}
 	}
@@ -283,8 +288,8 @@ func TestGenerate(t *testing.T) {
 	defer f.Close()
 	w := bufio.NewWriter(f)
 
-	traverseEach(w, " ", testPrimitives, testSpaces)
-	traverseEach(w, " ", testComposites, testSpaces)
+	traverseEach(t, w, " ", testPrimitives, testSpaces)
+	traverseEach(t, w, " ", testComposites, testSpaces)
 
 	for _, extra := range keysOf(testExtra) {
 		e := testExtra[extra]
