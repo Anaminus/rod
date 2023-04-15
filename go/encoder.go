@@ -51,168 +51,212 @@ func (e *Encoder) encodeValue(v any) error {
 	default:
 		return fmt.Errorf("cannot encode type %T", v)
 	case nil:
-		e.w.WriteString(rNull)
+		return e.encodeNull()
 	case bool:
-		if v {
-			e.w.WriteString(rTrue)
-		} else {
-			e.w.WriteString(rFalse)
-		}
+		return e.encodeBool(v)
 	case int64:
-		e.w.WriteString(strconv.FormatInt(v, 10))
+		return e.encodeInt(v)
 	case float64:
-		if v == math.Inf(1) {
-			e.w.WriteString(rInf)
-		} else if v == math.Inf(-1) {
-			e.w.WriteByte(byte(rNeg))
-			e.w.WriteString(rInf)
-		} else if v != v {
-			e.w.WriteString(rNaN)
-		} else {
-			s := strconv.FormatFloat(v, 'f', -1, 64)
-			e.w.WriteString(s)
-			if strings.IndexRune(s, rDecimal) < 0 {
-				// Force decimal.
-				e.w.WriteRune(rDecimal)
-				e.w.WriteByte('0')
-			}
-		}
+		return e.encodeFloat(v)
 	case string:
-		e.w.WriteRune(rString)
-		for _, r := range v {
-			switch r {
-			case rString, rEscape:
-				e.w.WriteRune(rEscape)
-			}
-			e.w.WriteRune(r)
-		}
-		e.w.WriteRune(rString)
+		return e.encodeString(v)
 	case []byte:
+		return e.encodeBlob(v)
+	case []any:
+		return e.encodeArray(v)
+	case map[any]any:
+		return e.encodeMap(v)
+	case map[string]any:
+		return e.encodeStruct(v)
+	}
+}
+
+func (e *Encoder) encodeNull() error {
+	e.w.WriteString(rNull)
+	return nil
+}
+
+func (e *Encoder) encodeBool(v bool) error {
+	if v {
+		e.w.WriteString(rTrue)
+	} else {
+		e.w.WriteString(rFalse)
+	}
+	return nil
+}
+
+func (e *Encoder) encodeInt(v int64) error {
+	e.w.WriteString(strconv.FormatInt(v, 10))
+	return nil
+}
+
+func (e *Encoder) encodeFloat(v float64) error {
+	if v == math.Inf(1) {
+		e.w.WriteString(rInf)
+	} else if v == math.Inf(-1) {
+		e.w.WriteByte(byte(rNeg))
+		e.w.WriteString(rInf)
+	} else if v != v {
+		e.w.WriteString(rNaN)
+	} else {
+		s := strconv.FormatFloat(v, 'f', -1, 64)
+		e.w.WriteString(s)
+		if strings.IndexRune(s, rDecimal) < 0 {
+			// Force decimal.
+			e.w.WriteRune(rDecimal)
+			e.w.WriteByte('0')
+		}
+	}
+	return nil
+}
+
+func (e *Encoder) encodeString(v string) error {
+	e.w.WriteRune(rString)
+	for _, r := range v {
+		switch r {
+		case rString, rEscape:
+			e.w.WriteRune(rEscape)
+		}
+		e.w.WriteRune(r)
+	}
+	e.w.WriteRune(rString)
+	return nil
+}
+
+func (e *Encoder) encodeBlob(v []byte) error {
+	e.w.WriteRune(rBlob)
+	if len(v) == 0 {
 		e.w.WriteRune(rBlob)
-		if len(v) == 0 {
-			e.w.WriteRune(rBlob)
-			break
-		}
-		e.push()
-		e.newline()
+		return nil
+	}
+	e.push()
+	e.newline()
 
-		const width = 16 // Bytes per line.
-		const half = 8   // Where to add extra space.
-		buf := make([]byte, 2)
-		for i := range v {
-			if i%width != 0 {
-				// Space before each byte except start of line.
-				e.w.WriteByte(rSpace)
-			}
-			if (i+half)%width == 0 {
-				// Extra space at half width.
-				e.w.WriteByte(rSpace)
-			}
-			// Write byte.
-			hex.Encode(buf, v[i:i+1])
-			e.w.Write(buf)
-
-			// At end of a full line, display ASCII as comment.
-			if (i+1)%width == 0 {
-				e.w.WriteByte(rSpace)
-				e.w.WriteRune(rInlineComment)
-				for j := i + 1 - width; j < i+1; j++ {
-					e.w.WriteByte(toChar(v[j]))
-				}
-				e.w.WriteRune(rInlineComment)
-				// If there's more, add a newline.
-				if i+1 < len(v) {
-					e.newline()
-				}
-			}
+	const width = 16 // Bytes per line.
+	const half = 8   // Where to add extra space.
+	buf := make([]byte, 2)
+	for i := range v {
+		if i%width != 0 {
+			// Space before each byte except start of line.
+			e.w.WriteByte(rSpace)
 		}
-		// Number of extra bytes in last line.
-		if n := width - ((len(v)-1)%width + 1); n > 0 {
-			for i := 0; i < n; i++ {
-				// Space for each extra byte.
-				e.w.WriteByte(rSpace)
-				e.w.WriteByte(rSpace)
-				e.w.WriteByte(rSpace)
-			}
-			if n >= half {
-				// Extra space at half width.
-				e.w.WriteByte(rSpace)
-			}
+		if (i+half)%width == 0 {
+			// Extra space at half width.
+			e.w.WriteByte(rSpace)
+		}
+		// Write byte.
+		hex.Encode(buf, v[i:i+1])
+		e.w.Write(buf)
+
+		// At end of a full line, display ASCII as comment.
+		if (i+1)%width == 0 {
 			e.w.WriteByte(rSpace)
 			e.w.WriteRune(rInlineComment)
-			// Number of bytes in last line.
-			if n = len(v) - (width - n); n < 0 {
-				// Prevet underflow.
-				n = 0
-			}
-			for j := n; j < len(v); j++ {
+			for j := i + 1 - width; j < i+1; j++ {
 				e.w.WriteByte(toChar(v[j]))
 			}
 			e.w.WriteRune(rInlineComment)
+			// If there's more, add a newline.
+			if i+1 < len(v) {
+				e.newline()
+			}
 		}
-
-		e.pop()
-		e.newline()
-		e.w.WriteRune(rBlob)
-	case []any:
-		e.w.WriteRune(rArrayOpen)
-		e.push()
-		for _, v := range v {
-			e.newline()
-			if err := e.encodeValue(v); err != nil {
-				return err
-			}
-			e.w.WriteRune(rSep)
-		}
-		e.pop()
-		e.newline()
-		e.w.WriteRune(rArrayClose)
-	case map[any]any:
-		e.w.WriteRune(rMapOpen)
-		e.push()
-		err := mapForEach(v, func(k, v any) error {
-			e.newline()
-			//TODO: ensure primitive.
-			if err := e.encodeValue(k); err != nil {
-				return err
-			}
-			e.w.WriteRune(rAssoc)
-			e.w.WriteByte(rSpace)
-			if err := e.encodeValue(v); err != nil {
-				return err
-			}
-			e.w.WriteRune(rSep)
-			return nil
-		})
-		if err != nil {
-			return err
-		}
-		e.pop()
-		e.newline()
-		e.w.WriteRune(rMapClose)
-	case map[string]any:
-		e.w.WriteRune(rStructOpen)
-		e.push()
-		err := structForEach(v, func(i string, v any) error {
-			e.newline()
-			if err := e.encodeIdent(i); err != nil {
-				return err
-			}
-			e.w.WriteRune(rAssoc)
-			e.w.WriteByte(rSpace)
-			if err := e.encodeValue(v); err != nil {
-				return err
-			}
-			e.w.WriteRune(rSep)
-			return nil
-		})
-		if err != nil {
-			return err
-		}
-		e.pop()
-		e.newline()
-		e.w.WriteRune(rStructClose)
 	}
+	// Number of extra bytes in last line.
+	if n := width - ((len(v)-1)%width + 1); n > 0 {
+		for i := 0; i < n; i++ {
+			// Space for each extra byte.
+			e.w.WriteByte(rSpace)
+			e.w.WriteByte(rSpace)
+			e.w.WriteByte(rSpace)
+		}
+		if n >= half {
+			// Extra space at half width.
+			e.w.WriteByte(rSpace)
+		}
+		e.w.WriteByte(rSpace)
+		e.w.WriteRune(rInlineComment)
+		// Number of bytes in last line.
+		if n = len(v) - (width - n); n < 0 {
+			// Prevet underflow.
+			n = 0
+		}
+		for j := n; j < len(v); j++ {
+			e.w.WriteByte(toChar(v[j]))
+		}
+		e.w.WriteRune(rInlineComment)
+	}
+
+	e.pop()
+	e.newline()
+	e.w.WriteRune(rBlob)
+	return nil
+}
+
+func (e *Encoder) encodeArray(v []any) error {
+	e.w.WriteRune(rArrayOpen)
+	e.push()
+	for _, v := range v {
+		e.newline()
+		if err := e.encodeValue(v); err != nil {
+			return err
+		}
+		e.w.WriteRune(rSep)
+	}
+	e.pop()
+	e.newline()
+	e.w.WriteRune(rArrayClose)
+	return nil
+}
+
+func (e *Encoder) encodeMap(v map[any]any) error {
+	e.w.WriteRune(rMapOpen)
+	e.push()
+	err := mapForEach(v, func(k, v any) error {
+		e.newline()
+		//TODO: ensure primitive.
+		if err := e.encodeValue(k); err != nil {
+			return err
+		}
+		e.w.WriteRune(rAssoc)
+		e.w.WriteByte(rSpace)
+		if err := e.encodeValue(v); err != nil {
+			return err
+		}
+		e.w.WriteRune(rSep)
+		return nil
+	})
+	if err != nil {
+		return err
+	}
+	e.pop()
+	e.newline()
+	e.w.WriteRune(rMapClose)
+	return nil
+}
+
+func (e *Encoder) encodeStruct(v map[string]any) error {
+	e.w.WriteRune(rStructOpen)
+	e.push()
+	err := structForEach(v, func(i string, v any) error {
+		e.newline()
+		if err := e.encodeIdent(i); err != nil {
+			return err
+		}
+		e.w.WriteRune(rAssoc)
+		e.w.WriteByte(rSpace)
+		if err := e.encodeValue(v); err != nil {
+			return err
+		}
+		e.w.WriteRune(rSep)
+		return nil
+	})
+	if err != nil {
+		return err
+	}
+	e.pop()
+	e.newline()
+	e.w.WriteRune(rStructClose)
 	return nil
 }
 
