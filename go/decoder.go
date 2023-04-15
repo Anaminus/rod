@@ -106,11 +106,16 @@ func (d *Decoder) ifToken(t tokenType) bool {
 	return true
 }
 
-// Expects a specific token from the lexer.
-func (d *Decoder) expectToken(t tokenType) {
-	if token, _ := d.nextToken(); token.Type != t {
+// Expects a specific token from the lexer, or an error token.
+func (d *Decoder) expectToken(t tokenType) error {
+	token, err := d.nextToken()
+	if err != nil {
+		return err
+	}
+	if token.Type != t {
 		d.unexpectedToken(token)
 	}
+	return nil
 }
 
 // Decodes one value into a.
@@ -326,7 +331,9 @@ loop:
 		}
 		// Lexer ensures that value is a primitive.
 
-		d.expectToken(tAssoc)
+		if err := d.expectToken(tAssoc); err != nil {
+			return err
+		}
 
 		var v any
 		if err := d.decodeValue(&v); err != nil {
@@ -372,7 +379,9 @@ loop:
 		case tIdent:
 		}
 
-		d.expectToken(tAssoc)
+		if err := d.expectToken(tAssoc); err != nil {
+			return err
+		}
 
 		var v any
 		if err := d.decodeValue(&v); err != nil {
