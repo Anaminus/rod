@@ -629,6 +629,9 @@ func lexBlob(l *lexer) state {
 
 // Scans the element of an array.
 func lexElement(l *lexer) state {
+	if l.r.IsEOF() {
+		return l.expected("array element")
+	}
 	if l.r.IsRune(rArrayClose) {
 		l.emit(tArrayClose)
 		return l.pop()
