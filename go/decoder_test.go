@@ -213,6 +213,29 @@ var sampleControl = _struct{
 	},
 }
 
+func testDecodeEach(t *testing.T, tests map[string]result) {
+	for _, file := range keysOf(tests) {
+		t.Run(fmt.Sprintf("%#q", file), func(t *testing.T) {
+			result := tests[file]
+			d := NewDecoder(strings.NewReader(file))
+			var v any
+			err := d.Decode(&v)
+			if (err == nil && result.err != nil) || (err != nil && result.err == nil) {
+				t.Fatalf("mismatched error: expected [%s], got [%s]", result.err, err)
+			}
+			if err != nil {
+				return
+			}
+			if diffs := deep.Equal(v, result.v); len(diffs) > 0 {
+				for _, d := range diffs {
+					t.Log(d)
+				}
+				t.Errorf("decoded file not equal to control")
+			}
+		})
+	}
+}
+
 func TestDecoder(t *testing.T) {
 	b, err := os.ReadFile("testdata/sample.rod")
 	if err != nil {
@@ -233,24 +256,5 @@ func TestDecoder(t *testing.T) {
 		t.Errorf("decoded sample file not equal to control")
 	}
 
-	for _, file := range keysOf(testPrimitives) {
-		t.Run(fmt.Sprintf("%#q", file), func(t *testing.T) {
-			result := testPrimitives[file]
-			d := NewDecoder(strings.NewReader(file))
-			var v any
-			err := d.Decode(&v)
-			if (err == nil && result.err != nil) || (err != nil && result.err == nil) {
-				t.Fatalf("mismatched error: expected [%s], got [%s]", result.err, err)
-			}
-			if err != nil {
-				return
-			}
-			if diffs := deep.Equal(v, result.v); len(diffs) > 0 {
-				for _, d := range diffs {
-					t.Log(d)
-				}
-				t.Errorf("decoded file not equal to control")
-			}
-		})
-	}
+	testDecodeEach(t, testPrimitives)
 }
