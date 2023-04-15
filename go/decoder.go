@@ -79,10 +79,10 @@ retry:
 	if !d.l.Next() {
 		panic("no more tokens")
 	}
+	t = d.l.Token()
 	if err := d.l.Err(); err != nil {
 		return t, err
 	}
-	t = d.l.Token()
 	switch t.Type {
 	case tEOF:
 		if d.eof {
