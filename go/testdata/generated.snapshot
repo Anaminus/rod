@@ -2658,11 +2658,8 @@ okay: got no error
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Blob         : `|`
-008 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```
 |80||FF|```
@@ -2670,33 +2667,24 @@ okay: got no error
 001 Blob         : `|`
 002 Byte         : `80`
 004 Blob         : `|`
-005 Blob         : `|`
-006 Byte         : `FF`
-008 Blob         : `|`
-009 EOF          : ``
-okay: got no error
+005 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ``` |80||FF|```
 000 Space        : ` `
 001 Blob         : `|`
 002 Byte         : `80`
 004 Blob         : `|`
-005 Blob         : `|`
-006 Byte         : `FF`
-008 Blob         : `|`
-009 EOF          : ``
-okay: got no error
+005 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```#<block>|80||FF|```
 000 BlockComment : `#<block>`
 008 Blob         : `|`
 009 Byte         : `80`
 011 Blob         : `|`
-012 Blob         : `|`
-013 Byte         : `FF`
-015 Blob         : `|`
-016 EOF          : ``
-okay: got no error
+012 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```#inline
 |80||FF|```
@@ -2704,21 +2692,15 @@ okay: got no error
 008 Blob         : `|`
 009 Byte         : `80`
 011 Blob         : `|`
-012 Blob         : `|`
-013 Byte         : `FF`
-015 Blob         : `|`
-016 EOF          : ``
-okay: got no error
+012 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Blob         : `|`
-008 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|
 80||FF|```
@@ -2726,33 +2708,24 @@ okay: got no error
 001 Space        : "\n"
 002 Byte         : `80`
 004 Blob         : `|`
-005 Blob         : `|`
-006 Byte         : `FF`
-008 Blob         : `|`
-009 EOF          : ``
-okay: got no error
+005 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```| 80||FF|```
 000 Blob         : `|`
 001 Space        : ` `
 002 Byte         : `80`
 004 Blob         : `|`
-005 Blob         : `|`
-006 Byte         : `FF`
-008 Blob         : `|`
-009 EOF          : ``
-okay: got no error
+005 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|#<block>80||FF|```
 000 Blob         : `|`
 001 BlockComment : `#<block>`
 009 Byte         : `80`
 011 Blob         : `|`
-012 Blob         : `|`
-013 Byte         : `FF`
-015 Blob         : `|`
-016 EOF          : ``
-okay: got no error
+012 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|#inline
 80||FF|```
@@ -2760,21 +2733,15 @@ okay: got no error
 001 InlineComment: "#inline\n"
 009 Byte         : `80`
 011 Blob         : `|`
-012 Blob         : `|`
-013 Byte         : `FF`
-015 Blob         : `|`
-016 EOF          : ``
-okay: got no error
+012 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Blob         : `|`
-008 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80
 ||FF|```
@@ -2782,33 +2749,24 @@ okay: got no error
 001 Byte         : `80`
 003 Space        : "\n"
 004 Blob         : `|`
-005 Blob         : `|`
-006 Byte         : `FF`
-008 Blob         : `|`
-009 EOF          : ``
-okay: got no error
+005 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80 ||FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Space        : ` `
 004 Blob         : `|`
-005 Blob         : `|`
-006 Byte         : `FF`
-008 Blob         : `|`
-009 EOF          : ``
-okay: got no error
+005 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80#<block>||FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 BlockComment : `#<block>`
 011 Blob         : `|`
-012 Blob         : `|`
-013 Byte         : `FF`
-015 Blob         : `|`
-016 EOF          : ``
-okay: got no error
+012 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80#inline
 ||FF|```
@@ -2816,21 +2774,15 @@ okay: got no error
 001 Byte         : `80`
 003 InlineComment: "#inline\n"
 011 Blob         : `|`
-012 Blob         : `|`
-013 Byte         : `FF`
-015 Blob         : `|`
-016 EOF          : ``
-okay: got no error
+012 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Blob         : `|`
-008 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80|
 |FF|```
@@ -2838,33 +2790,24 @@ okay: got no error
 001 Byte         : `80`
 003 Blob         : `|`
 004 Space        : "\n"
-005 Blob         : `|`
-006 Byte         : `FF`
-008 Blob         : `|`
-009 EOF          : ``
-okay: got no error
+005 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80| |FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
 004 Space        : ` `
-005 Blob         : `|`
-006 Byte         : `FF`
-008 Blob         : `|`
-009 EOF          : ``
-okay: got no error
+005 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80|#<block>|FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
 004 BlockComment : `#<block>`
-012 Blob         : `|`
-013 Byte         : `FF`
-015 Blob         : `|`
-016 EOF          : ``
-okay: got no error
+012 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80|#inline
 |FF|```
@@ -2872,179 +2815,119 @@ okay: got no error
 001 Byte         : `80`
 003 Blob         : `|`
 004 InlineComment: "#inline\n"
-012 Blob         : `|`
-013 Byte         : `FF`
-015 Blob         : `|`
-016 EOF          : ``
-okay: got no error
+012 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Blob         : `|`
-008 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||
 FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Space        : "\n"
-006 Byte         : `FF`
-008 Blob         : `|`
-009 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80|| FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Space        : ` `
-006 Byte         : `FF`
-008 Blob         : `|`
-009 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||#<block>FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 BlockComment : `#<block>`
-013 Byte         : `FF`
-015 Blob         : `|`
-016 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||#inline
 FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 InlineComment: "#inline\n"
-013 Byte         : `FF`
-015 Blob         : `|`
-016 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Blob         : `|`
-008 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF
 |```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Space        : "\n"
-008 Blob         : `|`
-009 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF |```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Space        : ` `
-008 Blob         : `|`
-009 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF#<block>|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 BlockComment : `#<block>`
-015 Blob         : `|`
-016 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF#inline
 |```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 InlineComment: "#inline\n"
-015 Blob         : `|`
-016 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF|```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Blob         : `|`
-008 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF|
 ```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Blob         : `|`
-008 Space        : "\n"
-009 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF| ```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Blob         : `|`
-008 Space        : ` `
-009 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF|#<block>```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Blob         : `|`
-008 BlockComment : `#<block>`
-016 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|80||FF|#inline
 ```
 000 Blob         : `|`
 001 Byte         : `80`
 003 Blob         : `|`
-004 Blob         : `|`
-005 Byte         : `FF`
-007 Blob         : `|`
-008 InlineComment: "#inline\n"
-016 EOF          : ``
-okay: got no error
+004 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```||```
 000 Blob         : `|`
@@ -3157,232 +3040,174 @@ okay: got no error
 ```||||```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 Blob         : `|`
-004 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```
 ||||```
 000 Space        : "\n"
 001 Blob         : `|`
 002 Blob         : `|`
-003 Blob         : `|`
-004 Blob         : `|`
-005 EOF          : ``
-okay: got no error
+003 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ``` ||||```
 000 Space        : ` `
 001 Blob         : `|`
 002 Blob         : `|`
-003 Blob         : `|`
-004 Blob         : `|`
-005 EOF          : ``
-okay: got no error
+003 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```#<block>||||```
 000 BlockComment : `#<block>`
 008 Blob         : `|`
 009 Blob         : `|`
-010 Blob         : `|`
-011 Blob         : `|`
-012 EOF          : ``
-okay: got no error
+010 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```#inline
 ||||```
 000 InlineComment: "#inline\n"
 008 Blob         : `|`
 009 Blob         : `|`
-010 Blob         : `|`
-011 Blob         : `|`
-012 EOF          : ``
-okay: got no error
+010 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```||||```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 Blob         : `|`
-004 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|
 |||```
 000 Blob         : `|`
 001 Space        : "\n"
 002 Blob         : `|`
-003 Blob         : `|`
-004 Blob         : `|`
-005 EOF          : ``
-okay: got no error
+003 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```| |||```
 000 Blob         : `|`
 001 Space        : ` `
 002 Blob         : `|`
-003 Blob         : `|`
-004 Blob         : `|`
-005 EOF          : ``
-okay: got no error
+003 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|#<block>|||```
 000 Blob         : `|`
 001 BlockComment : `#<block>`
 009 Blob         : `|`
-010 Blob         : `|`
-011 Blob         : `|`
-012 EOF          : ``
-okay: got no error
+010 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|#inline
 |||```
 000 Blob         : `|`
 001 InlineComment: "#inline\n"
 009 Blob         : `|`
-010 Blob         : `|`
-011 Blob         : `|`
-012 EOF          : ``
-okay: got no error
+010 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```||||```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 Blob         : `|`
-004 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```||
 ||```
 000 Blob         : `|`
 001 Blob         : `|`
 002 Space        : "\n"
-003 Blob         : `|`
-004 Blob         : `|`
-005 EOF          : ``
-okay: got no error
+003 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|| ||```
 000 Blob         : `|`
 001 Blob         : `|`
 002 Space        : ` `
-003 Blob         : `|`
-004 Blob         : `|`
-005 EOF          : ``
-okay: got no error
+003 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```||#<block>||```
 000 Blob         : `|`
 001 Blob         : `|`
 002 BlockComment : `#<block>`
-010 Blob         : `|`
-011 Blob         : `|`
-012 EOF          : ``
-okay: got no error
+010 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```||#inline
 ||```
 000 Blob         : `|`
 001 Blob         : `|`
 002 InlineComment: "#inline\n"
-010 Blob         : `|`
-011 Blob         : `|`
-012 EOF          : ``
-okay: got no error
+010 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```||||```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 Blob         : `|`
-004 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|||
 |```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 Space        : "\n"
-004 Blob         : `|`
-005 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```||| |```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 Space        : ` `
-004 Blob         : `|`
-005 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|||#<block>|```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 BlockComment : `#<block>`
-011 Blob         : `|`
-012 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|||#inline
 |```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 InlineComment: "#inline\n"
-011 Blob         : `|`
-012 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```||||```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 Blob         : `|`
-004 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```||||
 ```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 Blob         : `|`
-004 Space        : "\n"
-005 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|||| ```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 Blob         : `|`
-004 Space        : ` `
-005 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```||||#<block>```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 Blob         : `|`
-004 BlockComment : `#<block>`
-012 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```||||#inline
 ```
 000 Blob         : `|`
 001 Blob         : `|`
-002 Blob         : `|`
-003 Blob         : `|`
-004 InlineComment: "#inline\n"
-012 EOF          : ``
-okay: got no error
+002 Error        : syntax error: expected end of file, got '|'
+okay: got expected error
 
 ```|0X|```
 000 Blob         : `|`

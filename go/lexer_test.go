@@ -75,8 +75,8 @@ var testPrimitives = map[string]result{
 	`truely`:              {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "end of file", Got: "'l'"}}},
 	`| 7F |`:              {_blob{0x7F}, nil},
 	`| 12 34 |`:           {_blob{0x12, 0x34}, nil},
-	`| | | |`:             {_blob{}, nil},
-	`| 80 | | FF |`:       {_blob{0x80, 0xFF}, nil},
+	`| | | |`:             {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "end of file", Got: "'|'"}}},
+	`| 80 | | FF |`:       {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "end of file", Got: "'|'"}}},
 	`| |`:                 {_blob{}, nil},
 	`|X0|`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "byte or '|'", Got: "'X'"}}},
 	`|0X|`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "hexdecimal digit", Got: "`0X`"}}},
@@ -311,12 +311,12 @@ func FuzzLexer(f *testing.F) {
 		`"Hello, world!"`,
 		`# Comment`,
 		`#<Comment>`,
-		`
-		| 53 74 72 61 6e 67 65 20  67 61 6d 65 2e 0a 54 68 |
-		| 65 20 6f 6e 6c 79 20 77  69 6e 6e 69 6e 67 20 6d |
-		| 6f 76 65 0a 69 73 20 6e  6f 74 20 74 6f 20 70 6c |
-		| 61 79 2e                                         |
-		`,
+		`|
+			53 74 72 61 6e 67 65 20  67 61 6d 65 2e 0a 54 68
+			65 20 6f 6e 6c 79 20 77  69 6e 6e 69 6e 67 20 6d
+			6f 76 65 0a 69 73 20 6e  6f 74 20 74 6f 20 70 6c
+			61 79 2e
+		|`,
 		`[1,2,3]`,
 		`("A": 1, "B": 2, "C": 3)`,
 		`{A: 1, B: 2, C: 3}`,

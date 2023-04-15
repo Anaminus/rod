@@ -610,7 +610,7 @@ func lexString(l *lexer) state {
 	}
 }
 
-// Scans the rest of a blob. Also attempts to scan subsequent blobs.
+// Scans the rest of a blob.
 func lexBlob(l *lexer) state {
 	switch r := l.r.MustNext(); {
 	case isHex(r):
@@ -621,19 +621,10 @@ func lexBlob(l *lexer) state {
 		return l.do(lexSpace, lexBlob)
 	case r == rBlob:
 		l.emit(tBlob)
-		return l.do(lexSpace, lexAnotherBlob)
+		return l.pop()
 	default:
 		return l.expected("byte or %q", rBlob)
 	}
-}
-
-// Attempt to scan another blob.
-func lexAnotherBlob(l *lexer) state {
-	if l.r.IsRune(rBlob) {
-		l.emit(tBlob)
-		return l.do(lexSpace, lexBlob)
-	}
-	return l.pop()
 }
 
 // Scans the element of an array.

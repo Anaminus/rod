@@ -87,29 +87,29 @@ func (e *Encoder) encodeValue(v any) error {
 		}
 		e.w.WriteRune(rString)
 	case []byte:
+		e.w.WriteRune(rBlob)
 		if len(v) == 0 {
-			e.w.WriteRune(rBlob)
 			e.w.WriteRune(rBlob)
 			break
 		}
 		e.push()
-		// | XX XX XX XX XX XX XX XX  XX XX XX XX XX XX XX XX |#................#
-		// 0 0                                                  5               6
-		// 0 2                                                  3               9
-		var buf = make([]byte, 70)
+		// XX XX XX XX XX XX XX XX  XX XX XX XX XX XX XX XX #................#
+		// 0                                                 5               6
+		// 0                                                 0               6
+		const hexoff = 0
+		const asciioff = 50
+		var buf = make([]byte, 67)
 		for i := range buf {
 			buf[i] = rSpace
 		}
-		buf[0] = byte(rBlob)
-		buf[51] = byte(rBlob)
-		buf[52] = byte(rInlineComment)
-		buf[69] = byte(rInlineComment)
+		buf[49] = byte(rInlineComment)
+		buf[66] = byte(rInlineComment)
 		for line := 0; line < (len(v)-1)/16+1; line++ {
 			e.newline()
 			for n := 0; n < 16; n++ {
 				i := line*16 + n
-				j := 2 + n*3
-				k := 53 + n
+				j := hexoff + n*3
+				k := asciioff + n
 				if n >= 8 {
 					j++
 				}
@@ -126,6 +126,7 @@ func (e *Encoder) encodeValue(v any) error {
 		}
 		e.pop()
 		e.newline()
+		e.w.WriteRune(rBlob)
 	case []any:
 		e.w.WriteRune(rArrayOpen)
 		e.push()

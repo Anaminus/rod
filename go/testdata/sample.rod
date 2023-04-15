@@ -56,13 +56,13 @@
 						{
 							Name: "MaterialColors",
 							Type: "BinaryString",
-							Value:
-								| 00 00 00 00 00 00 6a 7f  3f 3f 7f 6b 7f 66 3f 8a |#......j.??.k.f?.#
-								| 56 3e 8f 7e 5f 8b 6d 4f  66 6c 6f 65 b0 ea c3 c7 |#V>.~_.mOfloe....#
-								| da 89 5a 47 3a 2e 24 1e  1e 25 66 5c 3b e8 9c 4a |#..ZG:.$..%f\;..J#
-								| 73 7b 6b 84 7b 5a 81 c2#<foo>e0 73 84 4a c6 bd b5 ce |#s{k.{Z...s.J....#
-								| ad9494948c                                       |#.....           #
-							,
+							Value: |
+								00 00 00 00 00 00 6a 7f  3f 3f 7f 6b 7f 66 3f 8a #......j.??.k.f?.#
+								56 3e 8f 7e 5f 8b 6d 4f  66 6c 6f 65 b0 ea c3 c7 #V>.~_.mOfloe....#
+								da 89 5a 47 3a 2e 24 1e  1e 25 66 5c 3b e8 9c 4a #..ZG:.$..%f\;..J#
+								73 7b 6b 84 7b 5a 81 c2#<foo>e0 73 84 4a c6 bd b5 ce #s{k.{Z...s.J....#
+								ad9494948c                                       #.....           #
+							|,
 						},
 					],
 					Children: [],

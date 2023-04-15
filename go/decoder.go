@@ -145,7 +145,7 @@ func (d *Decoder) decodeValue(a *any) error {
 		case tString:
 			return d.decodeString(a, t.Value)
 		case tBlob:
-			return d.decodeBlobs(a)
+			return d.decodeBlob(a)
 		case tArrayOpen:
 			return d.decodeArray(a)
 		case tMapOpen:
@@ -245,8 +245,8 @@ func (d *Decoder) decodeString(a *any, s string) error {
 	return nil
 }
 
-// Decodes a number of blob sequences into a.
-func (d *Decoder) decodeBlobs(a *any) error {
+// Decodes a blob sequence into a.
+func (d *Decoder) decodeBlob(a *any) error {
 	b := bytes.NewBuffer([]byte{})
 	p := make([]byte, 1)
 loop:
@@ -266,9 +266,6 @@ loop:
 		case tBlob:
 			break loop
 		}
-	}
-	if d.ifToken(tBlob) {
-		goto loop
 	}
 	*a = b.Bytes()
 	return nil
