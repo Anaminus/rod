@@ -57,7 +57,11 @@ func (d *Decoder) Decode(v any) error {
 }
 
 func (d *Decoder) unexpectedToken(t token) {
-	panic(fmt.Errorf("lexer emitted unexpected token %s (%[1]d)", t.Type))
+	panic(fmt.Errorf("lexer emitted unexpected token %s (%[1]d) at %d-%d",
+		t.Type,
+		t.Position.StartOffset,
+		t.Position.EndOffset,
+	))
 }
 
 // Gets the next token from the lexer. Expects a non-EOF token. Skips over
