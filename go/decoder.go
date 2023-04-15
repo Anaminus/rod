@@ -389,11 +389,11 @@ loop:
 		default:
 			d.unexpectedToken(t)
 		case tSep:
-			if d.ifToken(tMapClose) {
+			if d.ifToken(tStructClose) {
 				break loop
 			}
 			continue
-		case tMapClose:
+		case tStructClose:
 			break loop
 		}
 	}
