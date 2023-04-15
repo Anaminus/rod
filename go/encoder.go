@@ -2,6 +2,7 @@ package rod
 
 import (
 	"bufio"
+	"bytes"
 	"encoding/hex"
 	"errors"
 	"fmt"
@@ -93,37 +94,63 @@ func (e *Encoder) encodeValue(v any) error {
 			break
 		}
 		e.push()
-		// XX XX XX XX XX XX XX XX  XX XX XX XX XX XX XX XX #................#
-		// 0                                                 5               6
-		// 0                                                 0               6
-		const hexoff = 0
-		const asciioff = 50
-		var buf = make([]byte, 67)
-		for i := range buf {
-			buf[i] = rSpace
-		}
-		buf[49] = byte(rInlineComment)
-		buf[66] = byte(rInlineComment)
-		for line := 0; line < (len(v)-1)/16+1; line++ {
-			e.newline()
-			for n := 0; n < 16; n++ {
-				i := line*16 + n
-				j := hexoff + n*3
-				k := asciioff + n
-				if n >= 8 {
-					j++
+		e.newline()
+
+		const width = 16 // Bytes per line.
+		const half = 8   // Where to add extra space.
+		buf := make([]byte, 2)
+		for i := range v {
+			if i%width != 0 {
+				// Space before each byte except start of line.
+				e.w.WriteByte(rSpace)
+			}
+			if (i+half)%width == 0 {
+				// Extra space at half width.
+				e.w.WriteByte(rSpace)
+			}
+			// Write byte.
+			hex.Encode(buf, v[i:i+1])
+			e.w.Write(buf)
+
+			// At end of a full line, display ASCII as comment.
+			if (i+1)%width == 0 {
+				e.w.WriteByte(rSpace)
+				e.w.WriteRune(rInlineComment)
+				for j := i + 1 - width; j < i+1; j++ {
+					e.w.WriteByte(toChar(v[j]))
 				}
-				if i < len(v) {
-					hex.Encode(buf[j:], v[i:i+1])
-					buf[k] = toChar(v[i])
-				} else {
-					buf[j] = rSpace
-					buf[j+1] = rSpace
-					buf[k] = rSpace
+				e.w.WriteRune(rInlineComment)
+				// If there's more, add a newline.
+				if i+1 < len(v) {
+					e.newline()
 				}
 			}
-			e.w.Write(buf)
 		}
+		// Number of extra bytes in last line.
+		if n := width - ((len(v)-1)%width + 1); n > 0 {
+			for i := 0; i < n; i++ {
+				// Space for each extra byte.
+				e.w.WriteByte(rSpace)
+				e.w.WriteByte(rSpace)
+				e.w.WriteByte(rSpace)
+			}
+			if n >= half {
+				// Extra space at half width.
+				e.w.WriteByte(rSpace)
+			}
+			e.w.WriteByte(rSpace)
+			e.w.WriteRune(rInlineComment)
+			// Number of bytes in last line.
+			if n = len(v) - (width - n); n < 0 {
+				// Prevet underflow.
+				n = 0
+			}
+			for j := n; j < len(v); j++ {
+				e.w.WriteByte(toChar(v[j]))
+			}
+			e.w.WriteRune(rInlineComment)
+		}
+
 		e.pop()
 		e.newline()
 		e.w.WriteRune(rBlob)
