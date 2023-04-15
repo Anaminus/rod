@@ -630,7 +630,7 @@ func lexBlob(l *lexer) state {
 // Scans the element of an array.
 func lexElement(l *lexer) state {
 	if l.r.IsEOF() {
-		return l.expected("array element")
+		return l.expected("element or ']'")
 	}
 	if l.r.IsRune(rArrayClose) {
 		l.emit(tArrayClose)
@@ -660,7 +660,7 @@ func lexElementNext(l *lexer) state {
 // Scans a map entry.
 func lexEntry(l *lexer) state {
 	if l.r.IsEOF() {
-		return l.expected("map entry key")
+		return l.expected("entry or ')'")
 	}
 	if l.r.IsRune(rMapClose) {
 		l.emit(tMapClose)
@@ -708,7 +708,7 @@ func lexEntryNext(l *lexer) state {
 // Scans a struct field.
 func lexField(l *lexer) state {
 	if l.r.IsEOF() {
-		return l.expected("struct field name")
+		return l.expected("field or '}'")
 	}
 	if l.r.IsRune(rStructClose) {
 		l.emit(tStructClose)

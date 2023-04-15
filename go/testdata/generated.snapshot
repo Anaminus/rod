@@ -3327,65 +3327,65 @@ okay: got expected error
 
 ```(```
 000 MapOpen      : `(`
-001 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+001 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```
 (```
 000 Space        : "\n"
 001 MapOpen      : `(`
-002 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+002 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ``` (```
 000 Space        : ` `
 001 MapOpen      : `(`
-002 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+002 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```#<block>(```
 000 BlockComment : `#<block>`
 008 MapOpen      : `(`
-009 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+009 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```#inline
 (```
 000 InlineComment: "#inline\n"
 008 MapOpen      : `(`
-009 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+009 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```(```
 000 MapOpen      : `(`
-001 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+001 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```(
 ```
 000 MapOpen      : `(`
 001 Space        : "\n"
-002 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+002 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```( ```
 000 MapOpen      : `(`
 001 Space        : ` `
-002 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+002 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```(#<block>```
 000 MapOpen      : `(`
 001 BlockComment : `#<block>`
-009 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+009 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```(#inline
 ```
 000 MapOpen      : `(`
 001 InlineComment: "#inline\n"
-009 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+009 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K"```
 000 MapOpen      : `(`
@@ -4341,8 +4341,8 @@ okay: got no error
 004 Assoc        : `:`
 005 String       : `"V"`
 008 Sep          : `,`
-009 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+009 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```
 ("K":"V",```
@@ -4352,8 +4352,8 @@ okay: got expected error
 005 Assoc        : `:`
 006 String       : `"V"`
 009 Sep          : `,`
-010 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+010 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ``` ("K":"V",```
 000 Space        : ` `
@@ -4362,8 +4362,8 @@ okay: got expected error
 005 Assoc        : `:`
 006 String       : `"V"`
 009 Sep          : `,`
-010 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+010 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```#<block>("K":"V",```
 000 BlockComment : `#<block>`
@@ -4372,8 +4372,8 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"V"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```#inline
 ("K":"V",```
@@ -4383,8 +4383,8 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"V"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V",```
 000 MapOpen      : `(`
@@ -4392,8 +4392,8 @@ okay: got expected error
 004 Assoc        : `:`
 005 String       : `"V"`
 008 Sep          : `,`
-009 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+009 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```(
 "K":"V",```
@@ -4403,8 +4403,8 @@ okay: got expected error
 005 Assoc        : `:`
 006 String       : `"V"`
 009 Sep          : `,`
-010 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+010 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```( "K":"V",```
 000 MapOpen      : `(`
@@ -4413,8 +4413,8 @@ okay: got expected error
 005 Assoc        : `:`
 006 String       : `"V"`
 009 Sep          : `,`
-010 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+010 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```(#<block>"K":"V",```
 000 MapOpen      : `(`
@@ -4423,8 +4423,8 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"V"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```(#inline
 "K":"V",```
@@ -4434,8 +4434,8 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"V"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V",```
 000 MapOpen      : `(`
@@ -4443,8 +4443,8 @@ okay: got expected error
 004 Assoc        : `:`
 005 String       : `"V"`
 008 Sep          : `,`
-009 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+009 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K"
 :"V",```
@@ -4454,8 +4454,8 @@ okay: got expected error
 005 Assoc        : `:`
 006 String       : `"V"`
 009 Sep          : `,`
-010 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+010 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K" :"V",```
 000 MapOpen      : `(`
@@ -4464,8 +4464,8 @@ okay: got expected error
 005 Assoc        : `:`
 006 String       : `"V"`
 009 Sep          : `,`
-010 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+010 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K"#<block>:"V",```
 000 MapOpen      : `(`
@@ -4474,8 +4474,8 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"V"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K"#inline
 :"V",```
@@ -4485,8 +4485,8 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"V"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V",```
 000 MapOpen      : `(`
@@ -4494,8 +4494,8 @@ okay: got expected error
 004 Assoc        : `:`
 005 String       : `"V"`
 008 Sep          : `,`
-009 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+009 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":
 "V",```
@@ -4505,8 +4505,8 @@ okay: got expected error
 005 Space        : "\n"
 006 String       : `"V"`
 009 Sep          : `,`
-010 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+010 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K": "V",```
 000 MapOpen      : `(`
@@ -4515,8 +4515,8 @@ okay: got expected error
 005 Space        : ` `
 006 String       : `"V"`
 009 Sep          : `,`
-010 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+010 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":#<block>"V",```
 000 MapOpen      : `(`
@@ -4525,8 +4525,8 @@ okay: got expected error
 005 BlockComment : `#<block>`
 013 String       : `"V"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":#inline
 "V",```
@@ -4536,8 +4536,8 @@ okay: got expected error
 005 InlineComment: "#inline\n"
 013 String       : `"V"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V",```
 000 MapOpen      : `(`
@@ -4545,8 +4545,8 @@ okay: got expected error
 004 Assoc        : `:`
 005 String       : `"V"`
 008 Sep          : `,`
-009 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+009 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V"
 ,```
@@ -4556,8 +4556,8 @@ okay: got expected error
 005 String       : `"V"`
 008 Space        : "\n"
 009 Sep          : `,`
-010 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+010 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V" ,```
 000 MapOpen      : `(`
@@ -4566,8 +4566,8 @@ okay: got expected error
 005 String       : `"V"`
 008 Space        : ` `
 009 Sep          : `,`
-010 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+010 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V"#<block>,```
 000 MapOpen      : `(`
@@ -4576,8 +4576,8 @@ okay: got expected error
 005 String       : `"V"`
 008 BlockComment : `#<block>`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V"#inline
 ,```
@@ -4587,8 +4587,8 @@ okay: got expected error
 005 String       : `"V"`
 008 InlineComment: "#inline\n"
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V",```
 000 MapOpen      : `(`
@@ -4596,8 +4596,8 @@ okay: got expected error
 004 Assoc        : `:`
 005 String       : `"V"`
 008 Sep          : `,`
-009 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+009 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V",
 ```
@@ -4607,8 +4607,8 @@ okay: got expected error
 005 String       : `"V"`
 008 Sep          : `,`
 009 Space        : "\n"
-010 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+010 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V", ```
 000 MapOpen      : `(`
@@ -4617,8 +4617,8 @@ okay: got expected error
 005 String       : `"V"`
 008 Sep          : `,`
 009 Space        : ` `
-010 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+010 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V",#<block>```
 000 MapOpen      : `(`
@@ -4627,8 +4627,8 @@ okay: got expected error
 005 String       : `"V"`
 008 Sep          : `,`
 009 BlockComment : `#<block>`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V",#inline
 ```
@@ -4638,8 +4638,8 @@ okay: got expected error
 005 String       : `"V"`
 008 Sep          : `,`
 009 InlineComment: "#inline\n"
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V",)```
 000 MapOpen      : `(`
@@ -6899,8 +6899,8 @@ okay: got no error
 012 Assoc        : `:`
 013 String       : `"X"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```
 ("K":"V","X":"X",```
@@ -6914,8 +6914,8 @@ okay: got expected error
 013 Assoc        : `:`
 014 String       : `"X"`
 017 Sep          : `,`
-018 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+018 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ``` ("K":"V","X":"X",```
 000 Space        : ` `
@@ -6928,8 +6928,8 @@ okay: got expected error
 013 Assoc        : `:`
 014 String       : `"X"`
 017 Sep          : `,`
-018 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+018 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```#<block>("K":"V","X":"X",```
 000 BlockComment : `#<block>`
@@ -6942,8 +6942,8 @@ okay: got expected error
 020 Assoc        : `:`
 021 String       : `"X"`
 024 Sep          : `,`
-025 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+025 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```#inline
 ("K":"V","X":"X",```
@@ -6957,8 +6957,8 @@ okay: got expected error
 020 Assoc        : `:`
 021 String       : `"X"`
 024 Sep          : `,`
-025 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+025 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V","X":"X",```
 000 MapOpen      : `(`
@@ -6970,8 +6970,8 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"X"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```(
 "K":"V","X":"X",```
@@ -6985,8 +6985,8 @@ okay: got expected error
 013 Assoc        : `:`
 014 String       : `"X"`
 017 Sep          : `,`
-018 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+018 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```( "K":"V","X":"X",```
 000 MapOpen      : `(`
@@ -6999,8 +6999,8 @@ okay: got expected error
 013 Assoc        : `:`
 014 String       : `"X"`
 017 Sep          : `,`
-018 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+018 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```(#<block>"K":"V","X":"X",```
 000 MapOpen      : `(`
@@ -7013,8 +7013,8 @@ okay: got expected error
 020 Assoc        : `:`
 021 String       : `"X"`
 024 Sep          : `,`
-025 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+025 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```(#inline
 "K":"V","X":"X",```
@@ -7028,8 +7028,8 @@ okay: got expected error
 020 Assoc        : `:`
 021 String       : `"X"`
 024 Sep          : `,`
-025 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+025 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V","X":"X",```
 000 MapOpen      : `(`
@@ -7041,8 +7041,8 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"X"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K"
 :"V","X":"X",```
@@ -7056,8 +7056,8 @@ okay: got expected error
 013 Assoc        : `:`
 014 String       : `"X"`
 017 Sep          : `,`
-018 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+018 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K" :"V","X":"X",```
 000 MapOpen      : `(`
@@ -7070,8 +7070,8 @@ okay: got expected error
 013 Assoc        : `:`
 014 String       : `"X"`
 017 Sep          : `,`
-018 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+018 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K"#<block>:"V","X":"X",```
 000 MapOpen      : `(`
@@ -7084,8 +7084,8 @@ okay: got expected error
 020 Assoc        : `:`
 021 String       : `"X"`
 024 Sep          : `,`
-025 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+025 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K"#inline
 :"V","X":"X",```
@@ -7099,8 +7099,8 @@ okay: got expected error
 020 Assoc        : `:`
 021 String       : `"X"`
 024 Sep          : `,`
-025 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+025 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V","X":"X",```
 000 MapOpen      : `(`
@@ -7112,8 +7112,8 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"X"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":
 "V","X":"X",```
@@ -7127,8 +7127,8 @@ okay: got expected error
 013 Assoc        : `:`
 014 String       : `"X"`
 017 Sep          : `,`
-018 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+018 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K": "V","X":"X",```
 000 MapOpen      : `(`
@@ -7141,8 +7141,8 @@ okay: got expected error
 013 Assoc        : `:`
 014 String       : `"X"`
 017 Sep          : `,`
-018 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+018 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":#<block>"V","X":"X",```
 000 MapOpen      : `(`
@@ -7155,8 +7155,8 @@ okay: got expected error
 020 Assoc        : `:`
 021 String       : `"X"`
 024 Sep          : `,`
-025 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+025 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":#inline
 "V","X":"X",```
@@ -7170,8 +7170,8 @@ okay: got expected error
 020 Assoc        : `:`
 021 String       : `"X"`
 024 Sep          : `,`
-025 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+025 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V","X":"X",```
 000 MapOpen      : `(`
@@ -7183,8 +7183,8 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"X"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V"
 ,"X":"X",```
@@ -7198,8 +7198,8 @@ okay: got expected error
 013 Assoc        : `:`
 014 String       : `"X"`
 017 Sep          : `,`
-018 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+018 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V" ,"X":"X",```
 000 MapOpen      : `(`
@@ -7212,8 +7212,8 @@ okay: got expected error
 013 Assoc        : `:`
 014 String       : `"X"`
 017 Sep          : `,`
-018 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+018 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V"#<block>,"X":"X",```
 000 MapOpen      : `(`
@@ -7226,8 +7226,8 @@ okay: got expected error
 020 Assoc        : `:`
 021 String       : `"X"`
 024 Sep          : `,`
-025 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+025 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V"#inline
 ,"X":"X",```
@@ -7241,8 +7241,8 @@ okay: got expected error
 020 Assoc        : `:`
 021 String       : `"X"`
 024 Sep          : `,`
-025 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+025 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V","X":"X",```
 000 MapOpen      : `(`
@@ -7254,8 +7254,8 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"X"`
 016 Sep          : `,`
-017 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+017 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V","X":"X",
 ```
@@ -7269,8 +7269,8 @@ okay: got expected error
 013 String       : `"X"`
 016 Sep          : `,`
 017 Space        : "\n"
-018 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+018 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V","X":"X", ```
 000 MapOpen      : `(`
@@ -7283,8 +7283,8 @@ okay: got expected error
 013 String       : `"X"`
 016 Sep          : `,`
 017 Space        : ` `
-018 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+018 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V","X":"X",#<block>```
 000 MapOpen      : `(`
@@ -7297,8 +7297,8 @@ okay: got expected error
 013 String       : `"X"`
 016 Sep          : `,`
 017 BlockComment : `#<block>`
-025 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+025 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V","X":"X",#inline
 ```
@@ -7312,8 +7312,8 @@ okay: got expected error
 013 String       : `"X"`
 016 Sep          : `,`
 017 InlineComment: "#inline\n"
-025 Error        : syntax error: expected map entry key, got end of file
-okay: got expected error
+025 Error        : syntax error: expected entry or ')', got end of file
+FAIL: expected   : syntax error: expected map entry key, got end of file
 
 ```("K":"V","X":"X",)```
 000 MapOpen      : `(`
@@ -8082,65 +8082,65 @@ okay: got no error
 
 ```[```
 000 ArrayOpen    : `[`
-001 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+001 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```
 [```
 000 Space        : "\n"
 001 ArrayOpen    : `[`
-002 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+002 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ``` [```
 000 Space        : ` `
 001 ArrayOpen    : `[`
-002 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+002 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```#<block>[```
 000 BlockComment : `#<block>`
 008 ArrayOpen    : `[`
-009 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+009 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```#inline
 [```
 000 InlineComment: "#inline\n"
 008 ArrayOpen    : `[`
-009 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+009 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```[```
 000 ArrayOpen    : `[`
-001 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+001 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```[
 ```
 000 ArrayOpen    : `[`
 001 Space        : "\n"
-002 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+002 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```[ ```
 000 ArrayOpen    : `[`
 001 Space        : ` `
-002 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+002 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```[#<block>```
 000 ArrayOpen    : `[`
 001 BlockComment : `#<block>`
-009 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+009 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```[#inline
 ```
 000 ArrayOpen    : `[`
 001 InlineComment: "#inline\n"
-009 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+009 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V"```
 000 ArrayOpen    : `[`
@@ -8254,8 +8254,8 @@ okay: got expected error
 000 ArrayOpen    : `[`
 001 String       : `"V"`
 004 Sep          : `,`
-005 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+005 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```
 ["V",```
@@ -8263,24 +8263,24 @@ okay: got expected error
 001 ArrayOpen    : `[`
 002 String       : `"V"`
 005 Sep          : `,`
-006 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+006 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ``` ["V",```
 000 Space        : ` `
 001 ArrayOpen    : `[`
 002 String       : `"V"`
 005 Sep          : `,`
-006 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+006 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```#<block>["V",```
 000 BlockComment : `#<block>`
 008 ArrayOpen    : `[`
 009 String       : `"V"`
 012 Sep          : `,`
-013 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+013 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```#inline
 ["V",```
@@ -8288,15 +8288,15 @@ okay: got expected error
 008 ArrayOpen    : `[`
 009 String       : `"V"`
 012 Sep          : `,`
-013 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+013 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V",```
 000 ArrayOpen    : `[`
 001 String       : `"V"`
 004 Sep          : `,`
-005 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+005 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```[
 "V",```
@@ -8304,24 +8304,24 @@ okay: got expected error
 001 Space        : "\n"
 002 String       : `"V"`
 005 Sep          : `,`
-006 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+006 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```[ "V",```
 000 ArrayOpen    : `[`
 001 Space        : ` `
 002 String       : `"V"`
 005 Sep          : `,`
-006 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+006 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```[#<block>"V",```
 000 ArrayOpen    : `[`
 001 BlockComment : `#<block>`
 009 String       : `"V"`
 012 Sep          : `,`
-013 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+013 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```[#inline
 "V",```
@@ -8329,15 +8329,15 @@ okay: got expected error
 001 InlineComment: "#inline\n"
 009 String       : `"V"`
 012 Sep          : `,`
-013 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+013 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V",```
 000 ArrayOpen    : `[`
 001 String       : `"V"`
 004 Sep          : `,`
-005 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+005 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V"
 ,```
@@ -8345,24 +8345,24 @@ okay: got expected error
 001 String       : `"V"`
 004 Space        : "\n"
 005 Sep          : `,`
-006 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+006 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V" ,```
 000 ArrayOpen    : `[`
 001 String       : `"V"`
 004 Space        : ` `
 005 Sep          : `,`
-006 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+006 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V"#<block>,```
 000 ArrayOpen    : `[`
 001 String       : `"V"`
 004 BlockComment : `#<block>`
 012 Sep          : `,`
-013 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+013 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V"#inline
 ,```
@@ -8370,15 +8370,15 @@ okay: got expected error
 001 String       : `"V"`
 004 InlineComment: "#inline\n"
 012 Sep          : `,`
-013 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+013 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V",```
 000 ArrayOpen    : `[`
 001 String       : `"V"`
 004 Sep          : `,`
-005 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+005 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V",
 ```
@@ -8386,24 +8386,24 @@ okay: got expected error
 001 String       : `"V"`
 004 Sep          : `,`
 005 Space        : "\n"
-006 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+006 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V", ```
 000 ArrayOpen    : `[`
 001 String       : `"V"`
 004 Sep          : `,`
 005 Space        : ` `
-006 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+006 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V",#<block>```
 000 ArrayOpen    : `[`
 001 String       : `"V"`
 004 Sep          : `,`
 005 BlockComment : `#<block>`
-013 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+013 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V",#inline
 ```
@@ -8411,8 +8411,8 @@ okay: got expected error
 001 String       : `"V"`
 004 Sep          : `,`
 005 InlineComment: "#inline\n"
-013 Error        : syntax error: expected array element, got end of file
-okay: got expected error
+013 Error        : syntax error: expected element or ']', got end of file
+FAIL: expected   : syntax error: expected array element, got end of file
 
 ```["V","X"```
 000 ArrayOpen    : `[`
@@ -9683,65 +9683,65 @@ okay: got no error
 
 ```{```
 000 StructOpen   : `{`
-001 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+001 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```
 {```
 000 Space        : "\n"
 001 StructOpen   : `{`
-002 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+002 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ``` {```
 000 Space        : ` `
 001 StructOpen   : `{`
-002 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+002 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```#<block>{```
 000 BlockComment : `#<block>`
 008 StructOpen   : `{`
-009 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+009 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```#inline
 {```
 000 InlineComment: "#inline\n"
 008 StructOpen   : `{`
-009 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+009 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{```
 000 StructOpen   : `{`
-001 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+001 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{
 ```
 000 StructOpen   : `{`
 001 Space        : "\n"
-002 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+002 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{ ```
 000 StructOpen   : `{`
 001 Space        : ` `
-002 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+002 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{#<block>```
 000 StructOpen   : `{`
 001 BlockComment : `#<block>`
-009 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+009 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{#inline
 ```
 000 StructOpen   : `{`
 001 InlineComment: "#inline\n"
-009 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+009 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I```
 000 StructOpen   : `{`
@@ -10251,8 +10251,8 @@ okay: got expected error
 002 Assoc        : `:`
 003 String       : `"V"`
 006 Sep          : `,`
-007 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+007 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```
 {I:"V",```
@@ -10262,8 +10262,8 @@ okay: got expected error
 003 Assoc        : `:`
 004 String       : `"V"`
 007 Sep          : `,`
-008 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+008 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ``` {I:"V",```
 000 Space        : ` `
@@ -10272,8 +10272,8 @@ okay: got expected error
 003 Assoc        : `:`
 004 String       : `"V"`
 007 Sep          : `,`
-008 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+008 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```#<block>{I:"V",```
 000 BlockComment : `#<block>`
@@ -10282,8 +10282,8 @@ okay: got expected error
 010 Assoc        : `:`
 011 String       : `"V"`
 014 Sep          : `,`
-015 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+015 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```#inline
 {I:"V",```
@@ -10293,8 +10293,8 @@ okay: got expected error
 010 Assoc        : `:`
 011 String       : `"V"`
 014 Sep          : `,`
-015 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+015 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",```
 000 StructOpen   : `{`
@@ -10302,8 +10302,8 @@ okay: got expected error
 002 Assoc        : `:`
 003 String       : `"V"`
 006 Sep          : `,`
-007 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+007 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{
 I:"V",```
@@ -10313,8 +10313,8 @@ I:"V",```
 003 Assoc        : `:`
 004 String       : `"V"`
 007 Sep          : `,`
-008 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+008 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{ I:"V",```
 000 StructOpen   : `{`
@@ -10323,8 +10323,8 @@ okay: got expected error
 003 Assoc        : `:`
 004 String       : `"V"`
 007 Sep          : `,`
-008 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+008 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{#<block>I:"V",```
 000 StructOpen   : `{`
@@ -10333,8 +10333,8 @@ okay: got expected error
 010 Assoc        : `:`
 011 String       : `"V"`
 014 Sep          : `,`
-015 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+015 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{#inline
 I:"V",```
@@ -10344,8 +10344,8 @@ I:"V",```
 010 Assoc        : `:`
 011 String       : `"V"`
 014 Sep          : `,`
-015 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+015 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",```
 000 StructOpen   : `{`
@@ -10353,8 +10353,8 @@ okay: got expected error
 002 Assoc        : `:`
 003 String       : `"V"`
 006 Sep          : `,`
-007 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+007 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I
 :"V",```
@@ -10364,8 +10364,8 @@ okay: got expected error
 003 Assoc        : `:`
 004 String       : `"V"`
 007 Sep          : `,`
-008 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+008 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I :"V",```
 000 StructOpen   : `{`
@@ -10374,8 +10374,8 @@ okay: got expected error
 003 Assoc        : `:`
 004 String       : `"V"`
 007 Sep          : `,`
-008 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+008 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I#<block>:"V",```
 000 StructOpen   : `{`
@@ -10384,8 +10384,8 @@ okay: got expected error
 010 Assoc        : `:`
 011 String       : `"V"`
 014 Sep          : `,`
-015 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+015 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I#inline
 :"V",```
@@ -10395,8 +10395,8 @@ okay: got expected error
 010 Assoc        : `:`
 011 String       : `"V"`
 014 Sep          : `,`
-015 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+015 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",```
 000 StructOpen   : `{`
@@ -10404,8 +10404,8 @@ okay: got expected error
 002 Assoc        : `:`
 003 String       : `"V"`
 006 Sep          : `,`
-007 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+007 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:
 "V",```
@@ -10415,8 +10415,8 @@ okay: got expected error
 003 Space        : "\n"
 004 String       : `"V"`
 007 Sep          : `,`
-008 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+008 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I: "V",```
 000 StructOpen   : `{`
@@ -10425,8 +10425,8 @@ okay: got expected error
 003 Space        : ` `
 004 String       : `"V"`
 007 Sep          : `,`
-008 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+008 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:#<block>"V",```
 000 StructOpen   : `{`
@@ -10435,8 +10435,8 @@ okay: got expected error
 003 BlockComment : `#<block>`
 011 String       : `"V"`
 014 Sep          : `,`
-015 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+015 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:#inline
 "V",```
@@ -10446,8 +10446,8 @@ okay: got expected error
 003 InlineComment: "#inline\n"
 011 String       : `"V"`
 014 Sep          : `,`
-015 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+015 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",```
 000 StructOpen   : `{`
@@ -10455,8 +10455,8 @@ okay: got expected error
 002 Assoc        : `:`
 003 String       : `"V"`
 006 Sep          : `,`
-007 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+007 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V"
 ,```
@@ -10466,8 +10466,8 @@ okay: got expected error
 003 String       : `"V"`
 006 Space        : "\n"
 007 Sep          : `,`
-008 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+008 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V" ,```
 000 StructOpen   : `{`
@@ -10476,8 +10476,8 @@ okay: got expected error
 003 String       : `"V"`
 006 Space        : ` `
 007 Sep          : `,`
-008 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+008 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V"#<block>,```
 000 StructOpen   : `{`
@@ -10486,8 +10486,8 @@ okay: got expected error
 003 String       : `"V"`
 006 BlockComment : `#<block>`
 014 Sep          : `,`
-015 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+015 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V"#inline
 ,```
@@ -10497,8 +10497,8 @@ okay: got expected error
 003 String       : `"V"`
 006 InlineComment: "#inline\n"
 014 Sep          : `,`
-015 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+015 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",```
 000 StructOpen   : `{`
@@ -10506,8 +10506,8 @@ okay: got expected error
 002 Assoc        : `:`
 003 String       : `"V"`
 006 Sep          : `,`
-007 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+007 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",
 ```
@@ -10517,8 +10517,8 @@ okay: got expected error
 003 String       : `"V"`
 006 Sep          : `,`
 007 Space        : "\n"
-008 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+008 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V", ```
 000 StructOpen   : `{`
@@ -10527,8 +10527,8 @@ okay: got expected error
 003 String       : `"V"`
 006 Sep          : `,`
 007 Space        : ` `
-008 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+008 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",#<block>```
 000 StructOpen   : `{`
@@ -10537,8 +10537,8 @@ okay: got expected error
 003 String       : `"V"`
 006 Sep          : `,`
 007 BlockComment : `#<block>`
-015 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+015 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",#inline
 ```
@@ -10548,8 +10548,8 @@ okay: got expected error
 003 String       : `"V"`
 006 Sep          : `,`
 007 InlineComment: "#inline\n"
-015 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+015 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",}```
 000 StructOpen   : `{`
@@ -12353,8 +12353,8 @@ okay: got expected error
 008 Assoc        : `:`
 009 String       : `"X"`
 012 Sep          : `,`
-013 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+013 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```
 {I:"V",X:"X",```
@@ -12368,8 +12368,8 @@ okay: got expected error
 009 Assoc        : `:`
 010 String       : `"X"`
 013 Sep          : `,`
-014 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+014 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ``` {I:"V",X:"X",```
 000 Space        : ` `
@@ -12382,8 +12382,8 @@ okay: got expected error
 009 Assoc        : `:`
 010 String       : `"X"`
 013 Sep          : `,`
-014 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+014 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```#<block>{I:"V",X:"X",```
 000 BlockComment : `#<block>`
@@ -12396,8 +12396,8 @@ okay: got expected error
 016 Assoc        : `:`
 017 String       : `"X"`
 020 Sep          : `,`
-021 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+021 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```#inline
 {I:"V",X:"X",```
@@ -12411,8 +12411,8 @@ okay: got expected error
 016 Assoc        : `:`
 017 String       : `"X"`
 020 Sep          : `,`
-021 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+021 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",X:"X",```
 000 StructOpen   : `{`
@@ -12424,8 +12424,8 @@ okay: got expected error
 008 Assoc        : `:`
 009 String       : `"X"`
 012 Sep          : `,`
-013 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+013 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{
 I:"V",X:"X",```
@@ -12439,8 +12439,8 @@ I:"V",X:"X",```
 009 Assoc        : `:`
 010 String       : `"X"`
 013 Sep          : `,`
-014 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+014 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{ I:"V",X:"X",```
 000 StructOpen   : `{`
@@ -12453,8 +12453,8 @@ okay: got expected error
 009 Assoc        : `:`
 010 String       : `"X"`
 013 Sep          : `,`
-014 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+014 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{#<block>I:"V",X:"X",```
 000 StructOpen   : `{`
@@ -12467,8 +12467,8 @@ okay: got expected error
 016 Assoc        : `:`
 017 String       : `"X"`
 020 Sep          : `,`
-021 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+021 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{#inline
 I:"V",X:"X",```
@@ -12482,8 +12482,8 @@ I:"V",X:"X",```
 016 Assoc        : `:`
 017 String       : `"X"`
 020 Sep          : `,`
-021 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+021 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",X:"X",```
 000 StructOpen   : `{`
@@ -12495,8 +12495,8 @@ okay: got expected error
 008 Assoc        : `:`
 009 String       : `"X"`
 012 Sep          : `,`
-013 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+013 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I
 :"V",X:"X",```
@@ -12510,8 +12510,8 @@ okay: got expected error
 009 Assoc        : `:`
 010 String       : `"X"`
 013 Sep          : `,`
-014 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+014 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I :"V",X:"X",```
 000 StructOpen   : `{`
@@ -12524,8 +12524,8 @@ okay: got expected error
 009 Assoc        : `:`
 010 String       : `"X"`
 013 Sep          : `,`
-014 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+014 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I#<block>:"V",X:"X",```
 000 StructOpen   : `{`
@@ -12538,8 +12538,8 @@ okay: got expected error
 016 Assoc        : `:`
 017 String       : `"X"`
 020 Sep          : `,`
-021 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+021 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I#inline
 :"V",X:"X",```
@@ -12553,8 +12553,8 @@ okay: got expected error
 016 Assoc        : `:`
 017 String       : `"X"`
 020 Sep          : `,`
-021 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+021 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",X:"X",```
 000 StructOpen   : `{`
@@ -12566,8 +12566,8 @@ okay: got expected error
 008 Assoc        : `:`
 009 String       : `"X"`
 012 Sep          : `,`
-013 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+013 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:
 "V",X:"X",```
@@ -12581,8 +12581,8 @@ okay: got expected error
 009 Assoc        : `:`
 010 String       : `"X"`
 013 Sep          : `,`
-014 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+014 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I: "V",X:"X",```
 000 StructOpen   : `{`
@@ -12595,8 +12595,8 @@ okay: got expected error
 009 Assoc        : `:`
 010 String       : `"X"`
 013 Sep          : `,`
-014 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+014 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:#<block>"V",X:"X",```
 000 StructOpen   : `{`
@@ -12609,8 +12609,8 @@ okay: got expected error
 016 Assoc        : `:`
 017 String       : `"X"`
 020 Sep          : `,`
-021 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+021 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:#inline
 "V",X:"X",```
@@ -12624,8 +12624,8 @@ okay: got expected error
 016 Assoc        : `:`
 017 String       : `"X"`
 020 Sep          : `,`
-021 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+021 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",X:"X",```
 000 StructOpen   : `{`
@@ -12637,8 +12637,8 @@ okay: got expected error
 008 Assoc        : `:`
 009 String       : `"X"`
 012 Sep          : `,`
-013 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+013 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V"
 ,X:"X",```
@@ -12652,8 +12652,8 @@ okay: got expected error
 009 Assoc        : `:`
 010 String       : `"X"`
 013 Sep          : `,`
-014 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+014 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V" ,X:"X",```
 000 StructOpen   : `{`
@@ -12666,8 +12666,8 @@ okay: got expected error
 009 Assoc        : `:`
 010 String       : `"X"`
 013 Sep          : `,`
-014 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+014 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V"#<block>,X:"X",```
 000 StructOpen   : `{`
@@ -12680,8 +12680,8 @@ okay: got expected error
 016 Assoc        : `:`
 017 String       : `"X"`
 020 Sep          : `,`
-021 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+021 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V"#inline
 ,X:"X",```
@@ -12695,8 +12695,8 @@ okay: got expected error
 016 Assoc        : `:`
 017 String       : `"X"`
 020 Sep          : `,`
-021 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+021 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",X:"X",```
 000 StructOpen   : `{`
@@ -12708,8 +12708,8 @@ okay: got expected error
 008 Assoc        : `:`
 009 String       : `"X"`
 012 Sep          : `,`
-013 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+013 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",X:"X",
 ```
@@ -12723,8 +12723,8 @@ okay: got expected error
 009 String       : `"X"`
 012 Sep          : `,`
 013 Space        : "\n"
-014 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+014 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",X:"X", ```
 000 StructOpen   : `{`
@@ -12737,8 +12737,8 @@ okay: got expected error
 009 String       : `"X"`
 012 Sep          : `,`
 013 Space        : ` `
-014 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+014 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",X:"X",#<block>```
 000 StructOpen   : `{`
@@ -12751,8 +12751,8 @@ okay: got expected error
 009 String       : `"X"`
 012 Sep          : `,`
 013 BlockComment : `#<block>`
-021 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+021 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",X:"X",#inline
 ```
@@ -12766,8 +12766,8 @@ okay: got expected error
 009 String       : `"X"`
 012 Sep          : `,`
 013 InlineComment: "#inline\n"
-021 Error        : syntax error: expected struct field name, got end of file
-okay: got expected error
+021 Error        : syntax error: expected field or '}', got end of file
+FAIL: expected   : syntax error: expected struct field name, got end of file
 
 ```{I:"V",X:"X",}```
 000 StructOpen   : `{`
