@@ -50,42 +50,46 @@ func (e *Encoder) encodeValue(v any) error {
 	default:
 		return fmt.Errorf("cannot encode type %T", v)
 	case nil:
-		e.w.WriteString("null")
+		e.w.WriteString(rNull)
 	case bool:
 		if v {
-			e.w.WriteString("true")
+			e.w.WriteString(rTrue)
 		} else {
-			e.w.WriteString("false")
+			e.w.WriteString(rFalse)
 		}
 	case int64:
 		e.w.WriteString(strconv.FormatInt(v, 10))
 	case float64:
 		if v == math.Inf(1) {
-			e.w.WriteString("inf")
+			e.w.WriteString(rInf)
 		} else if v == math.Inf(-1) {
-			e.w.WriteString("-inf")
+			e.w.WriteByte(byte(rNeg))
+			e.w.WriteString(rInf)
 		} else if v != v {
-			e.w.WriteString("nan")
+			e.w.WriteString(rNaN)
 		} else {
 			s := strconv.FormatFloat(v, 'f', -1, 64)
-			if strings.IndexByte(s, '.') < 0 {
-				s += ".0" // Force decimal.
-			}
 			e.w.WriteString(s)
+			if strings.IndexRune(s, rDecimal) < 0 {
+				// Force decimal.
+				e.w.WriteRune(rDecimal)
+				e.w.WriteByte('0')
+			}
 		}
 	case string:
-		e.w.WriteByte('"')
+		e.w.WriteRune(rString)
 		for _, r := range v {
 			switch r {
-			case '"', '\\':
-				e.w.WriteByte('\\')
+			case rString, rEscape:
+				e.w.WriteRune(rEscape)
 			}
 			e.w.WriteRune(r)
 		}
-		e.w.WriteByte('"')
+		e.w.WriteRune(rString)
 	case []byte:
 		if len(v) == 0 {
-			e.w.WriteString("||")
+			e.w.WriteRune(rBlob)
+			e.w.WriteRune(rBlob)
 			break
 		}
 		e.push()
@@ -94,12 +98,12 @@ func (e *Encoder) encodeValue(v any) error {
 		// 0 2                                                  3               9
 		var buf = make([]byte, 70)
 		for i := range buf {
-			buf[i] = ' '
+			buf[i] = rSpace
 		}
-		buf[0] = '|'
-		buf[51] = '|'
-		buf[52] = '#'
-		buf[69] = '#'
+		buf[0] = byte(rBlob)
+		buf[51] = byte(rBlob)
+		buf[52] = byte(rInlineComment)
+		buf[69] = byte(rInlineComment)
 		for line := 0; line < (len(v)-1)/16+1; line++ {
 			e.newline()
 			for n := 0; n < 16; n++ {
@@ -113,9 +117,9 @@ func (e *Encoder) encodeValue(v any) error {
 					hex.Encode(buf[j:], v[i:i+1])
 					buf[k] = toChar(v[i])
 				} else {
-					buf[j] = ' '
-					buf[j+1] = ' '
-					buf[k] = ' '
+					buf[j] = rSpace
+					buf[j+1] = rSpace
+					buf[k] = rSpace
 				}
 			}
 			e.w.Write(buf)
@@ -123,20 +127,20 @@ func (e *Encoder) encodeValue(v any) error {
 		e.pop()
 		e.newline()
 	case []any:
-		e.w.WriteByte('[')
+		e.w.WriteRune(rArrayOpen)
 		e.push()
 		for _, v := range v {
 			e.newline()
 			if err := e.encodeValue(v); err != nil {
 				return err
 			}
-			e.w.WriteByte(',')
+			e.w.WriteRune(rSep)
 		}
 		e.pop()
 		e.newline()
-		e.w.WriteByte(']')
+		e.w.WriteRune(rArrayClose)
 	case map[any]any:
-		e.w.WriteByte('(')
+		e.w.WriteRune(rMapOpen)
 		e.push()
 		err := mapForEach(v, func(k, v any) error {
 			e.newline()
@@ -144,11 +148,12 @@ func (e *Encoder) encodeValue(v any) error {
 			if err := e.encodeValue(k); err != nil {
 				return err
 			}
-			e.w.WriteString(": ")
+			e.w.WriteRune(rAssoc)
+			e.w.WriteByte(rSpace)
 			if err := e.encodeValue(v); err != nil {
 				return err
 			}
-			e.w.WriteByte(',')
+			e.w.WriteRune(rSep)
 			return nil
 		})
 		if err != nil {
@@ -156,20 +161,21 @@ func (e *Encoder) encodeValue(v any) error {
 		}
 		e.pop()
 		e.newline()
-		e.w.WriteByte(')')
+		e.w.WriteRune(rMapClose)
 	case map[string]any:
-		e.w.WriteByte('{')
+		e.w.WriteRune(rStructOpen)
 		e.push()
 		err := structForEach(v, func(i string, v any) error {
 			e.newline()
 			if err := e.encodeIdent(i); err != nil {
 				return err
 			}
-			e.w.WriteString(": ")
+			e.w.WriteRune(rAssoc)
+			e.w.WriteByte(rSpace)
 			if err := e.encodeValue(v); err != nil {
 				return err
 			}
-			e.w.WriteByte(',')
+			e.w.WriteRune(rSep)
 			return nil
 		})
 		if err != nil {
@@ -177,7 +183,7 @@ func (e *Encoder) encodeValue(v any) error {
 		}
 		e.pop()
 		e.newline()
-		e.w.WriteByte('}')
+		e.w.WriteRune(rStructClose)
 	}
 	return nil
 }

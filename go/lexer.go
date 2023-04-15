@@ -33,6 +33,7 @@ func isIdent(r rune) bool {
 // Rune and string constants.
 const (
 	rError           rune   = -1
+	rSpace           byte   = ' '
 	rInlineComment   rune   = '#'
 	rBlockComment    string = "#<"
 	rBlockCommentEnd rune   = '>'
