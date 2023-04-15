@@ -415,7 +415,7 @@ func (err expectedError) Error() string {
 // If the underlying reader produces an error, it is displayed instead.
 func (l *lexer) expected(format string, a ...any) state {
 	if err := l.r.Err(); err != nil && err != io.EOF {
-		return l.error("reader", fmt.Errorf("%w", err))
+		return l.error("reader", err)
 	}
 	s := l.bytes()
 	if s == "" {
