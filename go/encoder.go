@@ -202,7 +202,12 @@ func mapForEach(m map[any]any, f func(k, v any) error) error {
 		keys = append(keys, key)
 	}
 	sort.Slice(keys, func(i, j int) bool {
-		return typeIndex(keys[i]) < typeIndex(keys[j])
+		ti := typeIndex(keys[i])
+		tj := typeIndex(keys[j])
+		if ti == tj {
+			return typeCmp(keys[i], keys[j])
+		}
+		return ti < tj
 	})
 	for _, key := range keys {
 		if err := f(key, m[key]); err != nil {
@@ -228,12 +233,25 @@ func typeIndex(v any) int {
 		return 5
 	case []byte:
 		return 6
-	case []any:
-		return 7
-	case map[any]any:
-		return 8
-	case map[string]any:
-		return 9
+	}
+}
+
+func typeCmp(i, j any) bool {
+	switch i := i.(type) {
+	default:
+		return false
+	case nil:
+		return false
+	case bool:
+		return !i && j.(bool)
+	case int64:
+		return i < j.(int64)
+	case float64:
+		return i < j.(float64)
+	case string:
+		return i < j.(string)
+	case []byte:
+		return bytes.Compare(i, j.([]byte)) < 0
 	}
 }
 
