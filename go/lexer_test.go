@@ -3,7 +3,6 @@ package rod
 import (
 	"bufio"
 	"bytes"
-	"errors"
 	"fmt"
 	"io"
 	"math"
@@ -83,8 +82,6 @@ var testPrimitives = map[string]result{
 	`|0X|`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "hexdecimal digit", Got: "`0X`"}}},
 }
 
-var errTODO = errors.New("TODO")
-
 // Map a composite value string to whether it produces an error.
 //
 // Certain tokens within each string are replaced to produces more combinations.
@@ -95,31 +92,29 @@ var errTODO = errors.New("TODO")
 //     space : Replace by spaces.
 //
 var testComposites = map[string]result{
-	`[`:             {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "element or ']'", Got: "end of file"}}},
-	`[ ]`:           {_array{}, nil},
-	`[ "V"`:         {nil, lexerError{Type: "reader", Err: io.ErrUnexpectedEOF}},
-	`[ "V" ]`:       {_array{"V"}, nil},
-	`[ "V" ,`:       {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "element or ']'", Got: "end of file"}}},
-	`[ "V" , ]`:     {_array{"V"}, nil},
-	`[ "V" , "X"`:   {nil, lexerError{Type: "reader", Err: io.ErrUnexpectedEOF}},
-	`[ "V" , "X"]`:  {_array{"V", "X"}, nil},
-	`[ "V" , "X",]`: {_array{"V", "X"}, nil},
-	`(`:             {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "entry or ')'", Got: "end of file"}}},
-	`( )`:           {_map{}, nil},
-	`( "K"`:         {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "end of file"}}},
-	`( "K" )`:       {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "')'"}}},
-	`( "K" :`:       {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "end of file"}}},
-	`( "K" : )`:     {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "')'"}}},
-	`( "K" : "V"`:   {nil, lexerError{Type: "reader", Err: io.ErrUnexpectedEOF}},
-	// `( "K" : "V"`:            {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "',' or ')'", Got: "end of file"}}},
-	`( "K" : "V" )`:        {_map{"K": "V"}, nil},
-	`( "K" : "V" ,`:        {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "entry or ')'", Got: "end of file"}}},
-	`( "K" : "V" , )`:      {_map{"K": "V"}, nil},
-	`( "K" : "V" ,"X"`:     {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "end of file"}}},
-	`( "K" : "V" ,"X")`:    {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "')'"}}},
-	`( "K" : "V" ,"X":`:    {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "end of file"}}},
-	`( "K" : "V" ,"X":"X"`: {nil, lexerError{Type: "reader", Err: io.ErrUnexpectedEOF}},
-	// `( "K" : "V" ,"X":"X"`:   {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "',' or ')'", Got: "end of file"}}},
+	`[`:                      {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "element or ']'", Got: "end of file"}}},
+	`[ ]`:                    {_array{}, nil},
+	`[ "V"`:                  {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "',' or ']'", Got: "end of file"}}},
+	`[ "V" ]`:                {_array{"V"}, nil},
+	`[ "V" ,`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "element or ']'", Got: "end of file"}}},
+	`[ "V" , ]`:              {_array{"V"}, nil},
+	`[ "V" , "X"`:            {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "',' or ']'", Got: "end of file"}}},
+	`[ "V" , "X"]`:           {_array{"V", "X"}, nil},
+	`[ "V" , "X",]`:          {_array{"V", "X"}, nil},
+	`(`:                      {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "entry or ')'", Got: "end of file"}}},
+	`( )`:                    {_map{}, nil},
+	`( "K"`:                  {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "end of file"}}},
+	`( "K" )`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "')'"}}},
+	`( "K" :`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "end of file"}}},
+	`( "K" : )`:              {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "')'"}}},
+	`( "K" : "V"`:            {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "',' or ')'", Got: "end of file"}}},
+	`( "K" : "V" )`:          {_map{"K": "V"}, nil},
+	`( "K" : "V" ,`:          {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "entry or ')'", Got: "end of file"}}},
+	`( "K" : "V" , )`:        {_map{"K": "V"}, nil},
+	`( "K" : "V" ,"X"`:       {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "end of file"}}},
+	`( "K" : "V" ,"X")`:      {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "')'"}}},
+	`( "K" : "V" ,"X":`:      {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "end of file"}}},
+	`( "K" : "V" ,"X":"X"`:   {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "',' or ')'", Got: "end of file"}}},
 	`( "K" : "V" ,"X":"X")`:  {_map{"K": "V", "X": "X"}, nil},
 	`( "K" : "V" ,"X":"X",`:  {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "entry or ')'", Got: "end of file"}}},
 	`( "K" : "V" ,"X":"X",)`: {_map{"K": "V", "X": "X"}, nil},
@@ -129,19 +124,18 @@ var testComposites = map[string]result{
 	`{ I }`:                  {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "'}'"}}},
 	`{ I :`:                  {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "end of file"}}},
 	`{ I : }`:                {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "'}'"}}},
-	`{ I : "V"`:              {nil, lexerError{Type: "reader", Err: io.ErrUnexpectedEOF}},
-	// `{ I : "V"`:              {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "',' or '}'", Got: "end of file"}}},
-	`{ I : "V" }`:        {_struct{"I": "V"}, nil},
-	`{ I : "V" ,`:        {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "field or '}'", Got: "end of file"}}},
-	`{ I : "V" , }`:      {_struct{"I": "V"}, nil},
-	`{ I : "V" ,"X"`:     {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "identifier", Got: "'\"'"}}},
-	`{ I : "V" ,X`:       {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "end of file"}}},
-	`{ I : "V" ,X}`:      {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "'}'"}}},
-	`{ I : "V" ,X:`:      {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "end of file"}}},
-	`{ I : "V" ,X:"X"`:   {nil, lexerError{Type: "reader", Err: io.ErrUnexpectedEOF}},
-	`{ I : "V" ,X:"X"}`:  {_struct{"I": "V", "X": "X"}, nil},
-	`{ I : "V" ,X:"X",`:  {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "field or '}'", Got: "end of file"}}},
-	`{ I : "V" ,X:"X",}`: {_struct{"I": "V", "X": "X"}, nil},
+	`{ I : "V"`:              {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "',' or '}'", Got: "end of file"}}},
+	`{ I : "V" }`:            {_struct{"I": "V"}, nil},
+	`{ I : "V" ,`:            {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "field or '}'", Got: "end of file"}}},
+	`{ I : "V" , }`:          {_struct{"I": "V"}, nil},
+	`{ I : "V" ,"X"`:         {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "identifier", Got: "'\"'"}}},
+	`{ I : "V" ,X`:           {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "end of file"}}},
+	`{ I : "V" ,X}`:          {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "':'", Got: "'}'"}}},
+	`{ I : "V" ,X:`:          {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "end of file"}}},
+	`{ I : "V" ,X:"X"`:       {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "',' or '}'", Got: "end of file"}}},
+	`{ I : "V" ,X:"X"}`:      {_struct{"I": "V", "X": "X"}, nil},
+	`{ I : "V" ,X:"X",`:      {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "field or '}'", Got: "end of file"}}},
+	`{ I : "V" ,X:"X",}`:     {_struct{"I": "V", "X": "X"}, nil},
 }
 
 var testExtra = map[string]error{

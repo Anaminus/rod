@@ -3804,7 +3804,7 @@ okay: got expected error
 001 String       : `"K"`
 004 Assoc        : `:`
 005 String       : `"V"`
-008 Error        : reader error: unexpected EOF
+008 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```
@@ -3814,7 +3814,7 @@ okay: got expected error
 002 String       : `"K"`
 005 Assoc        : `:`
 006 String       : `"V"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ``` ("K":"V"```
@@ -3823,7 +3823,7 @@ okay: got expected error
 002 String       : `"K"`
 005 Assoc        : `:`
 006 String       : `"V"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```#<block>("K":"V"```
@@ -3832,7 +3832,7 @@ okay: got expected error
 009 String       : `"K"`
 012 Assoc        : `:`
 013 String       : `"V"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```#inline
@@ -3842,7 +3842,7 @@ okay: got expected error
 009 String       : `"K"`
 012 Assoc        : `:`
 013 String       : `"V"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V"```
@@ -3850,7 +3850,7 @@ okay: got expected error
 001 String       : `"K"`
 004 Assoc        : `:`
 005 String       : `"V"`
-008 Error        : reader error: unexpected EOF
+008 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```(
@@ -3860,7 +3860,7 @@ okay: got expected error
 002 String       : `"K"`
 005 Assoc        : `:`
 006 String       : `"V"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```( "K":"V"```
@@ -3869,7 +3869,7 @@ okay: got expected error
 002 String       : `"K"`
 005 Assoc        : `:`
 006 String       : `"V"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```(#<block>"K":"V"```
@@ -3878,7 +3878,7 @@ okay: got expected error
 009 String       : `"K"`
 012 Assoc        : `:`
 013 String       : `"V"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```(#inline
@@ -3888,7 +3888,7 @@ okay: got expected error
 009 String       : `"K"`
 012 Assoc        : `:`
 013 String       : `"V"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V"```
@@ -3896,7 +3896,7 @@ okay: got expected error
 001 String       : `"K"`
 004 Assoc        : `:`
 005 String       : `"V"`
-008 Error        : reader error: unexpected EOF
+008 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K"
@@ -3906,7 +3906,7 @@ okay: got expected error
 004 Space        : "\n"
 005 Assoc        : `:`
 006 String       : `"V"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K" :"V"```
@@ -3915,7 +3915,7 @@ okay: got expected error
 004 Space        : ` `
 005 Assoc        : `:`
 006 String       : `"V"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K"#<block>:"V"```
@@ -3924,7 +3924,7 @@ okay: got expected error
 004 BlockComment : `#<block>`
 012 Assoc        : `:`
 013 String       : `"V"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K"#inline
@@ -3934,7 +3934,7 @@ okay: got expected error
 004 InlineComment: "#inline\n"
 012 Assoc        : `:`
 013 String       : `"V"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V"```
@@ -3942,7 +3942,7 @@ okay: got expected error
 001 String       : `"K"`
 004 Assoc        : `:`
 005 String       : `"V"`
-008 Error        : reader error: unexpected EOF
+008 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":
@@ -3952,7 +3952,7 @@ okay: got expected error
 004 Assoc        : `:`
 005 Space        : "\n"
 006 String       : `"V"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K": "V"```
@@ -3961,7 +3961,7 @@ okay: got expected error
 004 Assoc        : `:`
 005 Space        : ` `
 006 String       : `"V"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":#<block>"V"```
@@ -3970,7 +3970,7 @@ okay: got expected error
 004 Assoc        : `:`
 005 BlockComment : `#<block>`
 013 String       : `"V"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":#inline
@@ -3980,7 +3980,7 @@ okay: got expected error
 004 Assoc        : `:`
 005 InlineComment: "#inline\n"
 013 String       : `"V"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V"```
@@ -3988,7 +3988,7 @@ okay: got expected error
 001 String       : `"K"`
 004 Assoc        : `:`
 005 String       : `"V"`
-008 Error        : reader error: unexpected EOF
+008 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V"
@@ -3998,7 +3998,7 @@ okay: got expected error
 004 Assoc        : `:`
 005 String       : `"V"`
 008 Space        : "\n"
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V" ```
@@ -4007,7 +4007,7 @@ okay: got expected error
 004 Assoc        : `:`
 005 String       : `"V"`
 008 Space        : ` `
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V"#<block>```
@@ -4016,7 +4016,7 @@ okay: got expected error
 004 Assoc        : `:`
 005 String       : `"V"`
 008 BlockComment : `#<block>`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V"#inline
@@ -4026,7 +4026,7 @@ okay: got expected error
 004 Assoc        : `:`
 005 String       : `"V"`
 008 InlineComment: "#inline\n"
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V")```
@@ -6076,7 +6076,7 @@ okay: got expected error
 009 String       : `"X"`
 012 Assoc        : `:`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```
@@ -6090,7 +6090,7 @@ okay: got expected error
 010 String       : `"X"`
 013 Assoc        : `:`
 014 String       : `"X"`
-017 Error        : reader error: unexpected EOF
+017 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ``` ("K":"V","X":"X"```
@@ -6103,7 +6103,7 @@ okay: got expected error
 010 String       : `"X"`
 013 Assoc        : `:`
 014 String       : `"X"`
-017 Error        : reader error: unexpected EOF
+017 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```#<block>("K":"V","X":"X"```
@@ -6116,7 +6116,7 @@ okay: got expected error
 017 String       : `"X"`
 020 Assoc        : `:`
 021 String       : `"X"`
-024 Error        : reader error: unexpected EOF
+024 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```#inline
@@ -6130,7 +6130,7 @@ okay: got expected error
 017 String       : `"X"`
 020 Assoc        : `:`
 021 String       : `"X"`
-024 Error        : reader error: unexpected EOF
+024 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V","X":"X"```
@@ -6142,7 +6142,7 @@ okay: got expected error
 009 String       : `"X"`
 012 Assoc        : `:`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```(
@@ -6156,7 +6156,7 @@ okay: got expected error
 010 String       : `"X"`
 013 Assoc        : `:`
 014 String       : `"X"`
-017 Error        : reader error: unexpected EOF
+017 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```( "K":"V","X":"X"```
@@ -6169,7 +6169,7 @@ okay: got expected error
 010 String       : `"X"`
 013 Assoc        : `:`
 014 String       : `"X"`
-017 Error        : reader error: unexpected EOF
+017 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```(#<block>"K":"V","X":"X"```
@@ -6182,7 +6182,7 @@ okay: got expected error
 017 String       : `"X"`
 020 Assoc        : `:`
 021 String       : `"X"`
-024 Error        : reader error: unexpected EOF
+024 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```(#inline
@@ -6196,7 +6196,7 @@ okay: got expected error
 017 String       : `"X"`
 020 Assoc        : `:`
 021 String       : `"X"`
-024 Error        : reader error: unexpected EOF
+024 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V","X":"X"```
@@ -6208,7 +6208,7 @@ okay: got expected error
 009 String       : `"X"`
 012 Assoc        : `:`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K"
@@ -6222,7 +6222,7 @@ okay: got expected error
 010 String       : `"X"`
 013 Assoc        : `:`
 014 String       : `"X"`
-017 Error        : reader error: unexpected EOF
+017 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K" :"V","X":"X"```
@@ -6235,7 +6235,7 @@ okay: got expected error
 010 String       : `"X"`
 013 Assoc        : `:`
 014 String       : `"X"`
-017 Error        : reader error: unexpected EOF
+017 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K"#<block>:"V","X":"X"```
@@ -6248,7 +6248,7 @@ okay: got expected error
 017 String       : `"X"`
 020 Assoc        : `:`
 021 String       : `"X"`
-024 Error        : reader error: unexpected EOF
+024 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K"#inline
@@ -6262,7 +6262,7 @@ okay: got expected error
 017 String       : `"X"`
 020 Assoc        : `:`
 021 String       : `"X"`
-024 Error        : reader error: unexpected EOF
+024 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V","X":"X"```
@@ -6274,7 +6274,7 @@ okay: got expected error
 009 String       : `"X"`
 012 Assoc        : `:`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":
@@ -6288,7 +6288,7 @@ okay: got expected error
 010 String       : `"X"`
 013 Assoc        : `:`
 014 String       : `"X"`
-017 Error        : reader error: unexpected EOF
+017 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K": "V","X":"X"```
@@ -6301,7 +6301,7 @@ okay: got expected error
 010 String       : `"X"`
 013 Assoc        : `:`
 014 String       : `"X"`
-017 Error        : reader error: unexpected EOF
+017 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":#<block>"V","X":"X"```
@@ -6314,7 +6314,7 @@ okay: got expected error
 017 String       : `"X"`
 020 Assoc        : `:`
 021 String       : `"X"`
-024 Error        : reader error: unexpected EOF
+024 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":#inline
@@ -6328,7 +6328,7 @@ okay: got expected error
 017 String       : `"X"`
 020 Assoc        : `:`
 021 String       : `"X"`
-024 Error        : reader error: unexpected EOF
+024 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V","X":"X"```
@@ -6340,7 +6340,7 @@ okay: got expected error
 009 String       : `"X"`
 012 Assoc        : `:`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V"
@@ -6354,7 +6354,7 @@ okay: got expected error
 010 String       : `"X"`
 013 Assoc        : `:`
 014 String       : `"X"`
-017 Error        : reader error: unexpected EOF
+017 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V" ,"X":"X"```
@@ -6367,7 +6367,7 @@ okay: got expected error
 010 String       : `"X"`
 013 Assoc        : `:`
 014 String       : `"X"`
-017 Error        : reader error: unexpected EOF
+017 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V"#<block>,"X":"X"```
@@ -6380,7 +6380,7 @@ okay: got expected error
 017 String       : `"X"`
 020 Assoc        : `:`
 021 String       : `"X"`
-024 Error        : reader error: unexpected EOF
+024 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V"#inline
@@ -6394,7 +6394,7 @@ okay: got expected error
 017 String       : `"X"`
 020 Assoc        : `:`
 021 String       : `"X"`
-024 Error        : reader error: unexpected EOF
+024 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V","X":"X"```
@@ -6406,7 +6406,7 @@ okay: got expected error
 009 String       : `"X"`
 012 Assoc        : `:`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V","X":"X"
@@ -6420,7 +6420,7 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"X"`
 016 Space        : "\n"
-017 Error        : reader error: unexpected EOF
+017 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V","X":"X" ```
@@ -6433,7 +6433,7 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"X"`
 016 Space        : ` `
-017 Error        : reader error: unexpected EOF
+017 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V","X":"X"#<block>```
@@ -6446,7 +6446,7 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"X"`
 016 BlockComment : `#<block>`
-024 Error        : reader error: unexpected EOF
+024 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V","X":"X"#inline
@@ -6460,7 +6460,7 @@ okay: got expected error
 012 Assoc        : `:`
 013 String       : `"X"`
 016 InlineComment: "#inline\n"
-024 Error        : reader error: unexpected EOF
+024 Error        : syntax error: expected ',' or ')', got end of file
 okay: got expected error
 
 ```("K":"V","X":"X")```
@@ -8145,7 +8145,7 @@ okay: got expected error
 ```["V"```
 000 ArrayOpen    : `[`
 001 String       : `"V"`
-004 Error        : reader error: unexpected EOF
+004 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```
@@ -8153,21 +8153,21 @@ okay: got expected error
 000 Space        : "\n"
 001 ArrayOpen    : `[`
 002 String       : `"V"`
-005 Error        : reader error: unexpected EOF
+005 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ``` ["V"```
 000 Space        : ` `
 001 ArrayOpen    : `[`
 002 String       : `"V"`
-005 Error        : reader error: unexpected EOF
+005 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```#<block>["V"```
 000 BlockComment : `#<block>`
 008 ArrayOpen    : `[`
 009 String       : `"V"`
-012 Error        : reader error: unexpected EOF
+012 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```#inline
@@ -8175,13 +8175,13 @@ okay: got expected error
 000 InlineComment: "#inline\n"
 008 ArrayOpen    : `[`
 009 String       : `"V"`
-012 Error        : reader error: unexpected EOF
+012 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V"```
 000 ArrayOpen    : `[`
 001 String       : `"V"`
-004 Error        : reader error: unexpected EOF
+004 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```[
@@ -8189,21 +8189,21 @@ okay: got expected error
 000 ArrayOpen    : `[`
 001 Space        : "\n"
 002 String       : `"V"`
-005 Error        : reader error: unexpected EOF
+005 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```[ "V"```
 000 ArrayOpen    : `[`
 001 Space        : ` `
 002 String       : `"V"`
-005 Error        : reader error: unexpected EOF
+005 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```[#<block>"V"```
 000 ArrayOpen    : `[`
 001 BlockComment : `#<block>`
 009 String       : `"V"`
-012 Error        : reader error: unexpected EOF
+012 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```[#inline
@@ -8211,13 +8211,13 @@ okay: got expected error
 000 ArrayOpen    : `[`
 001 InlineComment: "#inline\n"
 009 String       : `"V"`
-012 Error        : reader error: unexpected EOF
+012 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V"```
 000 ArrayOpen    : `[`
 001 String       : `"V"`
-004 Error        : reader error: unexpected EOF
+004 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V"
@@ -8225,21 +8225,21 @@ okay: got expected error
 000 ArrayOpen    : `[`
 001 String       : `"V"`
 004 Space        : "\n"
-005 Error        : reader error: unexpected EOF
+005 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V" ```
 000 ArrayOpen    : `[`
 001 String       : `"V"`
 004 Space        : ` `
-005 Error        : reader error: unexpected EOF
+005 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V"#<block>```
 000 ArrayOpen    : `[`
 001 String       : `"V"`
 004 BlockComment : `#<block>`
-012 Error        : reader error: unexpected EOF
+012 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V"#inline
@@ -8247,7 +8247,7 @@ okay: got expected error
 000 ArrayOpen    : `[`
 001 String       : `"V"`
 004 InlineComment: "#inline\n"
-012 Error        : reader error: unexpected EOF
+012 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V",```
@@ -8419,7 +8419,7 @@ okay: got expected error
 001 String       : `"V"`
 004 Sep          : `,`
 005 String       : `"X"`
-008 Error        : reader error: unexpected EOF
+008 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```
@@ -8429,7 +8429,7 @@ okay: got expected error
 002 String       : `"V"`
 005 Sep          : `,`
 006 String       : `"X"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ``` ["V","X"```
@@ -8438,7 +8438,7 @@ okay: got expected error
 002 String       : `"V"`
 005 Sep          : `,`
 006 String       : `"X"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```#<block>["V","X"```
@@ -8447,7 +8447,7 @@ okay: got expected error
 009 String       : `"V"`
 012 Sep          : `,`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```#inline
@@ -8457,7 +8457,7 @@ okay: got expected error
 009 String       : `"V"`
 012 Sep          : `,`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V","X"```
@@ -8465,7 +8465,7 @@ okay: got expected error
 001 String       : `"V"`
 004 Sep          : `,`
 005 String       : `"X"`
-008 Error        : reader error: unexpected EOF
+008 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```[
@@ -8475,7 +8475,7 @@ okay: got expected error
 002 String       : `"V"`
 005 Sep          : `,`
 006 String       : `"X"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```[ "V","X"```
@@ -8484,7 +8484,7 @@ okay: got expected error
 002 String       : `"V"`
 005 Sep          : `,`
 006 String       : `"X"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```[#<block>"V","X"```
@@ -8493,7 +8493,7 @@ okay: got expected error
 009 String       : `"V"`
 012 Sep          : `,`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```[#inline
@@ -8503,7 +8503,7 @@ okay: got expected error
 009 String       : `"V"`
 012 Sep          : `,`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V","X"```
@@ -8511,7 +8511,7 @@ okay: got expected error
 001 String       : `"V"`
 004 Sep          : `,`
 005 String       : `"X"`
-008 Error        : reader error: unexpected EOF
+008 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V"
@@ -8521,7 +8521,7 @@ okay: got expected error
 004 Space        : "\n"
 005 Sep          : `,`
 006 String       : `"X"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V" ,"X"```
@@ -8530,7 +8530,7 @@ okay: got expected error
 004 Space        : ` `
 005 Sep          : `,`
 006 String       : `"X"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V"#<block>,"X"```
@@ -8539,7 +8539,7 @@ okay: got expected error
 004 BlockComment : `#<block>`
 012 Sep          : `,`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V"#inline
@@ -8549,7 +8549,7 @@ okay: got expected error
 004 InlineComment: "#inline\n"
 012 Sep          : `,`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V","X"```
@@ -8557,7 +8557,7 @@ okay: got expected error
 001 String       : `"V"`
 004 Sep          : `,`
 005 String       : `"X"`
-008 Error        : reader error: unexpected EOF
+008 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V",
@@ -8567,7 +8567,7 @@ okay: got expected error
 004 Sep          : `,`
 005 Space        : "\n"
 006 String       : `"X"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V", "X"```
@@ -8576,7 +8576,7 @@ okay: got expected error
 004 Sep          : `,`
 005 Space        : ` `
 006 String       : `"X"`
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V",#<block>"X"```
@@ -8585,7 +8585,7 @@ okay: got expected error
 004 Sep          : `,`
 005 BlockComment : `#<block>`
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V",#inline
@@ -8595,7 +8595,7 @@ okay: got expected error
 004 Sep          : `,`
 005 InlineComment: "#inline\n"
 013 String       : `"X"`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V","X"```
@@ -8603,7 +8603,7 @@ okay: got expected error
 001 String       : `"V"`
 004 Sep          : `,`
 005 String       : `"X"`
-008 Error        : reader error: unexpected EOF
+008 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V","X"
@@ -8613,7 +8613,7 @@ okay: got expected error
 004 Sep          : `,`
 005 String       : `"X"`
 008 Space        : "\n"
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V","X" ```
@@ -8622,7 +8622,7 @@ okay: got expected error
 004 Sep          : `,`
 005 String       : `"X"`
 008 Space        : ` `
-009 Error        : reader error: unexpected EOF
+009 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V","X"#<block>```
@@ -8631,7 +8631,7 @@ okay: got expected error
 004 Sep          : `,`
 005 String       : `"X"`
 008 BlockComment : `#<block>`
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V","X"#inline
@@ -8641,7 +8641,7 @@ okay: got expected error
 004 Sep          : `,`
 005 String       : `"X"`
 008 InlineComment: "#inline\n"
-016 Error        : reader error: unexpected EOF
+016 Error        : syntax error: expected ',' or ']', got end of file
 okay: got expected error
 
 ```["V","X",]```
@@ -10020,7 +10020,7 @@ okay: got expected error
 001 Ident        : `I`
 002 Assoc        : `:`
 003 String       : `"V"`
-006 Error        : reader error: unexpected EOF
+006 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```
@@ -10030,7 +10030,7 @@ okay: got expected error
 002 Ident        : `I`
 003 Assoc        : `:`
 004 String       : `"V"`
-007 Error        : reader error: unexpected EOF
+007 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ``` {I:"V"```
@@ -10039,7 +10039,7 @@ okay: got expected error
 002 Ident        : `I`
 003 Assoc        : `:`
 004 String       : `"V"`
-007 Error        : reader error: unexpected EOF
+007 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```#<block>{I:"V"```
@@ -10048,7 +10048,7 @@ okay: got expected error
 009 Ident        : `I`
 010 Assoc        : `:`
 011 String       : `"V"`
-014 Error        : reader error: unexpected EOF
+014 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```#inline
@@ -10058,7 +10058,7 @@ okay: got expected error
 009 Ident        : `I`
 010 Assoc        : `:`
 011 String       : `"V"`
-014 Error        : reader error: unexpected EOF
+014 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V"```
@@ -10066,7 +10066,7 @@ okay: got expected error
 001 Ident        : `I`
 002 Assoc        : `:`
 003 String       : `"V"`
-006 Error        : reader error: unexpected EOF
+006 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{
@@ -10076,7 +10076,7 @@ I:"V"```
 002 Ident        : `I`
 003 Assoc        : `:`
 004 String       : `"V"`
-007 Error        : reader error: unexpected EOF
+007 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{ I:"V"```
@@ -10085,7 +10085,7 @@ okay: got expected error
 002 Ident        : `I`
 003 Assoc        : `:`
 004 String       : `"V"`
-007 Error        : reader error: unexpected EOF
+007 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{#<block>I:"V"```
@@ -10094,7 +10094,7 @@ okay: got expected error
 009 Ident        : `I`
 010 Assoc        : `:`
 011 String       : `"V"`
-014 Error        : reader error: unexpected EOF
+014 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{#inline
@@ -10104,7 +10104,7 @@ I:"V"```
 009 Ident        : `I`
 010 Assoc        : `:`
 011 String       : `"V"`
-014 Error        : reader error: unexpected EOF
+014 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V"```
@@ -10112,7 +10112,7 @@ okay: got expected error
 001 Ident        : `I`
 002 Assoc        : `:`
 003 String       : `"V"`
-006 Error        : reader error: unexpected EOF
+006 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I
@@ -10122,7 +10122,7 @@ okay: got expected error
 002 Space        : "\n"
 003 Assoc        : `:`
 004 String       : `"V"`
-007 Error        : reader error: unexpected EOF
+007 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I :"V"```
@@ -10131,7 +10131,7 @@ okay: got expected error
 002 Space        : ` `
 003 Assoc        : `:`
 004 String       : `"V"`
-007 Error        : reader error: unexpected EOF
+007 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I#<block>:"V"```
@@ -10140,7 +10140,7 @@ okay: got expected error
 002 BlockComment : `#<block>`
 010 Assoc        : `:`
 011 String       : `"V"`
-014 Error        : reader error: unexpected EOF
+014 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I#inline
@@ -10150,7 +10150,7 @@ okay: got expected error
 002 InlineComment: "#inline\n"
 010 Assoc        : `:`
 011 String       : `"V"`
-014 Error        : reader error: unexpected EOF
+014 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V"```
@@ -10158,7 +10158,7 @@ okay: got expected error
 001 Ident        : `I`
 002 Assoc        : `:`
 003 String       : `"V"`
-006 Error        : reader error: unexpected EOF
+006 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:
@@ -10168,7 +10168,7 @@ okay: got expected error
 002 Assoc        : `:`
 003 Space        : "\n"
 004 String       : `"V"`
-007 Error        : reader error: unexpected EOF
+007 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I: "V"```
@@ -10177,7 +10177,7 @@ okay: got expected error
 002 Assoc        : `:`
 003 Space        : ` `
 004 String       : `"V"`
-007 Error        : reader error: unexpected EOF
+007 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:#<block>"V"```
@@ -10186,7 +10186,7 @@ okay: got expected error
 002 Assoc        : `:`
 003 BlockComment : `#<block>`
 011 String       : `"V"`
-014 Error        : reader error: unexpected EOF
+014 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:#inline
@@ -10196,7 +10196,7 @@ okay: got expected error
 002 Assoc        : `:`
 003 InlineComment: "#inline\n"
 011 String       : `"V"`
-014 Error        : reader error: unexpected EOF
+014 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V"```
@@ -10204,7 +10204,7 @@ okay: got expected error
 001 Ident        : `I`
 002 Assoc        : `:`
 003 String       : `"V"`
-006 Error        : reader error: unexpected EOF
+006 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V"
@@ -10214,7 +10214,7 @@ okay: got expected error
 002 Assoc        : `:`
 003 String       : `"V"`
 006 Space        : "\n"
-007 Error        : reader error: unexpected EOF
+007 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V" ```
@@ -10223,7 +10223,7 @@ okay: got expected error
 002 Assoc        : `:`
 003 String       : `"V"`
 006 Space        : ` `
-007 Error        : reader error: unexpected EOF
+007 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V"#<block>```
@@ -10232,7 +10232,7 @@ okay: got expected error
 002 Assoc        : `:`
 003 String       : `"V"`
 006 BlockComment : `#<block>`
-014 Error        : reader error: unexpected EOF
+014 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V"#inline
@@ -10242,7 +10242,7 @@ okay: got expected error
 002 Assoc        : `:`
 003 String       : `"V"`
 006 InlineComment: "#inline\n"
-014 Error        : reader error: unexpected EOF
+014 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V",```
@@ -11956,7 +11956,7 @@ okay: got expected error
 007 Ident        : `X`
 008 Assoc        : `:`
 009 String       : `"X"`
-012 Error        : reader error: unexpected EOF
+012 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```
@@ -11970,7 +11970,7 @@ okay: got expected error
 008 Ident        : `X`
 009 Assoc        : `:`
 010 String       : `"X"`
-013 Error        : reader error: unexpected EOF
+013 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ``` {I:"V",X:"X"```
@@ -11983,7 +11983,7 @@ okay: got expected error
 008 Ident        : `X`
 009 Assoc        : `:`
 010 String       : `"X"`
-013 Error        : reader error: unexpected EOF
+013 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```#<block>{I:"V",X:"X"```
@@ -11996,7 +11996,7 @@ okay: got expected error
 015 Ident        : `X`
 016 Assoc        : `:`
 017 String       : `"X"`
-020 Error        : reader error: unexpected EOF
+020 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```#inline
@@ -12010,7 +12010,7 @@ okay: got expected error
 015 Ident        : `X`
 016 Assoc        : `:`
 017 String       : `"X"`
-020 Error        : reader error: unexpected EOF
+020 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V",X:"X"```
@@ -12022,7 +12022,7 @@ okay: got expected error
 007 Ident        : `X`
 008 Assoc        : `:`
 009 String       : `"X"`
-012 Error        : reader error: unexpected EOF
+012 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{
@@ -12036,7 +12036,7 @@ I:"V",X:"X"```
 008 Ident        : `X`
 009 Assoc        : `:`
 010 String       : `"X"`
-013 Error        : reader error: unexpected EOF
+013 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{ I:"V",X:"X"```
@@ -12049,7 +12049,7 @@ okay: got expected error
 008 Ident        : `X`
 009 Assoc        : `:`
 010 String       : `"X"`
-013 Error        : reader error: unexpected EOF
+013 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{#<block>I:"V",X:"X"```
@@ -12062,7 +12062,7 @@ okay: got expected error
 015 Ident        : `X`
 016 Assoc        : `:`
 017 String       : `"X"`
-020 Error        : reader error: unexpected EOF
+020 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{#inline
@@ -12076,7 +12076,7 @@ I:"V",X:"X"```
 015 Ident        : `X`
 016 Assoc        : `:`
 017 String       : `"X"`
-020 Error        : reader error: unexpected EOF
+020 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V",X:"X"```
@@ -12088,7 +12088,7 @@ okay: got expected error
 007 Ident        : `X`
 008 Assoc        : `:`
 009 String       : `"X"`
-012 Error        : reader error: unexpected EOF
+012 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I
@@ -12102,7 +12102,7 @@ okay: got expected error
 008 Ident        : `X`
 009 Assoc        : `:`
 010 String       : `"X"`
-013 Error        : reader error: unexpected EOF
+013 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I :"V",X:"X"```
@@ -12115,7 +12115,7 @@ okay: got expected error
 008 Ident        : `X`
 009 Assoc        : `:`
 010 String       : `"X"`
-013 Error        : reader error: unexpected EOF
+013 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I#<block>:"V",X:"X"```
@@ -12128,7 +12128,7 @@ okay: got expected error
 015 Ident        : `X`
 016 Assoc        : `:`
 017 String       : `"X"`
-020 Error        : reader error: unexpected EOF
+020 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I#inline
@@ -12142,7 +12142,7 @@ okay: got expected error
 015 Ident        : `X`
 016 Assoc        : `:`
 017 String       : `"X"`
-020 Error        : reader error: unexpected EOF
+020 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V",X:"X"```
@@ -12154,7 +12154,7 @@ okay: got expected error
 007 Ident        : `X`
 008 Assoc        : `:`
 009 String       : `"X"`
-012 Error        : reader error: unexpected EOF
+012 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:
@@ -12168,7 +12168,7 @@ okay: got expected error
 008 Ident        : `X`
 009 Assoc        : `:`
 010 String       : `"X"`
-013 Error        : reader error: unexpected EOF
+013 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I: "V",X:"X"```
@@ -12181,7 +12181,7 @@ okay: got expected error
 008 Ident        : `X`
 009 Assoc        : `:`
 010 String       : `"X"`
-013 Error        : reader error: unexpected EOF
+013 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:#<block>"V",X:"X"```
@@ -12194,7 +12194,7 @@ okay: got expected error
 015 Ident        : `X`
 016 Assoc        : `:`
 017 String       : `"X"`
-020 Error        : reader error: unexpected EOF
+020 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:#inline
@@ -12208,7 +12208,7 @@ okay: got expected error
 015 Ident        : `X`
 016 Assoc        : `:`
 017 String       : `"X"`
-020 Error        : reader error: unexpected EOF
+020 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V",X:"X"```
@@ -12220,7 +12220,7 @@ okay: got expected error
 007 Ident        : `X`
 008 Assoc        : `:`
 009 String       : `"X"`
-012 Error        : reader error: unexpected EOF
+012 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V"
@@ -12234,7 +12234,7 @@ okay: got expected error
 008 Ident        : `X`
 009 Assoc        : `:`
 010 String       : `"X"`
-013 Error        : reader error: unexpected EOF
+013 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V" ,X:"X"```
@@ -12247,7 +12247,7 @@ okay: got expected error
 008 Ident        : `X`
 009 Assoc        : `:`
 010 String       : `"X"`
-013 Error        : reader error: unexpected EOF
+013 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V"#<block>,X:"X"```
@@ -12260,7 +12260,7 @@ okay: got expected error
 015 Ident        : `X`
 016 Assoc        : `:`
 017 String       : `"X"`
-020 Error        : reader error: unexpected EOF
+020 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V"#inline
@@ -12274,7 +12274,7 @@ okay: got expected error
 015 Ident        : `X`
 016 Assoc        : `:`
 017 String       : `"X"`
-020 Error        : reader error: unexpected EOF
+020 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V",X:"X"```
@@ -12286,7 +12286,7 @@ okay: got expected error
 007 Ident        : `X`
 008 Assoc        : `:`
 009 String       : `"X"`
-012 Error        : reader error: unexpected EOF
+012 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V",X:"X"
@@ -12300,7 +12300,7 @@ okay: got expected error
 008 Assoc        : `:`
 009 String       : `"X"`
 012 Space        : "\n"
-013 Error        : reader error: unexpected EOF
+013 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V",X:"X" ```
@@ -12313,7 +12313,7 @@ okay: got expected error
 008 Assoc        : `:`
 009 String       : `"X"`
 012 Space        : ` `
-013 Error        : reader error: unexpected EOF
+013 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V",X:"X"#<block>```
@@ -12326,7 +12326,7 @@ okay: got expected error
 008 Assoc        : `:`
 009 String       : `"X"`
 012 BlockComment : `#<block>`
-020 Error        : reader error: unexpected EOF
+020 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V",X:"X"#inline
@@ -12340,7 +12340,7 @@ okay: got expected error
 008 Assoc        : `:`
 009 String       : `"X"`
 012 InlineComment: "#inline\n"
-020 Error        : reader error: unexpected EOF
+020 Error        : syntax error: expected ',' or '}', got end of file
 okay: got expected error
 
 ```{I:"V",X:"X",```
