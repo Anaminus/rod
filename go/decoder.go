@@ -75,24 +75,25 @@ func (d *Decoder) nextToken() (t token, err error) {
 		}
 		return t, nil
 	}
-retry:
-	if !d.l.Next() {
-		panic("no more tokens")
-	}
-	t = d.l.Token()
-	if err := d.l.Err(); err != nil {
-		return t, err
-	}
-	switch t.Type {
-	case tEOF:
-		if d.eof {
-			return t, nil
+	for {
+		if !d.l.Next() {
+			panic("no more tokens")
 		}
-		return t, io.ErrUnexpectedEOF
-	case tSpace, tInlineComment, tBlockComment, tAnnotation:
-		goto retry
+		t = d.l.Token()
+		if err := d.l.Err(); err != nil {
+			return t, err
+		}
+		switch t.Type {
+		case tEOF:
+			if d.eof {
+				return t, nil
+			}
+			return t, io.ErrUnexpectedEOF
+		case tSpace, tInlineComment, tBlockComment, tAnnotation:
+			continue
+		}
+		return t, nil
 	}
-	return t, nil
 }
 
 // Peek at the next token. If it matches t, then consume it.
