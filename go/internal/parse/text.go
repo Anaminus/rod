@@ -3,7 +3,6 @@ package parse
 import (
 	"bufio"
 	"io"
-	"io/ioutil"
 	"sort"
 )
 
@@ -325,7 +324,7 @@ func (t *TextReader) UntilEOF() (ok bool) {
 		return false
 	}
 	var b []byte
-	if b, t.err = ioutil.ReadAll(t.r); t.err != nil {
+	if b, t.err = io.ReadAll(t.r); t.err != nil {
 		return false
 	}
 	t.buf = append(t.buf, b...)
