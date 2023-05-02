@@ -441,7 +441,7 @@ func (l *lexer) expected(format string, a ...any) state {
 finish:
 	return l.error("syntax", expectedError{
 		Expected: fmt.Sprintf(format, a...),
-		Got:      fmt.Sprintf("%s", s),
+		Got:      s,
 	})
 }
 
