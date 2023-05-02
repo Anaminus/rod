@@ -193,41 +193,41 @@ end
 ---     - A table where metamethod `__type` is "rod.map".
 ---     - A table that does not match any other types.
 ---
-function export.typeof(v: any): string?
+function export.typeof(v: any): (string?, any)
 	if v == nil then
-		return "null"
+		return "null", nil
 	elseif type(v) == "boolean" then
-		return "bool"
+		return "bool", v
 	elseif type(v) == "number" then
-		return "float"
+		return "float", v
 	elseif type(v) == "string" then
-		return "string"
+		return "string", v
 	elseif type(v) ~= "table" then
 		return nil
 	end
 	local mt = getmetatable(v)
 	if type(mt) == "table" then
 		if mt.__type == "rod.int" and type(v.Value) == "number" then
-			return "int"
+			return "int", v.Value
 		elseif mt.__type == "rod.blob" and type(v.Value) == "string" then
-			return "blob"
+			return "blob", v.Value
 		elseif mt.__type == "rod.array" then
-			return "array"
+			return "array", v
 		elseif mt.__type == "rod.map" then
-			return "map"
+			return "map", v
 		elseif mt.__type == "rod.struct" then
-			return "struct"
+			return "struct", v
 		end
 	end
 	if v[1] ~= nil then
-		return "array"
+		return "array", v
 	end
 	for k in v do
 		if type(k) ~= "string" then
-			return "map"
+			return "map", v
 		end
 	end
-	return "struct"
+	return "struct", v
 end
 
 return table.freeze(export)
