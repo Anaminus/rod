@@ -1,5 +1,6 @@
 local Types = require(script.Types)
 local Decoder = require(script.Decoder)
+local Encoder = require(script.Encoder)
 
 local export = {}
 
@@ -16,5 +17,6 @@ export.struct = Types.struct
 export.typeof = Types.typeof
 
 export.decode = Decoder.decode
+export.encode = Encoder.encode
 
 return table.freeze(export)
