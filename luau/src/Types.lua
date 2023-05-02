@@ -207,8 +207,16 @@ function export.typeof(v: any): (string?, any)
 	end
 	local mt = getmetatable(v)
 	if type(mt) == "table" then
-		if mt.__type == "rod.int" and type(v.Value) == "number" then
+		if mt.__type == "rod.null" then
+			return "null", nil
+		elseif mt.__type == "rod.bool" and type(v.Value) == "boolean" then
+			return "null", v.Value
+		elseif mt.__type == "rod.int" and type(v.Value) == "number" then
 			return "int", v.Value
+		elseif mt.__type == "rod.float" and type(v.Value) == "number" then
+			return "int", v.Value
+		elseif mt.__type == "rod.string" and type(v.Value) == "string" then
+			return "string", v.Value
 		elseif mt.__type == "rod.blob" and type(v.Value) == "string" then
 			return "blob", v.Value
 		elseif mt.__type == "rod.array" then
