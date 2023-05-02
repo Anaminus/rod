@@ -1,5 +1,5 @@
+local c = require(script.Parent.const)
 local Types = require(script.Parent.Types)
--- local Types = require("Types")
 
 local export = {}
 
@@ -7,32 +7,6 @@ local export = {}
 --- error is thrown.
 function export.decode(s: string): any
 	type state = () -> state?
-
-	local rInlineComment   = '#'
-	local rEOL             = '\n'
-	local rBlockComment    = "#<"
-	local rBlockCommentEnd = '>'
-	local rAnnotation      = '<'
-	local rAnnotationEnd   = '>'
-	local rNull            = "null"
-	local rTrue            = "true"
-	local rFalse           = "false"
-	local rInf             = "inf"
-	local rNaN             = "nan"
-	local rPos             = '+'
-	local rNeg             = '-'
-	local rDecimal         = '.'
-	local rString          = '"'
-	local rEscape          = '\\'
-	local rBlob            = '|'
-	local rSep             = ','
-	local rAssoc           = ':'
-	local rArrayOpen       = '['
-	local rArrayClose      = ']'
-	local rMapOpen         = '('
-	local rMapClose        = ')'
-	local rStructOpen      = '{'
-	local rStructClose     = '}'
 
 	-- Input string has 3 sections: consumed, read, and unread.
 
@@ -204,15 +178,15 @@ function export.decode(s: string): any
 			-- emit Space
 		end
 
-		if is(rBlockComment) then
-			if not literal(rBlockCommentEnd) then
-				return expected("%q", rBlockCommentEnd)
+		if is(c.BlockComment) then
+			if not literal(c.BlockCommentEnd) then
+				return expected("%q", c.BlockCommentEnd)
 			end
 			skip()
 			-- emit BlockComment
 			return lexSpace
-		elseif is(rInlineComment) then
-			if not literal(rEOL) and not isEOF() then
+		elseif is(c.InlineComment) then
+			if not literal(c.EOL) and not isEOF() then
 				return expected("end of line")
 			end
 			skip()
@@ -233,9 +207,9 @@ function export.decode(s: string): any
 
 	-- Scan for an optional annotation.
 	function lexAnnotation(): state?
-		if is(rAnnotation) then
-			if not literal(rAnnotationEnd) then
-				return expected("%q", rAnnotationEnd)
+		if is(c.Annotation) then
+			if not literal(c.AnnotationEnd) then
+				return expected("%q", c.AnnotationEnd)
 			end
 			skip()
 			-- emit Annotation
@@ -247,17 +221,17 @@ function export.decode(s: string): any
 	function lexValue(): state?
 		if switchPrimitive() then
 			return pop()
-		elseif is(rArrayOpen) then
+		elseif is(c.ArrayOpen) then
 			skip()
 			-- emit ArrayOpen
 			table.insert(stack, Types.array())
 			return run(lexSpace, lexElement)
-		elseif is(rMapOpen) then
+		elseif is(c.MapOpen) then
 			skip()
 			-- emit MapOpen
 			table.insert(stack, Types.map())
 			return run(lexSpace, lexEntry)
-		elseif is(rStructOpen) then
+		elseif is(c.StructOpen) then
 			skip()
 			-- emit StructOpen
 			table.insert(stack, Types.struct())
@@ -278,20 +252,20 @@ function export.decode(s: string): any
 
 	-- Used as a switch case to scan for an optional primitive.
 	function switchPrimitive(): boolean
-		if is(rPos) then
+		if is(c.Pos) then
 			skip()
 			table.insert(stack, 1)
 			push(lexNumber)
 			return true
-		elseif is(rNeg) then
+		elseif is(c.Neg) then
 			skip()
 			table.insert(stack, -1)
 			push(lexNumber)
 			return true
-		elseif is(rString) then
+		elseif is(c.String) then
 			push(lexString)
 			return true
-		elseif is(rBlob) then
+		elseif is(c.Blob) then
 			skip()
 			-- emit Blob
 			table.insert(stack, {})
@@ -301,27 +275,27 @@ function export.decode(s: string): any
 			table.insert(stack, 1)
 			push(lexNumber)
 			return true
-		elseif is(rNull) then
+		elseif is(c.Null) then
 			skip()
 			-- emit Null
 			table.insert(stack, Types.null())
 			return true
-		elseif is(rTrue) then
+		elseif is(c.True) then
 			skip()
 			-- emit True
 			table.insert(stack, Types.bool(true))
 			return true
-		elseif is(rFalse) then
+		elseif is(c.False) then
 			skip()
 			-- emit False
 			table.insert(stack, Types.bool(false))
 			return true
-		elseif is(rInf) then
+		elseif is(c.Inf) then
 			skip()
 			-- emit Inf
 			table.insert(stack, Types.float(math.huge))
 			return true
-		elseif is(rNaN) then
+		elseif is(c.NaN) then
 			skip()
 			-- emit NaN
 			table.insert(stack, Types.float(0/0))
@@ -334,7 +308,7 @@ function export.decode(s: string): any
 	-- Scans an integer or a float. Expects top value to be a sign to multiply
 	-- by.
 	function lexNumber(): state?
-		if is(rInf) then
+		if is(c.Inf) then
 			skip()
 			stack[#stack] *= math.huge
 			return pop()
@@ -343,7 +317,7 @@ function export.decode(s: string): any
 		if not find("^[0-9]+") then
 			return expected("digit")
 		end
-		if is(rDecimal) then
+		if is(c.Decimal) then
 			if not find("^[0-9]+") then
 				return expected("digit")
 			end
@@ -363,7 +337,7 @@ function export.decode(s: string): any
 		local buf = {}
 		while true do
 			-- Jump to next escape or delimiter.
-			local _, k, prev, sep = string.find(s, "(.-)(["..rEscape..rString.."])", j)
+			local _, k, prev, sep = string.find(s, "(.-)(["..c.Escape..c.String.."])", j)
 			if sep == "\\" then
 				table.insert(buf, prev)
 				j = k + 1
@@ -377,7 +351,7 @@ function export.decode(s: string): any
 				table.insert(stack, table.concat(buf))
 				return pop()
 			else
-				return expected("%q", rString)
+				return expected("%q", c.String)
 			end
 		end
 	end
@@ -392,22 +366,22 @@ function export.decode(s: string): any
 			local byte = tonumber(consume(), 16)
 			table.insert(stack[#stack], string.char(byte))
 			return run(lexSpace, lexBlob)
-		elseif is(rBlob) then
+		elseif is(c.Blob) then
 			skip()
 			-- emit Blob
 			stack[#stack] = table.concat(stack[#stack])
 			return pop()
 		else
-			return expected("byte or %q", rBlob)
+			return expected("byte or %q", c.Blob)
 		end
 	end
 
 	-- Scans the element of an array.
 	function lexElement(): state?
 		if isEOF() then
-			return expected("element or %q", rArrayClose)
+			return expected("element or %q", c.ArrayClose)
 		end
-		if is(rArrayClose) then
+		if is(c.ArrayClose) then
 			skip()
 			-- emit ArrayClose
 			return pop()
@@ -429,27 +403,27 @@ function export.decode(s: string): any
 	-- Scans the portion following an array element. Expects top value to be
 	-- element, and top-1 to be array.
 	function lexElementNext(): state?
-		if is(rSep) then
+		if is(c.Sep) then
 			skip()
 			-- emit Sep
 			popElement()
 			return run(lexSpace, lexElement)
-		elseif is(rArrayClose) then
+		elseif is(c.ArrayClose) then
 			skip()
 			-- emit ArrayClose
 			popElement()
 			return pop()
 		else
-			return expected("%q or %q", rSep, rArrayClose)
+			return expected("%q or %q", c.Sep, c.ArrayClose)
 		end
 	end
 
 	-- Scans a map entry.
 	function lexEntry(): state?
 		if isEOF() then
-			return expected("entry or %q", rMapClose)
+			return expected("entry or %q", c.MapClose)
 		end
-		if is(rMapClose) then
+		if is(c.MapClose) then
 			skip()
 			-- emit MapClose
 			return pop()
@@ -476,27 +450,27 @@ function export.decode(s: string): any
 	-- Scans the portion following a map entry. Expects top value to be entry
 	-- value, top-1 to be entry key, and top-2 to be map.
 	function lexEntryNext(): state?
-		if is(rSep) then
+		if is(c.Sep) then
 			skip()
 			-- emit Sep
 			popEntry()
 			return run(lexSpace, lexEntry)
-		elseif is(rMapClose) then
+		elseif is(c.MapClose) then
 			skip()
 			-- emit MapClose
 			popEntry()
 			return pop()
 		else
-			return expected("%q or %q", rSep, rMapClose)
+			return expected("%q or %q", c.Sep, c.MapClose)
 		end
 	end
 
 	-- Scans a struct field.
 	function lexField(): state?
 		if isEOF() then
-			return expected("field or %q", rStructClose)
+			return expected("field or %q", c.StructClose)
 		end
-		if is(rStructClose) then
+		if is(c.StructClose) then
 			skip()
 			-- emit StructClose
 			return pop()
@@ -536,25 +510,25 @@ function export.decode(s: string): any
 
 	-- Scans the portion following a struct field.
 	function lexFieldNext(): state?
-		if is(rSep) then
+		if is(c.Sep) then
 			skip()
 			-- emit Sep
 			popField()
 			return run(lexSpace, lexField)
-		elseif is(rStructClose) then
+		elseif is(c.StructClose) then
 			skip()
 			-- emit StructClose
 			popField()
 			return pop()
 		else
-			return expected("%q or %q", rSep, rStructClose)
+			return expected("%q or %q", c.Sep, c.StructClose)
 		end
 	end
 
 	-- Scans an association token.
 	function lexAssoc(): state?
-		if not is(rAssoc) then
-			return expected("%q", rAssoc)
+		if not is(c.Assoc) then
+			return expected("%q", c.Assoc)
 		end
 		skip()
 		-- emit Assoc
