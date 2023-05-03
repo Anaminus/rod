@@ -318,7 +318,7 @@ function export.encode(value: any): string
 			newline()
 
 			if not encodePrimitive(k) then
-				error("cannot encode type %T as map key", v)
+				error(string.format("cannot encode type %s as map key", typeof(v)))
 			end
 			write(c.Assoc, c.Space)
 			encodeValue(v)
