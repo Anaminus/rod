@@ -42,7 +42,7 @@ function export.encode(value: any): string
 	local encodeIdent
 
 	function encodeValue(v: any)
-		if not encodePrimitive(v) then
+		if encodePrimitive(v) then
 			return
 		end
 		local t = Types.typeof(v)
@@ -313,7 +313,7 @@ function export.encode(value: any): string
 		mapForEach(v, function(k: any, v: any)
 			newline()
 
-			if encodePrimitive(k) then
+			if not encodePrimitive(k) then
 				error("cannot encode type %T as map key", v)
 			end
 			write(c.Assoc, c.Space)
