@@ -253,27 +253,26 @@ function export.encode(value: any): string
 		write(c.ArrayClose)
 	end
 
-	local function typeIndex(v: any): number
-		local t = Types.typeof(v)
+	local function typeIndex(v: any): (number, any, string)
+		local t, va = Types.typeof(v)
 		if t == "null" then
-			return 1
+			return 1, va, t
 		elseif t == "bool" then
-			return 2
+			return 2, va, t
 		elseif t == "int" then
-			return 3
+			return 3, va, t
 		elseif t == "float" then
-			return 4
+			return 4, va, t
 		elseif t == "string" then
-			return 5
+			return 5, va, t
 		elseif t == "blob" then
-			return 6
+			return 6, va, t
 		else
-			return 0
+			return 0, nil, ""
 		end
 	end
 
-	local function typeCmp(i: any, j: any): boolean
-		local t = Types.typeof(i)
+	local function typeCmp(t: string, i: any, j: any): boolean
 		if t == "null" then
 			return false
 		elseif t == "bool" then
@@ -297,12 +296,12 @@ function export.encode(value: any): string
 			table.insert(keys, key)
 		end
 		table.sort(keys, function(a: any, b: any): boolean
-			local ti = typeIndex(a)
-			local tj = typeIndex(b)
-			if ti == tj then
-				return typeCmp(a, b)
+			local ii, vi, t = typeIndex(a)
+			local ij, vj = typeIndex(b)
+			if ii == ij then
+				return typeCmp(t, vi, vj)
 			end
-			return ti < tj
+			return ii < ij
 		end)
 		for _, key in keys do
 			f(key, m[key])
