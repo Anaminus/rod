@@ -348,7 +348,7 @@ function export.decode(s: string): any
 				j = k + 1
 				skip()
 				-- emit String
-				table.insert(stack, table.concat(buf))
+				table.insert(stack, Types.string(table.concat(buf)))
 				return pop()
 			else
 				return expected("%q", c.String)
@@ -369,7 +369,7 @@ function export.decode(s: string): any
 		elseif is(c.Blob) then
 			skip()
 			-- emit Blob
-			stack[#stack] = table.concat(stack[#stack])
+			stack[#stack] = Types.blob(table.concat(stack[#stack]))
 			return pop()
 		else
 			return expected("byte or %q", c.Blob)
