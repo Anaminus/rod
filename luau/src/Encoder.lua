@@ -160,9 +160,13 @@ function export.encode(value: any): string
 
 	function encodeString(v: string)
 		write(c.String)
-		write(string.gsub(v, "[" .. c.Escape .. c.String .. "]", function(c)
-			return c.Escape .. c
-		end))
+		-- Escape escape and delimiter.
+		v = string.gsub(v, "[" .. c.Escape .. c.String .. "]", function(r)
+			return c.Escape .. r
+		end)
+		-- Escape CRLF, which would otherwise be normalized to LF when decoded.
+		v = string.gsub(v, "\r\n", c.Escape .. c.EscapeCR .. c.Escape .. c.EscapeLF)
+		write(v)
 		write(c.String)
 	end
 

@@ -338,14 +338,24 @@ function export.decode(s: string): any
 		while true do
 			-- Jump to next escape or delimiter.
 			local _, k, prev, sep = string.find(s, "(.-)(["..c.Escape..c.String.."])", j)
+			-- Normalize CRLF to LF.
+			table.insert(buf, (string.gsub(prev, "\r\n", "\n")))
+			j = k + 1
 			if sep == "\\" then
-				table.insert(buf, prev)
-				j = k + 1
-				table.insert(buf, string.sub(s, j, j))
+				local r = string.sub(s, j, j)
+				if r == c.EscapeLF then
+					table.insert(buf, '\n')
+				elseif r == c.EscapeCR then
+					table.insert(buf, '\r')
+				elseif r == c.Escape then
+					table.insert(buf, c.Escape)
+				elseif r == c.String then
+					table.insert(buf, c.String)
+				else
+					error(string.format("string contains invalid escape character %q", r))
+				end
 				j = j + 1
 			elseif sep == "\"" then
-				table.insert(buf, prev)
-				j = k + 1
 				skip()
 				-- emit String
 				table.insert(stack, Types.string(table.concat(buf)))

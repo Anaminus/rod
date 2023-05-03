@@ -49,6 +49,8 @@ const (
 	rDecimal         rune   = '.'
 	rString          rune   = '"'
 	rEscape          rune   = '\\'
+	rEscapeLF        rune   = 'n'
+	rEscapeCR        rune   = 'r'
 	rBlob            rune   = '|'
 	rSep             rune   = ','
 	rAssoc           rune   = ':'

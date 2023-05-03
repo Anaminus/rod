@@ -216,7 +216,7 @@ func (d *Decoder) decodeString(a *any, s string) error {
 		panic(fmt.Errorf("lexer emitted string token without delimiters"))
 	}
 
-	r := strings.NewReader(s[1 : len(s)-1])
+	r := strings.NewReader(s[1 : len(s)-1]) // Assumes len(rString) == 1
 	var b strings.Builder
 	for {
 		c, _, err := r.ReadRune()
@@ -224,30 +224,18 @@ func (d *Decoder) decodeString(a *any, s string) error {
 			break
 		}
 		switch c {
-		case '\\':
+		case rEscape:
 			switch c, _, _ := r.ReadRune(); c {
-			case 'a':
-				b.WriteRune('\a')
-			case 'b':
-				b.WriteRune('\b')
-			case 'f':
-				b.WriteRune('\f')
-			case 'n':
+			case rEscapeLF:
 				b.WriteRune('\n')
-			case 'r':
-				// Discarded.
-			case 't':
-				b.WriteRune('\t')
-			case 'v':
-				b.WriteRune('\v')
-			case '\\':
-				b.WriteRune('\\')
-			case '\'':
-				b.WriteRune('\'')
-			case '"':
-				b.WriteRune('"')
+			case rEscapeCR:
+				b.WriteRune('\r')
+			case rEscape:
+				b.WriteRune(rEscape)
+			case rString:
+				b.WriteRune(rString)
 			default:
-				return fmt.Errorf("string contains invalid escape `\\%s`", string(c))
+				return fmt.Errorf("string contains invalid escape `%c%c`", rEscape, c)
 			}
 		default:
 			//TODO: Copy entire sequences of non-escapes at once.

@@ -123,10 +123,27 @@ func (e *Encoder) encodeFloat(v float64) error {
 
 func (e *Encoder) encodeString(v string) error {
 	e.w.WriteRune(rString)
-	for _, r := range v {
+	crlf := false
+	for i, r := range v {
 		switch r {
 		case rString, rEscape:
 			e.w.WriteRune(rEscape)
+		case '\r':
+			// If next character is \n.
+			if i+1 < len(v) && v[i+1] == '\n' {
+				// Escape explicit CRLF so that decoder interprets it correctly.
+				e.w.WriteRune(rEscape)
+				e.w.WriteRune(rEscapeCR)
+				crlf = true
+				continue
+			}
+		case '\n':
+			if crlf {
+				e.w.WriteRune(rEscape)
+				e.w.WriteRune(rEscapeLF)
+				crlf = false
+				continue
+			}
 		}
 		e.w.WriteRune(r)
 	}
