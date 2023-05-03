@@ -247,7 +247,9 @@ function export.encode(value: any): string
 			write(c.Sep)
 		end
 		pop()
-		newline()
+		if #v > 0 then
+			newline()
+		end
 		write(c.ArrayClose)
 	end
 
@@ -310,7 +312,9 @@ function export.encode(value: any): string
 	function encodeMap(v: {[any]: any})
 		write(c.MapOpen)
 		push()
+		local has = false
 		mapForEach(v, function(k: any, v: any)
+			has = true
 			newline()
 
 			if not encodePrimitive(k) then
@@ -322,7 +326,9 @@ function export.encode(value: any): string
 			return nil
 		end)
 		pop()
-		newline()
+		if has then
+			newline()
+		end
 		write(c.MapClose)
 	end
 
@@ -340,7 +346,9 @@ function export.encode(value: any): string
 	function encodeStruct(v: {[string]: any})
 		write(c.StructOpen)
 		push()
+		local has = false
 		structForEach(v, function(i: string, v: any)
+			has = true
 			newline()
 			encodeIdent(i)
 			write(c.Assoc, c.Space)
@@ -348,7 +356,9 @@ function export.encode(value: any): string
 			write(c.Sep)
 		end)
 		pop()
-		newline()
+		if has then
+			newline()
+		end
 		write(c.StructClose)
 	end
 
