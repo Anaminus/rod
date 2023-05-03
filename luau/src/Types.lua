@@ -210,7 +210,7 @@ function export.typeof(v: any): (string?, any)
 		if mt.__type == "rod.null" then
 			return "null", nil
 		elseif mt.__type == "rod.bool" and type(v.Value) == "boolean" then
-			return "null", v.Value
+			return "bool", v.Value
 		elseif mt.__type == "rod.int" and type(v.Value) == "number" then
 			return "int", v.Value
 		elseif mt.__type == "rod.float" and type(v.Value) == "number" then
