@@ -237,6 +237,13 @@ func (d *Decoder) decodeString(a *any, s string) error {
 			default:
 				return fmt.Errorf("string contains invalid escape `%c%c`", rEscape, c)
 			}
+		case '\r':
+			if c, _, _ := r.ReadRune(); c == '\n' {
+				b.WriteRune('\n')
+			} else {
+				r.UnreadRune()
+				b.WriteRune('\r')
+			}
 		default:
 			//TODO: Copy entire sequences of non-escapes at once.
 			b.WriteRune(c)
