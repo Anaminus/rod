@@ -258,4 +258,5 @@ func TestDecoder(t *testing.T) {
 
 	testDecodeEach(t, testPrimitives)
 	testDecodeEach(t, testComposites)
+	testDecodeEach(t, testExtra)
 }
