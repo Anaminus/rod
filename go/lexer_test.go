@@ -138,8 +138,36 @@ var testComposites = map[string]result{
 	`{ I : "V" ,X:"X",}`:     {_struct{"I": "V", "X": "X"}, nil},
 }
 
-var testExtra = map[string]error{
-	``: lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "end of file"}},
+var testExtra = map[string]result{
+	``: {nil, lexerError{Type: "syntax", Err: expectedError{Expected: "value", Got: "end of file"}}},
+
+	"\"A\nB\"":     {"A\nB", nil},
+	"\"A\r\nB\"":   {"A\nB", nil},
+	"\"A\rB\"":     {"A\rB", nil},
+	"\"A\\nB\"":    {"A\nB", nil},
+	"\"A\\r\\nB\"": {"A\r\nB", nil},
+	"\"A\\rB\"":    {"A\rB", nil},
+
+	"\"\nB\"":     {"\nB", nil},
+	"\"\r\nB\"":   {"\nB", nil},
+	"\"\rB\"":     {"\rB", nil},
+	"\"\\nB\"":    {"\nB", nil},
+	"\"\\r\\nB\"": {"\r\nB", nil},
+	"\"\\rB\"":    {"\rB", nil},
+
+	"\"A\n\"":     {"A\n", nil},
+	"\"A\r\n\"":   {"A\n", nil},
+	"\"A\r\"":     {"A\r", nil},
+	"\"A\\n\"":    {"A\n", nil},
+	"\"A\\r\\n\"": {"A\r\n", nil},
+	"\"A\\r\"":    {"A\r", nil},
+
+	"\"\n\"":     {"\n", nil},
+	"\"\r\n\"":   {"\n", nil},
+	"\"\r\"":     {"\r", nil},
+	"\"\\n\"":    {"\n", nil},
+	"\"\\r\\n\"": {"\r\n", nil},
+	"\"\\r\"":    {"\r", nil},
 }
 
 func keysOf[T any](m map[string]T) []string {
@@ -286,8 +314,8 @@ func TestGenerate(t *testing.T) {
 	traverseEach(t, w, " ", testComposites, testSpaces)
 
 	for _, extra := range keysOf(testExtra) {
-		e := testExtra[extra]
-		writePrimitive(w, extra, e)
+		r := testExtra[extra]
+		writePrimitive(w, extra, r.err)
 	}
 
 	w.Flush()

@@ -14741,3 +14741,131 @@ okay: got no error
 ``````
 000 Error        : syntax error: expected value, got end of file
 okay: got expected error
+
+```"
+"```
+000 String       : "\"\n\""
+003 EOF          : ``
+okay: got no error
+
+```"
+B"```
+000 String       : "\"\nB\""
+004 EOF          : ``
+okay: got no error
+
+```"
+"```
+000 String       : "\"\r\n\""
+004 EOF          : ``
+okay: got no error
+
+```"
+B"```
+000 String       : "\"\r\nB\""
+005 EOF          : ``
+okay: got no error
+
+```""```
+000 String       : "\"\r\""
+003 EOF          : ``
+okay: got no error
+
+```"B"```
+000 String       : "\"\rB\""
+004 EOF          : ``
+okay: got no error
+
+```"A
+"```
+000 String       : "\"A\n\""
+004 EOF          : ``
+okay: got no error
+
+```"A
+B"```
+000 String       : "\"A\nB\""
+005 EOF          : ``
+okay: got no error
+
+```"A
+"```
+000 String       : "\"A\r\n\""
+005 EOF          : ``
+okay: got no error
+
+```"A
+B"```
+000 String       : "\"A\r\nB\""
+006 EOF          : ``
+okay: got no error
+
+```"A"```
+000 String       : "\"A\r\""
+004 EOF          : ``
+okay: got no error
+
+```"AB"```
+000 String       : "\"A\rB\""
+005 EOF          : ``
+okay: got no error
+
+```"A\n"```
+000 String       : `"A\n"`
+005 EOF          : ``
+okay: got no error
+
+```"A\nB"```
+000 String       : `"A\nB"`
+006 EOF          : ``
+okay: got no error
+
+```"A\r"```
+000 String       : `"A\r"`
+005 EOF          : ``
+okay: got no error
+
+```"A\rB"```
+000 String       : `"A\rB"`
+006 EOF          : ``
+okay: got no error
+
+```"A\r\n"```
+000 String       : `"A\r\n"`
+007 EOF          : ``
+okay: got no error
+
+```"A\r\nB"```
+000 String       : `"A\r\nB"`
+008 EOF          : ``
+okay: got no error
+
+```"\n"```
+000 String       : `"\n"`
+004 EOF          : ``
+okay: got no error
+
+```"\nB"```
+000 String       : `"\nB"`
+005 EOF          : ``
+okay: got no error
+
+```"\r"```
+000 String       : `"\r"`
+004 EOF          : ``
+okay: got no error
+
+```"\rB"```
+000 String       : `"\rB"`
+005 EOF          : ``
+okay: got no error
+
+```"\r\n"```
+000 String       : `"\r\n"`
+006 EOF          : ``
+okay: got no error
+
+```"\r\nB"```
+000 String       : `"\r\nB"`
+007 EOF          : ``
+okay: got no error
