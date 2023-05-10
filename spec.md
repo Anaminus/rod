@@ -153,6 +153,9 @@ int  = [ sign ] digits
 A `-` sign indicates a negative value, while `+` or no sign indicates a positive
 value.
 
+The precision of a decoded int is beyond the scope of the ROD format.
+Annotations may be used to denote precision as needed.
+
 ```
 -42
  42
@@ -176,6 +179,9 @@ sign.
 
 The keyword `nan` is used to denote "Not a Number", or an unrepresentable
 floating-point value. It cannot have a sign.
+
+The precision of a decoded float is beyond the scope of the ROD format.
+Annotations may be used to denote precision as needed.
 
 ```
 -3.141592653589793
