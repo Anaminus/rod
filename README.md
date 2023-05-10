@@ -39,7 +39,7 @@ boolean | `true`                       | One of two possible states.
 integer | `+42`                        | A signed integer.
 float   | `-3.14`                      | A floating-point number.
 string  | `"hello"`                    | A sequence of characters.
-blob    | `| 68 65 6C 6C 6F |`         | A sequence of bytes.
+blob    | `\| 68 65 6C 6C 6F \|`       | A sequence of bytes.
 array   | `[1, 2, 3]`                  | A sequence of values.
 map     | `("A": 1, 2: 3, true: null)` | Maps a primitive value to another value.
 struct  | `{A: 1, B: 2, C: 3}`         | Maps an identifier to a value.

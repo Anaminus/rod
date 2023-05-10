@@ -14,17 +14,17 @@ A readable format for describing data.
 # Overview
 A ROD-formatted file contains a value of one of the following types:
 
-Type              | Example                                      | Description
-------------------|----------------------------------------------|------------
-[null](#null)     | `null`                                       | The absence of a value.
-[bool](#bool)     | `true`                                       | A boolean value.
-[int](#int)       | `42`                                         | A numeric integer.
-[float](#float)   | `-3.14159`                                   | A floating point number.
-[string](#string) | `"Hello, world!"`                            | A sequence of characters.
-[blob](#blob)     | `| 48 65 6C 6C 6F 2C 20 77 6F 72 6C 64 21 |` | A sequence of bytes.
-[array](#array)   | `[true, 42, "foo"]`                          | A sequence of values.
-[map](#map)       | `(0: "A", true: "B", null: "C")`             | A collection of values mapped to values.
-[struct](#struct) | `{X: -2.3, Y: 0.0, Z: 1.9}`                  | A collection of identifiers mapped to values.
+Type              | Example                                        | Description
+------------------|------------------------------------------------|------------
+[null](#null)     | `null`                                         | The absence of a value.
+[bool](#bool)     | `true`                                         | A boolean value.
+[int](#int)       | `42`                                           | A numeric integer.
+[float](#float)   | `-3.14159`                                     | A floating point number.
+[string](#string) | `"Hello, world!"`                              | A sequence of characters.
+[blob](#blob)     | `\| 48 65 6C 6C 6F 2C 20 77 6F 72 6C 64 21 \|` | A sequence of bytes.
+[array](#array)   | `[true, 42, "foo"]`                            | A sequence of values.
+[map](#map)       | `(0: "A", true: "B", null: "C")`               | A collection of values mapped to values.
+[struct](#struct) | `{X: -2.3, Y: 0.0, Z: 1.9}`                    | A collection of identifiers mapped to values.
 
 # Syntax
 The grammar notation used throughout this document is similar to Extended
